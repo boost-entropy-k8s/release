@@ -1,13 +1,13 @@
 approve:
 - commandHelpLink: ""
   repos:
-  - konveyor/mig-operator
+  - konveyor/mig-controller
   require_self_approval: false
 bugzilla:
   orgs:
     konveyor:
       repos:
-        mig-operator:
+        mig-controller:
           branches:
             '*':
               add_external_link: true
@@ -28,7 +28,7 @@ bugzilla:
               - status: ON_DEV
               - status: POST
 external_plugins:
-  konveyor/mig-operator:
+  konveyor/mig-controller:
   - endpoint: http://refresh
     events:
     - issue_comment
@@ -49,10 +49,10 @@ external_plugins:
     name: backport-verifier
 lgtm:
 - repos:
-  - konveyor/mig-operator
+  - konveyor/mig-controller
   review_acts_as_lgtm: true
 plugins:
-  konveyor/mig-operator:
+  konveyor/mig-controller:
     plugins:
     - assign
     - blunderbuss
