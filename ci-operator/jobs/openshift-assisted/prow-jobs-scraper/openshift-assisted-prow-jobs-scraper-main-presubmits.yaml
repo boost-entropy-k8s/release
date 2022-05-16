@@ -1,29 +1,27 @@
 presubmits:
-  coreos/rpm-ostree:
+  openshift-assisted/prow-jobs-scraper:
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
     - ^main$
     - ^main-
-    cluster: build02
-    context: ci/prow/fcos-e2e
+    cluster: build01
+    context: ci/prow/lint
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-      devices.kubevirt.io/kvm: "1"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-coreos-rpm-ostree-main-fcos-e2e
-    rerun_command: /test fcos-e2e
-    skip_if_only_changed: ^docs/|^\.github/|\.md$|^(?:.*/)?(?:\.gitignore)$
+    name: pull-ci-openshift-assisted-prow-jobs-scraper-main-lint
+    rerun_command: /test lint
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=fcos-e2e
+        - --target=lint
         command:
         - ci-operator
         image: ci-operator:latest
@@ -50,30 +48,29 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )fcos-e2e,?($|\s.*)
+    trigger: (?m)^/test( | .* )lint,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
     - ^main$
     - ^main-
-    cluster: build04
-    context: ci/prow/images
+    cluster: build01
+    context: ci/prow/unit-tests
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-coreos-rpm-ostree-main-images
-    rerun_command: /test images
-    skip_if_only_changed: ^docs/|^\.github/|\.md$|^(?:.*/)?(?:\.gitignore)$
+    name: pull-ci-openshift-assisted-prow-jobs-scraper-main-unit-tests
+    rerun_command: /test unit-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
+        - --target=unit-tests
         command:
         - ci-operator
         image: ci-operator:latest
@@ -100,4 +97,4 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )images,?($|\s.*)
+    trigger: (?m)^/test( | .* )unit-tests,?($|\s.*)
