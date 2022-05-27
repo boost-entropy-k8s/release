@@ -1,28 +1,27 @@
-postsubmits:
-  kubevirt/hyperconverged-cluster-operator:
+presubmits:
+  project-flotta/flotta-operator:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-1\.6$
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build01
+    context: ci/prow/unit-fast
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
-    max_concurrency: 1
-    name: branch-ci-kubevirt-hyperconverged-cluster-operator-release-1.6-images
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-project-flotta-flotta-operator-main-unit-fast
+    rerun_command: /test unit-fast
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --image-mirror-push-secret=/etc/push-secret/.dockerconfigjson
-        - --promote
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --target=src
+        - --target=unit-fast
         command:
         - ci-operator
         image: ci-operator:latest
@@ -38,9 +37,6 @@ postsubmits:
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
-        - mountPath: /etc/push-secret
-          name: push-secret
-          readOnly: true
         - mountPath: /etc/report
           name: result-aggregator
           readOnly: true
@@ -49,9 +45,7 @@ postsubmits:
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
-      - name: push-secret
-        secret:
-          secretName: registry-push-credentials-ci-central
       - name: result-aggregator
         secret:
           secretName: result-aggregator
+    trigger: (?m)^/test( | .* )unit-fast,?($|\s.*)
