@@ -1,8 +1,4 @@
 base_images:
-  stackrox-test:
-    name: stackrox-test
-    namespace: stackrox
-    tag: latest
   ubi:
     name: ubi
     namespace: ocp
@@ -12,22 +8,20 @@ base_images:
     namespace: ocp
     tag: "8"
 build_root:
-  image_stream_tag:
-    name: stackrox-test
-    namespace: stackrox
-    tag: latest
+  project_image:
+    dockerfile_path: .openshift-ci/Dockerfile.build_root
 images:
 - build_args:
   - name: ROX_PRODUCT_BRANDING
     value: RHACS_BRANDING
   dockerfile_path: .openshift-ci/build/Dockerfile.build-main-and-bundle
-  from: stackrox-test
+  from: src
   to: main-bundle
 - build_args:
   - name: ROX_PRODUCT_BRANDING
     value: RHACS_BRANDING
   dockerfile_path: .openshift-ci/build/Dockerfile.build-central-db-bundle
-  from: stackrox-test
+  from: src
   to: central-db-bundle
 - build_args:
   - name: ROX_PRODUCT_BRANDING
@@ -74,6 +68,26 @@ tests:
   steps:
     test:
     - ref: stackrox-initial
+- as: go-unit-tests
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: go-unit-tests-release
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: integration-unit-tests
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: shell-unit-tests
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: ui-unit-tests
+  steps:
+    test:
+    - ref: stackrox-initial
 - as: gke-qa-e2e-tests
   optional: true
   steps:
@@ -86,6 +100,31 @@ tests:
     test:
     - ref: stackrox-e2e
 - as: merge-style-checks
+  postsubmit: true
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: merge-go-unit-tests
+  postsubmit: true
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: merge-go-unit-tests-release
+  postsubmit: true
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: merge-integration-unit-tests
+  postsubmit: true
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: merge-shell-unit-tests
+  postsubmit: true
+  steps:
+    test:
+    - ref: stackrox-initial
+- as: merge-ui-unit-tests
   postsubmit: true
   steps:
     test:

@@ -21,7 +21,7 @@ items:
           deploymentconfig: gcsweb
       spec:
         containers:
-        - image: gcr.io/k8s-prow/gcsweb:v20220528-b717287b63
+        - image: gcr.io/k8s-prow/gcsweb:v20220531-e6b07305ec
           name: gcsweb
           args:
           - "-b"
