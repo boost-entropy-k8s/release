@@ -8,7 +8,7 @@ build_root:
   image_stream_tag:
     name: release
     namespace: openshift
-    tag: golang-1.17
+    tag: golang-1.18
 images:
 - from: base
   to: ibm-roks-toolkit
@@ -24,17 +24,17 @@ images:
 promotion:
   excluded_images:
   - release-base
-  name: ibm-roks-4.11
+  name: ibm-roks-4.12
   namespace: hypershift-toolkit
 releases:
   initial:
     integration:
-      name: "4.11"
+      name: "4.12"
       namespace: ocp
   latest:
     integration:
       include_built_images: true
-      name: "4.11"
+      name: "4.12"
       namespace: ocp
 resources:
   '*':
