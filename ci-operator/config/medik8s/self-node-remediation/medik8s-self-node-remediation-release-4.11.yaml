@@ -37,6 +37,7 @@ operator:
 promotion:
   additional_images:
     self-node-remediation-index: ci-index-self-node-remediation-bundle
+  disabled: true
   excluded_images:
   - src-oc
   name: "4.11"
@@ -78,6 +79,6 @@ tests:
           memory: 200Mi
     workflow: optional-operators-ci-aws
 zz_generated_metadata:
-  branch: main
+  branch: release-4.11
   org: medik8s
   repo: self-node-remediation
