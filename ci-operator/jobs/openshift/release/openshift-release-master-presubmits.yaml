@@ -23,6 +23,10 @@ presubmits:
         - --github-app-private-key-path=/etc/github/cert
         - --github-endpoint=http://ghproxy
         - --github-endpoint=https://api.github.com
+        - --ignore=openshift/multiarch
+        - --ignore=kata-containers/kata-containers
+        - --ignore=containers/gvisor-tap-vsock
+        - --ignore=containers/podman-py
         command:
         - ./hack/check-gh-automation.sh
         env:
@@ -686,7 +690,7 @@ presubmits:
             secretKeyRef:
               key: appid
               name: openshift-prow-github-app
-        image: gcr.io/k8s-prow/checkconfig:v20220607-246b5f8656
+        image: gcr.io/k8s-prow/checkconfig:v20220607-d408ead6e0
         imagePullPolicy: IfNotPresent
         name: ""
         resources:
