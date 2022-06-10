@@ -1,5 +1,6 @@
 {
     "expires": "168h",
+    "maxUnreadyReleases": 1,
     "message": "<!-- GENERATED FROM PUBLIC ANNOTATION CONFIG - DO NOT EDIT. -->This release contains OSBS official image builds of all arm64 code in release-4.12 (master) branches, and is updated after those builds are synced to quay.io.",
     "mirrorPrefix": "4.12-art-latest-arm64-priv",
     "name": "4.12.0-0.nightly-arm64-priv",
@@ -24,7 +25,7 @@
         },
         "aws-serial-arm64": {
             "disabled": true,
-            "optional": true,
+            "maxRetries": 3,
             "prowJob": {
                 "name": "periodic-ci-openshift-multiarch-master-nightly-4.12-ocp-e2e-serial-aws-arm64-priv"
             }

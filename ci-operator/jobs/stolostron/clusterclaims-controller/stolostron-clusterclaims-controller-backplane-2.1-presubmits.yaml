@@ -1,61 +1,11 @@
 presubmits:
-  openshift/os:
+  stolostron/clusterclaims-controller:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^c9s$
-    - ^c9s-
-    cluster: build02
-    context: ci/prow/build-test-qemu
-    decorate: true
-    decoration_config:
-      skip_cloning: true
-    labels:
-      ci.openshift.io/generator: prowgen
-      devices.kubevirt.io/kvm: "1"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-os-c9s-build-test-qemu
-    rerun_command: /test build-test-qemu
-    spec:
-      containers:
-      - args:
-        - --gcs-upload-secret=/secrets/gcs/service-account.json
-        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --report-credentials-file=/etc/report/credentials
-        - --target=build-test-qemu
-        command:
-        - ci-operator
-        image: ci-operator:latest
-        imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: 10m
-        volumeMounts:
-        - mountPath: /secrets/gcs
-          name: gcs-credentials
-          readOnly: true
-        - mountPath: /etc/pull-secret
-          name: pull-secret
-          readOnly: true
-        - mountPath: /etc/report
-          name: result-aggregator
-          readOnly: true
-      serviceAccountName: ci-operator
-      volumes:
-      - name: pull-secret
-        secret:
-          secretName: registry-pull-credentials
-      - name: result-aggregator
-        secret:
-          secretName: result-aggregator
-    trigger: (?m)^/test( | .* )build-test-qemu,?($|\s.*)
-  - agent: kubernetes
-    always_run: true
-    branches:
-    - ^c9s$
-    - ^c9s-
-    cluster: build03
+    - ^backplane-2\.1$
+    - ^backplane-2\.1-
+    cluster: build01
     context: ci/prow/images
     decorate: true
     decoration_config:
@@ -63,7 +13,7 @@ presubmits:
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-os-c9s-images
+    name: pull-ci-stolostron-clusterclaims-controller-backplane-2.1-images
     rerun_command: /test images
     spec:
       containers:
@@ -100,28 +50,27 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )images,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^c9s$
-    - ^c9s-
-    cluster: build03
-    context: ci/prow/validate
+    - ^backplane-2\.1$
+    - ^backplane-2\.1-
+    cluster: build01
+    context: ci/prow/pr-image-mirror
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-os-c9s-validate
-    rerun_command: /test validate
-    skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|PROJECT|LICENSE)$
+    name: pull-ci-stolostron-clusterclaims-controller-backplane-2.1-pr-image-mirror
+    rerun_command: /test pr-image-mirror
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=validate
+        - --target=pr-image-mirror
         command:
         - ci-operator
         image: ci-operator:latest
@@ -148,4 +97,53 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )validate,?($|\s.*)
+    trigger: (?m)^/test( | .* )pr-image-mirror,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^backplane-2\.1$
+    - ^backplane-2\.1-
+    cluster: build01
+    context: ci/prow/unit-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stolostron-clusterclaims-controller-backplane-2.1-unit-tests
+    rerun_command: /test unit-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=unit-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )unit-tests,?($|\s.*)

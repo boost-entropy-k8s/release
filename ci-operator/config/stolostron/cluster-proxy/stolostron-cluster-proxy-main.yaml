@@ -11,7 +11,7 @@ build_root:
   image_stream_tag:
     name: builder
     namespace: stolostron
-    tag: go1.17-linux
+    tag: go1.18-linux
 images:
 - dockerfile_path: ./cmd/pure.Dockerfile
   from: base
@@ -22,7 +22,7 @@ images:
   to: cluster-proxy
 promotion:
   disabled: true
-  name: "2.5"
+  name: "2.6"
   namespace: stolostron
 resources:
   '*':
@@ -54,6 +54,12 @@ tests:
       IMAGE_TAG: latest
       REGISTRY_ORG: stolostron
     workflow: ocm-ci-image-mirror
+- as: fast-forward
+  postsubmit: true
+  steps:
+    env:
+      DESTINATION_BRANCH: release-2.6
+    workflow: ocm-ci-fastforward
 zz_generated_metadata:
   branch: main
   org: stolostron

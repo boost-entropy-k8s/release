@@ -1,87 +1,25 @@
-presubmits:
-  openshift-priv/os:
+postsubmits:
+  stolostron/managedcluster-import-controller:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^c9s$
-    - ^c9s-
-    cluster: build02
-    context: ci/prow/build-test-qemu
+    - ^backplane-2\.1$
+    cluster: build01
     decorate: true
     decoration_config:
       skip_cloning: true
-    hidden: true
     labels:
+      ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
-      devices.kubevirt.io/kvm: "1"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-priv-os-c9s-build-test-qemu
-    path_alias: github.com/openshift/os
-    rerun_command: /test build-test-qemu
+    max_concurrency: 1
+    name: branch-ci-stolostron-managedcluster-import-controller-backplane-2.1-images
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --oauth-token-path=/usr/local/github-credentials/oauth
-        - --report-credentials-file=/etc/report/credentials
-        - --target=build-test-qemu
-        command:
-        - ci-operator
-        image: ci-operator:latest
-        imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: 10m
-        volumeMounts:
-        - mountPath: /secrets/gcs
-          name: gcs-credentials
-          readOnly: true
-        - mountPath: /usr/local/github-credentials
-          name: github-credentials-openshift-ci-robot-private-git-cloner
-          readOnly: true
-        - mountPath: /etc/pull-secret
-          name: pull-secret
-          readOnly: true
-        - mountPath: /etc/report
-          name: result-aggregator
-          readOnly: true
-      serviceAccountName: ci-operator
-      volumes:
-      - name: github-credentials-openshift-ci-robot-private-git-cloner
-        secret:
-          secretName: github-credentials-openshift-ci-robot-private-git-cloner
-      - name: pull-secret
-        secret:
-          secretName: registry-pull-credentials
-      - name: result-aggregator
-        secret:
-          secretName: result-aggregator
-    trigger: (?m)^/test( | .* )build-test-qemu,?($|\s.*)
-  - agent: kubernetes
-    always_run: true
-    branches:
-    - ^c9s$
-    - ^c9s-
-    cluster: build04
-    context: ci/prow/images
-    decorate: true
-    decoration_config:
-      skip_cloning: true
-    hidden: true
-    labels:
-      ci.openshift.io/generator: prowgen
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-priv-os-c9s-images
-    path_alias: github.com/openshift/os
-    rerun_command: /test images
-    spec:
-      containers:
-      - args:
-        - --gcs-upload-secret=/secrets/gcs/service-account.json
-        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --oauth-token-path=/usr/local/github-credentials/oauth
+        - --image-mirror-push-secret=/etc/push-secret/.dockerconfigjson
+        - --promote
         - --report-credentials-file=/etc/report/credentials
         - --target=[images]
         command:
@@ -96,53 +34,46 @@ presubmits:
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
-        - mountPath: /usr/local/github-credentials
-          name: github-credentials-openshift-ci-robot-private-git-cloner
-          readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
+          readOnly: true
+        - mountPath: /etc/push-secret
+          name: push-secret
           readOnly: true
         - mountPath: /etc/report
           name: result-aggregator
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: github-credentials-openshift-ci-robot-private-git-cloner
-        secret:
-          secretName: github-credentials-openshift-ci-robot-private-git-cloner
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
+      - name: push-secret
+        secret:
+          secretName: registry-push-credentials-ci-central
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )images,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^c9s$
-    - ^c9s-
-    cluster: build04
-    context: ci/prow/validate
+    - ^backplane-2\.1$
+    cluster: build01
     decorate: true
     decoration_config:
       skip_cloning: true
-    hidden: true
     labels:
       ci.openshift.io/generator: prowgen
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-priv-os-c9s-validate
-    path_alias: github.com/openshift/os
-    rerun_command: /test validate
-    skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|PROJECT|LICENSE)$
+    max_concurrency: 1
+    name: branch-ci-stolostron-managedcluster-import-controller-backplane-2.1-pr-merge-image-mirror
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --oauth-token-path=/usr/local/github-credentials/oauth
         - --report-credentials-file=/etc/report/credentials
-        - --target=validate
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=pr-merge-image-mirror
         command:
         - ci-operator
         image: ci-operator:latest
@@ -152,11 +83,11 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
-          readOnly: true
-        - mountPath: /usr/local/github-credentials
-          name: github-credentials-openshift-ci-robot-private-git-cloner
           readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
@@ -166,13 +97,64 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: github-credentials-openshift-ci-robot-private-git-cloner
+      - name: ci-pull-credentials
         secret:
-          secretName: github-credentials-openshift-ci-robot-private-git-cloner
+          secretName: ci-pull-credentials
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )validate,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^backplane-2\.1$
+    cluster: build01
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+    labels:
+      ci.openshift.io/generator: prowgen
+    max_concurrency: 1
+    name: branch-ci-stolostron-managedcluster-import-controller-backplane-2.1-publish
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=publish
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
