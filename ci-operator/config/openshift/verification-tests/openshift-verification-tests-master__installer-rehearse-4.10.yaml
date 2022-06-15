@@ -54,13 +54,13 @@ tests:
     env:
       BASE_DOMAIN: qe.azure.devcluster.openshift.com
     workflow: cucushift-installer-rehearse-azure-upi-disconnected
-- as: installer-rehearse-azuremag
+- as: installer-rehearse-azure-mag
   interval: 960h
   steps:
     cluster_profile: azuremag-qe
     env:
       BASE_DOMAIN: qemag.azure.devcluster.openshift.com
-    workflow: cucushift-installer-rehearse-azure-ipi-azuremag
+    workflow: cucushift-installer-rehearse-azure-mag-ipi
 - as: installer-rehearse-gcp
   interval: 960h
   steps:
@@ -75,7 +75,7 @@ tests:
   interval: 960h
   steps:
     cluster_profile: vsphere-discon
-    workflow: cucushift-installer-rehearse-vsphere-ipi-disconnected
+    workflow: cucushift-installer-rehearse-vsphere-upi-disconnected-workers-rhcos-rhel8
 zz_generated_metadata:
   branch: master
   org: openshift
