@@ -52,6 +52,13 @@ images:
       - destination_dir: .
         source_path: /go/src/github.com/stackrox/stackrox/image/postgres/.
   to: central-db
+- dockerfile_path: Dockerfile
+  inputs:
+    src:
+      paths:
+      - destination_dir: .
+        source_path: /go/src/github.com/stackrox/stackrox/docs/.
+  to: docs
 promotion:
   excluded_images:
   - main-bundle
@@ -63,6 +70,7 @@ resources:
     requests:
       cpu: 2000m
       memory: 4000Mi
+test_binary_build_commands: .openshift-ci/dispatch.sh test-binary-build-commands
 tests:
 - as: push-images
   steps:
@@ -74,6 +82,8 @@ tests:
         name: stackrox-stackrox-push
         namespace: test-credentials
       dependencies:
+      - env: PIPELINE_DOCS_IMAGE
+        name: docs
       - env: MAIN_IMAGE
         name: main
       - env: ROXCTL_IMAGE
@@ -127,7 +137,7 @@ tests:
     test:
     - ref: stackrox-e2e
   timeout: 3h30m0s
-- as: gke-openshift-4-e2e-tests
+- as: openshift-4-qa-e2e-tests
   cluster_claim:
     architecture: amd64
     cloud: aws
@@ -156,7 +166,7 @@ tests:
   steps:
     test:
     - ref: stackrox-e2e
-- as: merge-push-images
+- as: push-and-release
   postsubmit: true
   steps:
     test:
@@ -174,6 +184,17 @@ tests:
       - env: CENTRAL_DB_IMAGE
         name: central-db
       from: src
+      resources:
+        requests:
+          cpu: 2000m
+          memory: 4000Mi
+    - as: release-mgmt
+      commands: .openshift-ci/dispatch.sh release-mgmt
+      credentials:
+      - mount_path: /tmp/secret/stackrox-stackrox-push
+        name: stackrox-stackrox-push
+        namespace: test-credentials
+      from: test-bin
       resources:
         requests:
           cpu: 2000m
