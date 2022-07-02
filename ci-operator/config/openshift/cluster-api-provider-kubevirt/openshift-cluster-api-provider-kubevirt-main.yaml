@@ -1,14 +1,14 @@
 base_images:
   base:
-    name: "4.11"
+    name: "4.12"
     namespace: ocp
     tag: base
   cli:
-    name: "4.11"
+    name: "4.12"
     namespace: ocp
     tag: cli
   hypershift-operator-4.11:
-    name: "4.11"
+    name: "4.12"
     namespace: ocp
     tag: hypershift-operator
   openshift_release_golang-1.18:
@@ -60,7 +60,7 @@ images:
     openshift_release_golang-1.18:
       as:
       - registry.ci.openshift.org/openshift/release:golang-1.18
-  to: cluster-api-kubevirt-controller
+  to: kubevirt-cluster-api-controllers
 - build_args:
   - name: ARCH
     value: amd64
@@ -115,7 +115,7 @@ promotion:
   excluded_images:
   - capk-oc-bin-image
   - hypershift-cli-e2e
-  name: "4.11"
+  name: "4.12"
   namespace: ocp
 releases:
   hosted-ocp-previous:
@@ -126,12 +126,12 @@ releases:
       version: "4.11"
   initial:
     integration:
-      name: "4.11"
+      name: "4.12"
       namespace: ocp
   latest:
     integration:
       include_built_images: true
-      name: "4.11"
+      name: "4.12"
       namespace: ocp
 resources:
   '*':
@@ -197,7 +197,7 @@ tests:
         oc wait pod --for=condition=Ready -l cluster.x-k8s.io/provider=infrastructure-kubevirt -n capk-system --timeout=120s
       dependencies:
       - env: CAPK_IMAGE
-        name: cluster-api-kubevirt-controller
+        name: kubevirt-cluster-api-controllers
       from: capk-oc-bin-image
       resources:
         requests:
@@ -274,7 +274,7 @@ tests:
         fi
       dependencies:
       - env: CAPK_IMAGE
-        name: cluster-api-kubevirt-controller
+        name: kubevirt-cluster-api-controllers
       from: hypershift-cli-e2e
       resources:
         requests:
