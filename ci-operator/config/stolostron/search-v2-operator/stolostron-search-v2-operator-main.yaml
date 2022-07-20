@@ -11,7 +11,7 @@ build_root:
   image_stream_tag:
     name: builder
     namespace: stolostron
-    tag: go1.17-linux
+    tag: go1.18-linux
 images:
 - dockerfile_path: Dockerfile
   from: base
@@ -22,10 +22,6 @@ images:
   to: search-v2-operator
 - dockerfile_path: bundle.Dockerfile
   from: base
-  inputs:
-    stolostron_builder_go1.17-linux:
-      as:
-      - registry.ci.openshift.org/stolostron/builder:go1.17-linux
   to: search-operator-bundle
 promotion:
   name: "2.6"
