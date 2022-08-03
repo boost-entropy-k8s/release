@@ -1118,12 +1118,6 @@ config_updater:
         - ci
       gzip: true
       name: job-config-misc
-    ci-operator/jobs/**/*che*/*-7.50.x-*.yaml:
-      clusters:
-        app.ci:
-        - ci
-      gzip: true
-      name: job-config-misc
     ci-operator/jobs/**/*che*/*-7.51.x-*.yaml:
       clusters:
         app.ci:
@@ -2026,6 +2020,11 @@ config_updater:
       - build_farm_ocp
       - build_farm_ocp_aarch64
       name: base-repos
+    core-services/retester/_config.yaml:
+      clusters:
+        app.ci:
+        - ci
+      name: retester-config
 golint: {}
 goose:
   key_path: /etc/unsplash-api/api-key
