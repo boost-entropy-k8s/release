@@ -340,8 +340,8 @@ periodics:
         secretName: github-credentials-openshift-bot
 - agent: kubernetes
   cluster: app.ci
+  cron: 0 0,8 * * *
   decorate: true
-  interval: 6h
   labels:
     ci.openshift.io/role: infra
   name: periodic-issue-close
@@ -386,8 +386,8 @@ periodics:
         secretName: github-credentials-openshift-bot
 - agent: kubernetes
   cluster: app.ci
+  cron: 15 0,8 * * *
   decorate: true
-  interval: 6h
   labels:
     ci.openshift.io/role: infra
   name: periodic-enhancements-close
@@ -432,8 +432,8 @@ periodics:
         secretName: github-credentials-openshift-bot
 - agent: kubernetes
   cluster: app.ci
+  cron: 30 0,8 * * *
   decorate: true
-  interval: 6h
   labels:
     ci.openshift.io/role: infra
   name: periodic-issue-rotten
@@ -482,8 +482,8 @@ periodics:
         secretName: github-credentials-openshift-bot
 - agent: kubernetes
   cluster: app.ci
+  cron: 45 0,8 * * *
   decorate: true
-  interval: 6h
   labels:
     ci.openshift.io/role: infra
   name: periodic-enhancements-rotten
@@ -532,8 +532,8 @@ periodics:
         secretName: github-credentials-openshift-bot
 - agent: kubernetes
   cluster: app.ci
+  cron: 0 1,9 * * *
   decorate: true
-  interval: 6h
   labels:
     ci.openshift.io/role: infra
   name: periodic-issue-stale
@@ -581,8 +581,8 @@ periodics:
         secretName: github-credentials-openshift-bot
 - agent: kubernetes
   cluster: app.ci
+  cron: 15 1,9 * * *
   decorate: true
-  interval: 6h
   labels:
     ci.openshift.io/role: infra
   name: periodic-enhancements-stale
@@ -630,10 +630,10 @@ periodics:
         secretName: github-credentials-openshift-bot
 - agent: kubernetes
   cluster: app.ci
+  cron: 0 0 * * 0
   decorate: true
   decoration_config:
-    timeout: 10h0m0s
-  interval: 24h
+    timeout: 12h0m0s
   labels:
     ci.openshift.io/role: infra
   name: periodic-label-sync
@@ -643,18 +643,18 @@ periodics:
       - --config=/etc/config/labels.yaml
       - --confirm=true
       - --orgs=openshift,cri-o,operator-framework,openshift-priv,redhat-openshift-ecosystem,openshift-psap,openshift-metal3,shipwright-io,openshift-assisted,kcp-dev,konveyor,openshift-eng
-      - --github-throttle-org=openshift:300:100
-      - --github-throttle-org=cri-o:300:100
-      - --github-throttle-org=operator-framework:300:100
-      - --github-throttle-org=openshift-priv:300:100
-      - --github-throttle-org=redhat-openshift-ecosystem:300:100
-      - --github-throttle-org=openshift-psap:300:100
-      - --github-throttle-org=openshift-metal3:300:100
-      - --github-throttle-org=shipwright-io:300:100
-      - --github-throttle-org=openshift-assisted:300:100
-      - --github-throttle-org=kcp-dev:300:100
-      - --github-throttle-org=konveyor:300:100
-      - --github-throttle-org=openshift-eng:300:100
+      - --github-throttle-org=openshift:600:200
+      - --github-throttle-org=cri-o:600:200
+      - --github-throttle-org=operator-framework:600:200
+      - --github-throttle-org=openshift-priv:600:200
+      - --github-throttle-org=redhat-openshift-ecosystem:600:200
+      - --github-throttle-org=openshift-psap:600:200
+      - --github-throttle-org=openshift-metal3:600:200
+      - --github-throttle-org=shipwright-io:600:200
+      - --github-throttle-org=openshift-assisted:600:200
+      - --github-throttle-org=kcp-dev:600:200
+      - --github-throttle-org=konveyor:600:200
+      - --github-throttle-org=openshift-eng:600:200
       - --github-app-id=$(GITHUB_APP_ID)
       - --github-app-private-key-path=/etc/github/cert
       - --github-endpoint=http://ghproxy
@@ -956,12 +956,12 @@ periodics:
         secretName: cluster-secrets-gcp-openshift-gce-devel-ci-2
 - agent: kubernetes
   cluster: app.ci
+  cron: 0 08,22 * * 1-5
   decorate: true
   extra_refs:
   - base_ref: master
     org: openshift
     repo: release
-  interval: 12h
   labels:
     ci.openshift.io/role: infra
   name: periodic-prow-image-autobump
@@ -987,7 +987,7 @@ periodics:
         secretName: github-credentials-openshift-bot
 - agent: kubernetes
   cluster: app.ci
-  cron: '@hourly'
+  cron: 0 */4 * * 1-5
   decorate: true
   extra_refs:
   - base_ref: master
@@ -1345,12 +1345,12 @@ periodics:
         secretName: hook
 - agent: kubernetes
   cluster: app.ci
-  cron: '@hourly'
   decorate: true
   extra_refs:
   - base_ref: master
     org: openshift
     repo: release
+  interval: 2h
   labels:
     ci.openshift.io/role: infra
   name: periodic-openshift-release-fast-forward
@@ -1382,13 +1382,13 @@ periodics:
         secretName: github-credentials-openshift-merge-robot
 - agent: kubernetes
   cluster: app.ci
-  cron: '@hourly'
   decorate: true
   extra_refs:
   - base_ref: master
     org: openshift
     repo: release
   hidden: true
+  interval: 2h
   labels:
     ci.openshift.io/role: infra-internal
   max_concurrency: 1
@@ -1422,12 +1422,12 @@ periodics:
         secretName: github-credentials-openshift-merge-robot
 - agent: kubernetes
   cluster: app.ci
-  cron: '@hourly'
   decorate: true
   extra_refs:
   - base_ref: master
     org: openshift
     repo: release
+  interval: 2h
   labels:
     ci.openshift.io/role: infra
   name: periodic-openshift-release-merge-blockers
