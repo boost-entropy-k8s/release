@@ -3,6 +3,7 @@ default:
     add_external_link: true
     allowed_security_levels:
     - default
+    - Red Hat Employee
     dependent_bug_states:
     - status: VERIFIED
     - status: RELEASE PENDING
@@ -30,6 +31,7 @@ default:
     add_external_link: true
     allowed_security_levels:
     - default
+    - Red Hat Employee
     exclude_defaults: true
     is_open: true
     state_after_close:
@@ -48,6 +50,7 @@ default:
     add_external_link: true
     allowed_security_levels:
     - default
+    - Red Hat Employee
     exclude_defaults: true
     is_open: true
     state_after_close:
@@ -146,6 +149,7 @@ default:
   release-4.10:
     dependent_bug_target_versions:
     - 4.11.0
+    - 4.11.z
     target_version: 4.10.z
     validate_by_default: true
   release-4.11:
@@ -184,6 +188,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -203,6 +208,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -222,6 +228,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -241,6 +248,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -260,6 +268,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -279,6 +288,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -298,6 +308,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -317,6 +328,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -336,6 +348,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -355,6 +368,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -516,6 +530,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -568,6 +583,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             dependent_bug_states:
             - status: VERIFIED
             - status: RELEASE PENDING
@@ -591,6 +607,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -609,6 +626,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             state_after_close:
               status: NEW
@@ -629,6 +647,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             dependent_bug_states:
             - status: VERIFIED
             - status: RELEASE PENDING
@@ -652,6 +671,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -670,6 +690,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             state_after_close:
               status: NEW
@@ -690,6 +711,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             dependent_bug_states:
             - status: VERIFIED
             - status: RELEASE PENDING
@@ -713,6 +735,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -731,6 +754,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             state_after_close:
               status: NEW
@@ -750,12 +774,14 @@ orgs:
           '*':
             allowed_security_levels:
             - default
+            - Red Hat Employee
             validate_by_default: false
       openshift-tests-private:
         branches:
           '*':
             allowed_security_levels:
             - default
+            - Red Hat Employee
             validate_by_default: false
       origin-aggregated-logging:
         branches:
@@ -763,6 +789,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             dependent_bug_states:
             - status: VERIFIED
             - status: RELEASE PENDING
@@ -786,6 +813,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -804,6 +832,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             state_after_close:
               status: NEW
@@ -848,6 +877,7 @@ orgs:
         add_external_link: true
         allowed_security_levels:
         - default
+        - Red Hat Employee
         exclude_defaults: true
         is_open: true
         state_after_close:
@@ -969,6 +999,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             dependent_bug_states:
             - status: VERIFIED
             - status: RELEASE PENDING
@@ -992,6 +1023,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -1010,6 +1042,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             state_after_close:
               status: NEW
@@ -1030,6 +1063,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             dependent_bug_states:
             - status: VERIFIED
             - status: RELEASE PENDING
@@ -1053,6 +1087,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -1071,6 +1106,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             state_after_close:
               status: NEW
@@ -1091,6 +1127,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             dependent_bug_states:
             - status: VERIFIED
             - status: RELEASE PENDING
@@ -1114,6 +1151,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -1132,6 +1170,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             state_after_close:
               status: NEW
@@ -1151,12 +1190,14 @@ orgs:
           '*':
             allowed_security_levels:
             - default
+            - Red Hat Employee
             validate_by_default: false
       openshift-tests-private:
         branches:
           '*':
             allowed_security_levels:
             - default
+            - Red Hat Employee
             validate_by_default: false
       origin-aggregated-logging:
         branches:
@@ -1164,6 +1205,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             dependent_bug_states:
             - status: VERIFIED
             - status: RELEASE PENDING
@@ -1187,6 +1229,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
@@ -1205,6 +1248,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             state_after_close:
               status: NEW
@@ -1249,6 +1293,7 @@ orgs:
         add_external_link: true
         allowed_security_levels:
         - default
+        - Red Hat Employee
         exclude_defaults: true
         is_open: true
         state_after_close:
@@ -1295,6 +1340,7 @@ orgs:
             add_external_link: true
             allowed_security_levels:
             - default
+            - Red Hat Employee
             exclude_defaults: true
             is_open: true
             state_after_close:
