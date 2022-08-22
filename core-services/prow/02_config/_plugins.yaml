@@ -662,12 +662,6 @@ config_updater:
         - ci
       gzip: true
       name: ci-operator-misc-configs
-    ci-operator/config/**/assisted-*/*testing-image-changes*.yaml:
-      clusters:
-        app.ci:
-        - ci
-      gzip: true
-      name: ci-operator-misc-configs
     ci-operator/config/**/assisted-*/*v1*.yaml:
       clusters:
         app.ci:
@@ -975,6 +969,12 @@ config_updater:
       gzip: true
       name: ci-operator-4.9-configs
     ci-operator/config/redhat-openshift-ecosystem/preflight/*-preflight-ocp-*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: ci-operator-misc-configs
+    ci-operator/config/stackrox/**/*-hacks.yaml:
       clusters:
         app.ci:
         - ci
@@ -1424,12 +1424,6 @@ config_updater:
         - ci
       gzip: true
       name: job-config-misc
-    ci-operator/jobs/**/assisted-*/*testing-image-changes*.yaml:
-      clusters:
-        app.ci:
-        - ci
-      gzip: true
-      name: job-config-misc
     ci-operator/jobs/**/assisted-*/*v1*.yaml:
       clusters:
         app.ci:
@@ -1743,6 +1737,12 @@ config_updater:
       gzip: true
       name: job-config-4.9
     ci-operator/jobs/redhat-openshift-ecosystem/preflight/*-preflight-ocp-*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: job-config-misc
+    ci-operator/jobs/stackrox/**/*-hacks-*.yaml:
       clusters:
         app.ci:
         - ci
