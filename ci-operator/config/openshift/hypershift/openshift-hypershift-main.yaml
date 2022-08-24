@@ -69,11 +69,11 @@ releases:
       product: ocp
       relative: 1
       stream: ci
-      version: "4.11"
+      version: "4.12"
   latest:
     integration:
       include_built_images: true
-      name: "4.11"
+      name: "4.12"
       namespace: ocp
 resources:
   '*':
@@ -147,7 +147,7 @@ tests:
         # install hypershift
         bin/hypershift install --hypershift-image ${HYPERSHIFT_RELEASE_LATEST}
 
-        # complie the e2e tests
+        # compile the e2e tests
         make e2e
 
         # run the test
@@ -197,7 +197,7 @@ tests:
         # install hypershift
         bin/hypershift install --hypershift-image ${HYPERSHIFT_RELEASE_LATEST}
 
-        # complie the e2e tests
+        # compile the e2e tests
         make e2e
 
         # run the test
