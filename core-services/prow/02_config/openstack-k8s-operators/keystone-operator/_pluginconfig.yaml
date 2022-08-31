@@ -1,34 +1,10 @@
 approve:
 - commandHelpLink: ""
   repos:
-  - konveyor/mig-log-reader
+  - openstack-k8s-operators/keystone-operator
   require_self_approval: false
-bugzilla:
-  orgs:
-    konveyor:
-      repos:
-        mig-log-reader:
-          branches:
-            '*':
-              add_external_link: true
-              allowed_groups:
-              - redhat
-              - qe_staff
-              exclude_defaults: true
-              is_open: true
-              state_after_close:
-                status: NEW
-              state_after_merge:
-                status: MODIFIED
-              state_after_validation:
-                status: POST
-              valid_states:
-              - status: NEW
-              - status: ASSIGNED
-              - status: ON_DEV
-              - status: POST
 external_plugins:
-  konveyor/mig-log-reader:
+  openstack-k8s-operators/keystone-operator:
   - endpoint: http://refresh
     events:
     - issue_comment
@@ -40,6 +16,7 @@ external_plugins:
     name: cherrypick
   - endpoint: http://needs-rebase
     events:
+    - issue_comment
     - pull_request
     name: needs-rebase
   - endpoint: http://backport-verifier
@@ -47,6 +24,10 @@ external_plugins:
     - issue_comment
     - pull_request
     name: backport-verifier
+  - endpoint: http://payload-testing-prow-plugin
+    events:
+    - issue_comment
+    name: payload-testing-prow-plugin
   - endpoint: http://jira-lifecycle-plugin
     events:
     - issue_comment
@@ -54,10 +35,10 @@ external_plugins:
     name: jira-lifecycle-plugin
 lgtm:
 - repos:
-  - konveyor/mig-log-reader
+  - openstack-k8s-operators/keystone-operator
   review_acts_as_lgtm: true
 plugins:
-  konveyor/mig-log-reader:
+  openstack-k8s-operators/keystone-operator:
     plugins:
     - assign
     - blunderbuss
