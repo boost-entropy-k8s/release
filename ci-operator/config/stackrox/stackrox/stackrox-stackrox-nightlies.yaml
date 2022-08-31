@@ -20,8 +20,10 @@ base_images:
     namespace: ocp
     tag: "8"
 build_root:
-  project_image:
-    dockerfile_path: .openshift-ci/Dockerfile.build_root
+  image_stream_tag:
+    name: apollo-ci
+    namespace: stackrox
+    tag: stackrox-test-0.3.46
 images:
 - build_args:
   - name: ROX_PRODUCT_BRANDING
@@ -77,10 +79,7 @@ images:
       - destination_dir: .
         source_path: /go/src/github.com/stackrox/stackrox/docs/.
   to: docs
-- build_args:
-  - name: ROX_IMAGE_FLAVOR
-    value: development_build
-  dockerfile_path: operator/Dockerfile
+- dockerfile_path: operator/build/Dockerfile.gen
   inputs:
     golang-1.17.2:
       as:
