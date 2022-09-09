@@ -1,9 +1,9 @@
 postsubmits:
-  stackrox/stackrox:
+  openshift/cloud-provider-nutanix:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^ci-perf-hacks$
+    - ^main$
     cluster: build01
     decorate: true
     decoration_config:
@@ -12,7 +12,8 @@ postsubmits:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-stackrox-stackrox-ci-perf-hacks-images
+    name: branch-ci-openshift-cloud-provider-nutanix-main-images
+    path_alias: github.com/nutanix-cloud-native/cloud-provider-nutanix
     spec:
       containers:
       - args:
