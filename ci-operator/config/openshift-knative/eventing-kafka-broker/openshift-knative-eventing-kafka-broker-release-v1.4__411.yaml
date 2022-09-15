@@ -134,17 +134,17 @@ images:
 promotion:
   additional_images:
     eventing-kafka-broker-src: src
-  name: knative-nightly
+  name: knative-v1.4
   namespace: openshift
 releases:
   initial:
     integration:
-      name: "4.10"
+      name: "4.11"
       namespace: ocp
   latest:
     integration:
       include_built_images: true
-      name: "4.10"
+      name: "4.11"
       namespace: ocp
 resources:
   '*':
@@ -152,14 +152,14 @@ resources:
       cpu: 500m
       memory: 1Gi
 tests:
-- as: test-e2e-aws-ocp-410
+- as: test-e2e-aws-ocp-411
   cluster_claim:
     architecture: amd64
     cloud: aws
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.10"
+    version: "4.11"
   steps:
     test:
     - as: test
@@ -216,14 +216,14 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
-- as: test-conformance-aws-ocp-410
+- as: test-conformance-aws-ocp-411
   cluster_claim:
     architecture: amd64
     cloud: aws
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.10"
+    version: "4.11"
   steps:
     test:
     - as: test
@@ -280,14 +280,14 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
-- as: test-reconciler-aws-ocp-410
+- as: test-reconciler-aws-ocp-411
   cluster_claim:
     architecture: amd64
     cloud: aws
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.10"
+    version: "4.11"
   steps:
     test:
     - as: test
@@ -344,14 +344,14 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
-- as: test-e2e-aws-ocp-410-continuous
+- as: test-e2e-aws-ocp-411-continuous
   cluster_claim:
     architecture: amd64
     cloud: aws
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.10"
+    version: "4.11"
   cron: 0 5 * * 2,6
   steps:
     test:
@@ -409,14 +409,14 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
-- as: test-conformance-aws-ocp-410-continuous
+- as: test-conformance-aws-ocp-411-continuous
   cluster_claim:
     architecture: amd64
     cloud: aws
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.10"
+    version: "4.11"
   cron: 0 5 * * 2,6
   steps:
     test:
@@ -474,14 +474,14 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
-- as: test-reconciler-aws-ocp-410-continuous
+- as: test-reconciler-aws-ocp-411-continuous
   cluster_claim:
     architecture: amd64
     cloud: aws
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.10"
+    version: "4.11"
   cron: 0 5 * * 2,6
   steps:
     test:
@@ -540,7 +540,7 @@ tests:
       timeout: 4h0m0s
     workflow: generic-claim
 zz_generated_metadata:
-  branch: release-next
+  branch: release-v1.4
   org: openshift-knative
   repo: eventing-kafka-broker
-  variant: "410"
+  variant: "411"
