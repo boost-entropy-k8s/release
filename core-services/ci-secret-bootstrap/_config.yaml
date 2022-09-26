@@ -1959,6 +1959,24 @@ secret_configs:
     build05.config:
       field: sa.pod-scaler.build05.config
       item: pod-scaler
+    sa.pod-scaler.app.ci.token.txt:
+      field: sa.pod-scaler.app.ci.token.txt
+      item: pod-scaler
+    sa.pod-scaler.build01.token.txt:
+      field: sa.pod-scaler.build01.token.txt
+      item: pod-scaler
+    sa.pod-scaler.build02.token.txt:
+      field: sa.pod-scaler.build02.token.txt
+      item: pod-scaler
+    sa.pod-scaler.build03.token.txt:
+      field: sa.pod-scaler.build03.token.txt
+      item: pod-scaler
+    sa.pod-scaler.build04.token.txt:
+      field: sa.pod-scaler.build04.token.txt
+      item: pod-scaler
+    sa.pod-scaler.build05.token.txt:
+      field: sa.pod-scaler.build05.token.txt
+      item: pod-scaler
   to:
   - cluster: app.ci
     name: pod-scaler
