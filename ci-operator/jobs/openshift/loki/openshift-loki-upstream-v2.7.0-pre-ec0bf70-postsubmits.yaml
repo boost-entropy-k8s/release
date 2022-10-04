@@ -1,16 +1,18 @@
 postsubmits:
-  openshift/hypershift:
+  openshift/loki:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    cluster: build03
+    - ^upstream-v2\.7\.0-pre-ec0bf70$
+    cluster: build01
     decorate: true
+    decoration_config:
+      skip_cloning: true
     labels:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-hypershift-main-images
+    name: branch-ci-openshift-loki-upstream-v2.7.0-pre-ec0bf70-images
     spec:
       containers:
       - args:
@@ -20,7 +22,6 @@ postsubmits:
         - --promote
         - --report-credentials-file=/etc/report/credentials
         - --target=[images]
-        - --target=test-bin
         command:
         - ci-operator
         image: ci-operator:latest
