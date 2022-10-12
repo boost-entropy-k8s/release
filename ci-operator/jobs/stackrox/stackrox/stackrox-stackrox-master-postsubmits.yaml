@@ -64,7 +64,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-gke-nongroovy-e2e-tests
     spec:
       containers:
@@ -110,7 +110,7 @@ postsubmits:
       timeout: 5h0m0s
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-gke-postgres-qa-e2e-tests
     spec:
       containers:
@@ -157,6 +157,52 @@ postsubmits:
     labels:
       ci.openshift.io/generator: prowgen
     max_concurrency: 6
+    name: branch-ci-stackrox-stackrox-master-merge-gke-postgres-ui-e2e-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=merge-gke-postgres-ui-e2e-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^master$
+    cluster: build04
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci.openshift.io/generator: prowgen
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-gke-qa-e2e-tests
     spec:
       containers:
@@ -202,7 +248,7 @@ postsubmits:
       timeout: 5h0m0s
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-gke-ui-e2e-tests
     spec:
       containers:
@@ -247,7 +293,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-gke-upgrade-tests
     spec:
       containers:
@@ -292,7 +338,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-go-postgres-tests
     spec:
       containers:
@@ -337,7 +383,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-go-unit-tests
     spec:
       containers:
@@ -382,7 +428,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-go-unit-tests-release
     spec:
       containers:
@@ -427,7 +473,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-grouped-static-checks
     spec:
       containers:
@@ -472,7 +518,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-integration-unit-tests
     spec:
       containers:
@@ -517,7 +563,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-local-roxctl-tests
     spec:
       containers:
@@ -562,7 +608,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-mitre-bundles-checks
     spec:
       containers:
@@ -608,7 +654,7 @@ postsubmits:
       timeout: 5h0m0s
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-openshift-newest-operator-e2e-tests
     spec:
       containers:
@@ -668,7 +714,7 @@ postsubmits:
       timeout: 5h0m0s
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-openshift-oldest-operator-e2e-tests
     spec:
       containers:
@@ -728,7 +774,7 @@ postsubmits:
       timeout: 5h0m0s
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-openshift-penultimate-qa-e2e-tests
     spec:
       containers:
@@ -787,7 +833,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-policy-checks
     spec:
       containers:
@@ -832,7 +878,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-push-and-release
     spec:
       containers:
@@ -877,7 +923,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-shell-unit-tests
     spec:
       containers:
@@ -922,7 +968,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-style-checks
     spec:
       containers:
@@ -967,7 +1013,7 @@ postsubmits:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-merge-ui-unit-tests
     spec:
       containers:
@@ -1069,7 +1115,7 @@ postsubmits:
     labels:
       ci-operator.openshift.io/variant: stackrox_branding
       ci.openshift.io/generator: prowgen
-    max_concurrency: 6
+    max_concurrency: 1
     name: branch-ci-stackrox-stackrox-master-stackrox_branding-merge-push-images
     spec:
       containers:
