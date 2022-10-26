@@ -28,9 +28,16 @@ CONFIG = {
     'aws-3-quota-slice': {
         'us-east-1': 40,
     },
+    'aws-cspi-qe-quota-slice': {
+        'us-east-1': 10,
+        'us-east-2': 10,
+    },
     'aws-qe-quota-slice': {
         'us-east-1': 20,
         'us-east-2': 25,
+    },
+    'aws-1-qe-quota-slice': {
+        'us-east-1': 5,
     },
     'aws-china-qe-quota-slice': {
         'cn-north-1': 1,
@@ -174,6 +181,9 @@ CONFIG = {
     },
     'ibmcloud-quota-slice': {
         'default': 7,
+    },
+    'ibmcloud-qe-quota-slice': {
+        'default': 10,
     },
     'alibabacloud-quota-slice': {
         'us-east-1': 10,
