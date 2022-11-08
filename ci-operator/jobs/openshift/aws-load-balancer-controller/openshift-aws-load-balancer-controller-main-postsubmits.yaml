@@ -1,9 +1,9 @@
 postsubmits:
-  openshift-kni/performance-addon-operators:
+  openshift/aws-load-balancer-controller:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
+    - ^main$
     cluster: build01
     decorate: true
     decoration_config:
@@ -11,9 +11,9 @@ postsubmits:
     labels:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
-      job-release: "4.11"
     max_concurrency: 1
-    name: branch-ci-openshift-kni-performance-addon-operators-master-images
+    name: branch-ci-openshift-aws-load-balancer-controller-main-images
+    path_alias: sigs.k8s.io/aws-load-balancer-controller
     spec:
       containers:
       - args:
