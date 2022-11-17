@@ -662,6 +662,12 @@ config_updater:
         - ci
       gzip: true
       name: ci-operator-4.13-configs
+    ci-operator/config/**/*release-4.14*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: ci-operator-4.14-configs
     ci-operator/config/**/*release-next*.yaml:
       clusters:
         app.ci:
@@ -909,6 +915,12 @@ config_updater:
       gzip: true
       name: ci-operator-misc-configs
     ci-operator/config/openshift-priv/kubernetes/openshift-priv-kubernetes-{oc,origin,sdn}-*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: ci-operator-misc-configs
+    ci-operator/config/openshift-priv/openshift-priv-insights-operator-stage.yaml:
       clusters:
         app.ci:
         - ci
@@ -1490,6 +1502,12 @@ config_updater:
         - ci
       gzip: true
       name: job-config-4.13
+    ci-operator/jobs/**/*release-4.14*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: job-config-4.14
     ci-operator/jobs/**/*release-next*.yaml:
       clusters:
         app.ci:
@@ -1749,6 +1767,12 @@ config_updater:
       gzip: true
       name: job-config-misc
     ci-operator/jobs/openshift-priv/kubernetes/openshift-priv-kubernetes-{oc,origin,sdn}-*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: job-config-misc
+    ci-operator/jobs/openshift-priv/openshift-priv-insights-operator-stage-*.yaml:
       clusters:
         app.ci:
         - ci
