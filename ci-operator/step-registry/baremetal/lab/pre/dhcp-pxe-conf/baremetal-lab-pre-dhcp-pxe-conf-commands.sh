@@ -16,6 +16,11 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+if [ -z "${AUX_HOST}" ]; then
+    echo "AUX_HOST is not filled. Failing."
+    exit 1
+fi
+
 SSHOPTS=(-o 'ConnectTimeout=5'
   -o 'StrictHostKeyChecking=no'
   -o 'UserKnownHostsFile=/dev/null'
@@ -59,6 +64,7 @@ DHCP_CONF="${DHCP_CONF}
 echo "Setting the DHCP/PXE config in the auxiliary host..."
 timeout -s 9 10m ssh "${SSHOPTS[@]}" "root@${AUX_HOST}" bash -s -- "'${DHCP_CONF}'" <<'EOF'
   echo -e "${1}" >> /opt/dhcpd/root/etc/dnsmasq.conf
+  docker restart dhcpd
 EOF
 
 if [ "${IPI}" = "true" ]; then

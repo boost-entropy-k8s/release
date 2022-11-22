@@ -11,6 +11,11 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+if [ -z "${AUX_HOST}" ]; then
+    echo "AUX_HOST is not filled. Failing."
+    exit 1
+fi
+
 SSHOPTS=(-o 'ConnectTimeout=5'
   -o 'StrictHostKeyChecking=no'
   -o 'UserKnownHostsFile=/dev/null'
@@ -40,6 +45,7 @@ timeout -s 9 180m ssh "${SSHOPTS[@]}" "root@${AUX_HOST}" bash -s -- \
   MAC_ARRAY=("$@")
   echo "Removing the DHCP/PXE config..."
   sed -i "/; BEGIN ${NAMESPACE}/,/; END ${NAMESPACE}$/d" /opt/dhcpd/root/etc/dnsmasq.conf
+  docker restart dhcpd
   echo "Removing the grub config..."
   for mac in "${MAC_ARRAY[@]}"; do
     rm -f "/opt/tftpboot/grub.cfg-01-$(echo "$mac" | tr ':' '-')" || echo "no grub.cfg for $mac."
