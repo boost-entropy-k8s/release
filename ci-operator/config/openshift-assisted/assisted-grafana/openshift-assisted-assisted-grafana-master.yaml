@@ -1,0 +1,34 @@
+base_images:
+  coreos_centos_stream9:
+    name: stream9
+    namespace: coreos
+    tag: "9"
+build_root:
+  project_image:
+    dockerfile_literal: |
+      FROM registry.ci.openshift.org/origin/centos:stream9
+      RUN dnf install git -y
+images:
+- dockerfile_path: Dockerfile.build
+  from: src
+  inputs:
+    coreos_centos_stream9:
+      as:
+      - quay.io/centos/centos:stream9
+  to: build
+resources:
+  '*':
+    limits:
+      memory: 4Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+tests:
+- as: validate
+  commands: make validate
+  container:
+    from: build
+zz_generated_metadata:
+  branch: master
+  org: openshift-assisted
+  repo: assisted-grafana
