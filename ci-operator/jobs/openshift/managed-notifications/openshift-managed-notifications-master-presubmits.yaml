@@ -1,27 +1,27 @@
 presubmits:
-  red-hat-data-services/cuda-minimal-notebook:
+  openshift/managed-notifications:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build02
-    context: ci/prow/images
+    - ^master$
+    - ^master-
+    cluster: build01
+    context: ci/prow/validate
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-red-hat-data-services-cuda-minimal-notebook-main-images
-    rerun_command: /test images
+    name: pull-ci-openshift-managed-notifications-master-validate
+    rerun_command: /test validate
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
+        - --target=validate
         command:
         - ci-operator
         image: ci-operator:latest
@@ -48,4 +48,4 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )images,?($|\s.*)
+    trigger: (?m)^/test( | .* )validate,?($|\s.*)
