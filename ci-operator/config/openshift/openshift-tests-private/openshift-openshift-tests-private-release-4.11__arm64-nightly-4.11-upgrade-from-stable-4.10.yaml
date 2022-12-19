@@ -1,10 +1,10 @@
 base_images:
   ansible:
-    name: "4.11"
+    name: "4.10"
     namespace: ocp
     tag: ansible
   cli:
-    name: "4.11"
+    name: "4.10"
     namespace: ocp
     tag: cli
   dev-scripts:
@@ -12,29 +12,25 @@ base_images:
     namespace: ocp-kni
     tag: dev-scripts
   openstack-installer:
-    name: "4.11"
+    name: "4.10"
     namespace: ocp
     tag: openstack-installer
   tests-private-postupg:
     name: tests-private
     namespace: ci
-    tag: "4.12"
+    tag: "4.11"
   tests-private-preupg:
     name: tests-private
     namespace: ci
-    tag: "4.11"
+    tag: "4.10"
   tools:
-    name: "4.11"
+    name: "4.10"
     namespace: ocp
     tag: tools
   upi-installer:
-    name: "4.11"
+    name: "4.10"
     namespace: ocp
     tag: upi-installer
-  verification-tests:
-    name: verification-tests
-    namespace: ci
-    tag: latest
 build_root:
   image_stream_tag:
     name: release
@@ -46,26 +42,27 @@ releases:
       architecture: arm64
       product: ocp
       version_bounds:
-        lower: 4.11.0-0
-        upper: 4.12.0-0
+        lower: 4.10.0-0
+        upper: 4.11.0-0
   arm64-target:
     candidate:
       architecture: arm64
       product: ocp
       stream: nightly
-      version: "4.12"
+      version: "4.11"
   latest:
     prerelease:
+      architecture: amd64
       product: ocp
       version_bounds:
-        lower: 4.11.0-0
-        upper: 4.12.0-0
+        lower: 4.10.0
+        upper: 4.11.0-0
   target:
     candidate:
       architecture: amd64
       product: ocp
       stream: nightly
-      version: "4.12"
+      version: "4.11"
 resources:
   '*':
     requests:
@@ -73,7 +70,7 @@ resources:
       memory: 200Mi
 tests:
 - as: aws-ipi-byo-iam-role-p2-f7
-  cron: 48 13 29,6,13,20 * *
+  cron: 32 21 14,22,29,5 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -84,16 +81,16 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-byo-iam-role
 - as: aws-ipi-byo-route53-p2-f7
-  cron: 29 13 17,25,1,8 * *
+  cron: 13 2 22,30,6,13 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -104,16 +101,16 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-byo-route53
 - as: aws-ipi-disconnected-private-p2-f7
-  cron: 22 18 25,2,9,16 * *
+  cron: 29 11 6,14,21,28 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -125,16 +122,16 @@ tests:
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
       TEST_FILTERS: ~ConnectedOnly&;~HyperShiftMGMT&
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test-disconnected
     workflow: cucushift-installer-rehearse-aws-ipi-disconnected-private
 - as: aws-ipi-ovn-fips-p2-f7
-  cron: 42 6 16,24,31,7 * *
+  cron: 15 6 21,29,5,12 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -145,14 +142,14 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi'
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi'
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-ovn-fips
 - as: aws-ipi-ovn-ingress-nlb-p2-f7
-  cron: 34 19 11,19,26,2 * *
+  cron: 26 11 20,28,4,11 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -163,16 +160,16 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-ovn-ingress-nlb
 - as: aws-ipi-ovn-ipsec-p2-f7
-  cron: 27 8 30,7,14,21 * *
+  cron: 39 18 9,17,24,31 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -183,16 +180,16 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-ovn-ipsec
 - as: aws-ipi-ovn-p2-f7
-  cron: 36 12 24,1,8,15 * *
+  cron: 9 7 15,23,30,6 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -203,16 +200,16 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-ovn
 - as: aws-ipi-ovn-sdn2ovn-p2-f7
-  cron: 31 2 3,11,18,25 * *
+  cron: 21 3 5,13,20,27 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -223,16 +220,16 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-ovn-sdn2ovn
-- as: aws-ipi-private-p2-f7
-  cron: 36 13 10,18,25,1 * *
+- as: aws-ipi-private-ovn-ipsec-p2-f7
+  cron: 41 16 13,21,28,4 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -243,16 +240,34 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi'
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi'
+    test:
+    - ref: cucushift-installer-check
+    - chain: openshift-upgrade-qe-test
+    workflow: cucushift-installer-rehearse-aws-ipi-private-ovn-ipsec
+- as: aws-ipi-private-p2-f7
+  cron: 34 1 31,8,15,22 * *
+  steps:
+    cluster_profile: aws-qe
+    dependencies:
+      OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:arm64-latest
+      OPENSHIFT_UPGRADE_RELEASE_IMAGE_OVERRIDE: release:arm64-target
+    env:
+      BASE_DOMAIN: qe.devcluster.openshift.com
+      COMPUTE_NODE_TYPE: m6g.xlarge
+      CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
+      OCP_ARCH: arm64
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-private
 - as: aws-ipi-proxy-cco-manual-sts-p2-f7
-  cron: 24 13 22,30,6,13 * *
+  cron: 35 17 14,22,29,5 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -263,16 +278,16 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-ipi and
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-ipi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-proxy-cco-manual-security-token-service
-- as: aws-upi-p3-f28
-  cron: 27 0 6 * *
+- as: aws-ipi-proxy-workers-rhel8-p2-f7
+  cron: 21 3 7,15,22,29 * *
   steps:
     cluster_profile: aws-qe
     dependencies:
@@ -283,16 +298,35 @@ tests:
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
-      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.11 and @aws-upi and
+      PLATFORM_VERSION: "8.6"
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-ipi'
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-ipi'
+    test:
+    - ref: cucushift-installer-check
+    - chain: openshift-upgrade-qe-test
+    workflow: cucushift-installer-rehearse-aws-ipi-proxy-workers-rhel8
+- as: aws-upi-p3-f28
+  cron: 34 23 7 * *
+  steps:
+    cluster_profile: aws-qe
+    dependencies:
+      OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:arm64-latest
+      OPENSHIFT_UPGRADE_RELEASE_IMAGE_OVERRIDE: release:arm64-target
+    env:
+      BASE_DOMAIN: qe.devcluster.openshift.com
+      COMPUTE_NODE_TYPE: m6g.xlarge
+      CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
+      OCP_ARCH: arm64
+      UPGRADE_CHECK_RUN_TAGS: '@arm64 and @upgrade-check and @4.10 and @aws-upi and
         not @fips'
-      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.11 and @aws-upi and
+      UPGRADE_PRE_RUN_TAGS: '@arm64 and @upgrade-prepare and @4.10 and @aws-upi and
         not @fips'
     test:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-upi
 zz_generated_metadata:
-  branch: release-4.12
+  branch: release-4.11
   org: openshift
   repo: openshift-tests-private
-  variant: arm64-nightly-4.12-upgrade-from-stable-4.11
+  variant: arm64-nightly-4.11-upgrade-from-stable-4.10
