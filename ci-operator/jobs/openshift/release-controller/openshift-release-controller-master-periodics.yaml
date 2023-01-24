@@ -1,7 +1,7 @@
 periodics:
 - agent: kubernetes
   cluster: build04
-  cron: 0 18 * * *
+  cron: 0 18 * * 1
   decorate: true
   extra_refs:
   - base_ref: master
@@ -24,8 +24,10 @@ periodics:
       - success
       - error
       - failure
-      report_template: ':warning: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*.
-        <{{.Status.URL}}|View logs> :warning:'
+      report_template: '{{ if eq .Status.State "success" }} :check: {{ else }} :warning:
+        {{ end }}Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
+        logs> {{ if eq .Status.State "success" }} :check: {{ else }} :warning: {{
+        end }}'
   spec:
     containers:
     - args:
