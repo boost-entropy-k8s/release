@@ -21,7 +21,7 @@ resources:
       cpu: 100m
       memory: 200Mi
 tests:
-- as: functional
+- as: unit
   commands: |
     export GOFLAGS=
     make gotest
@@ -61,6 +61,6 @@ tests:
     clone: true
     from: openstack-operator-ci-pre-commit
 zz_generated_metadata:
-  branch: master
+  branch: main
   org: openstack-k8s-operators
-  repo: placement-operator
+  repo: dataplane-operator
