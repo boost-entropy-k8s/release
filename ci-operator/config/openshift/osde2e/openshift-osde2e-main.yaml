@@ -55,12 +55,16 @@ tests:
   skip_if_only_changed: ^(?:docs|\.github)|\.md$|^(?:\.gitignore|.golang-ci.yml|OWNERS|LICENSE)$
 - as: hypershift-pr-check
   commands: |
+    export GOFLAGS=""
     export REPORT_DIR="$ARTIFACT_DIR"
     export CONFIGS="hypershift"
     export CHANNEL="stable"
     export SECRET_LOCATIONS="/usr/local/osde2e-common,/usr/local/osde2e-credentials,/usr/local/osde2e-hypershift-byovpc"
 
-    /osde2e test --secret-locations ${SECRET_LOCATIONS} --configs ${CONFIGS}
+    go mod tidy
+    make build
+
+    out/osde2e test --secret-locations ${SECRET_LOCATIONS} --configs ${CONFIGS}
   container:
     from: src
   secrets:
