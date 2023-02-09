@@ -1,10 +1,10 @@
 approve:
 - commandHelpLink: ""
   repos:
-  - medik8s/machine-deletion
+  - migtools/velero-plugin-for-vsm
   require_self_approval: false
 external_plugins:
-  medik8s/machine-deletion:
+  migtools/velero-plugin-for-vsm:
   - endpoint: http://refresh
     events:
     - issue_comment
@@ -24,6 +24,10 @@ external_plugins:
     - issue_comment
     - pull_request
     name: backport-verifier
+  - endpoint: http://payload-testing-prow-plugin
+    events:
+    - issue_comment
+    name: payload-testing-prow-plugin
   - endpoint: http://jira-lifecycle-plugin
     events:
     - issue_comment
@@ -31,10 +35,10 @@ external_plugins:
     name: jira-lifecycle-plugin
 lgtm:
 - repos:
-  - medik8s/machine-deletion
+  - migtools/velero-plugin-for-vsm
   review_acts_as_lgtm: true
 plugins:
-  medik8s/machine-deletion:
+  migtools/velero-plugin-for-vsm:
     plugins:
     - assign
     - blunderbuss
