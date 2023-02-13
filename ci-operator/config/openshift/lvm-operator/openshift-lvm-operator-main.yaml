@@ -1,10 +1,10 @@
 base_images:
   base:
-    name: "4.11"
+    name: "4.12"
     namespace: ocp
     tag: base
   must-gather:
-    name: "4.11"
+    name: "4.12"
     namespace: ocp
     tag: must-gather
   opm-builder:
@@ -67,12 +67,12 @@ promotion:
 releases:
   initial:
     integration:
-      name: "4.11"
+      name: "4.12"
       namespace: ocp
   latest:
     integration:
       include_built_images: true
-      name: "4.11"
+      name: "4.12"
       namespace: ocp
 resources:
   '*':
@@ -104,7 +104,7 @@ tests:
       LVM_OPERATOR_UNINSTALL: "false"
       OO_CHANNEL: alpha
       OO_INSTALL_NAMESPACE: openshift-storage
-      OO_PACKAGE: lvm-operator
+      OO_PACKAGE: lvms-operator
       OO_TARGET_NAMESPACES: '!install'
     post:
     - as: lvm-must-gather
