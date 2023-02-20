@@ -3,22 +3,14 @@ base_images:
     name: ubi
     namespace: ocp
     tag: "8"
-  openshift_release_rhel-8-release-golang-1.17-openshift-4.10:
-    name: release
-    namespace: openshift
-    tag: rhel-8-release-golang-1.17-openshift-4.10
 build_root:
   image_stream_tag:
     name: release
     namespace: openshift
     tag: golang-1.18
 images:
-- dockerfile_path: Dockerfile
+- dockerfile_path: build/Dockerfile
   from: base
-  inputs:
-    openshift_release_rhel-8-release-golang-1.17-openshift-4.10:
-      as:
-      - registry.ci.openshift.org/openshift/release:rhel-8-release-golang-1.17-openshift-4.10
   to: hypershift-dataplane-metrics-forwarder
 resources:
   '*':
