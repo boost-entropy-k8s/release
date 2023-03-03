@@ -32,7 +32,8 @@ tests:
     export HOME=/tmp
     export ANSIBLE_LOCAL_TMP=/tmp
     export ANSIBLE_REMOTE_TMP=/tmp
-    make molecule_nodeps
+    export MOLECULE_CONFIG=.config/molecule/config_local.yml
+    make molecule_nodeps USE_VENV=no
   container:
     from: ci-framework-image
 zz_generated_metadata:
