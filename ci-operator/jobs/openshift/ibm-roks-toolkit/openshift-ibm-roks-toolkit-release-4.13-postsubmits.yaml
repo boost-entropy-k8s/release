@@ -1,10 +1,10 @@
 postsubmits:
-  integr8ly/cloud-resource-operator:
+  openshift/ibm-roks-toolkit:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^MGDAPI-2427$
-    cluster: build04
+    - ^release-4\.13$
+    cluster: build01
     decorate: true
     decoration_config:
       skip_cloning: true
@@ -12,7 +12,7 @@ postsubmits:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-integr8ly-cloud-resource-operator-MGDAPI-2427-images
+    name: branch-ci-openshift-ibm-roks-toolkit-release-4.13-images
     spec:
       containers:
       - args:
@@ -57,23 +57,23 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^MGDAPI-2427$
-    cluster: build04
+    - ^release-4\.13$
+    cluster: build01
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-integr8ly-cloud-resource-operator-MGDAPI-2427-publish-coverage
+    name: branch-ci-openshift-ibm-roks-toolkit-release-4.13-makerelease
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/cloud-resource-operator-codecov-token
-        - --target=publish-coverage
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=makerelease
         command:
         - ci-operator
         image: ci-operator:latest
@@ -83,8 +83,8 @@ postsubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/cloud-resource-operator-codecov-token
-          name: cloud-resource-operator-codecov-token
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
           readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
@@ -97,9 +97,9 @@ postsubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: cloud-resource-operator-codecov-token
+      - name: ci-pull-credentials
         secret:
-          secretName: cloud-resource-operator-codecov-token
+          secretName: ci-pull-credentials
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
