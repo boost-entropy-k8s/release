@@ -1,5 +1,5 @@
 {
-	"path": "openshift/microshift/e2e/provision-dns/openshift-microshift-e2e-provision-dns-ref.yaml",
+	"path": "openshift/microshift/e2e/greenboot/openshift-microshift-e2e-greenboot-ref.yaml",
 	"owners": {
 		"approvers": [
 			"benluddy",
