@@ -11,6 +11,10 @@ base_images:
     name: test
     namespace: ocp-kni
     tag: dev-scripts
+  hypershift-operator:
+    name: "4.13"
+    namespace: ocp
+    tag: hypershift-operator
   openstack-installer:
     name: "4.13"
     namespace: ocp
@@ -172,7 +176,7 @@ tests:
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-ingress-lbtype-nlb
 - as: aws-ipi-localzone-p2-f14
-  cron: 37 15 7,23 * *
+  cron: 23 4 12,27 * *
   steps:
     cluster_profile: aws-qe
     env:
@@ -184,7 +188,7 @@ tests:
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-localzone
 - as: aws-ipi-localzone-sdn-p2-f14
-  cron: 12 6 1,16 * *
+  cron: 31 13 13,28 * *
   steps:
     cluster_profile: aws-qe
     env:
@@ -207,6 +211,20 @@ tests:
     - ref: cucushift-installer-check
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-aws-ipi-ovn-fips
+- as: aws-ipi-ovn-hypershift-cp-p1-f4
+  cron: 23 2 2,7,12,16,20,24,28 * *
+  steps:
+    cluster_profile: aws-qe
+    env:
+      BASE_DOMAIN: qe.devcluster.openshift.com
+      SKIP_HYPERSHIFT_PULL_SECRET_UPDATE: "true"
+      TEST_FILTERS: ~DisconnectedOnly&;~HyperShiftMGMT&;~MicroShiftOnly&;~NonHyperShiftHOST&
+      UPGRADE_CHECK_RUN_TAGS: '@upgrade-check and @4.13 and @aws-ipi and not @fips'
+      UPGRADE_PRE_RUN_TAGS: '@upgrade-prepare and @4.13 and @aws-ipi and not @fips'
+    test:
+    - ref: cucushift-installer-check
+    - chain: openshift-upgrade-qe-test-hypershift
+    workflow: cucushift-installer-rehearse-aws-ipi-ovn-hypershift-guest
 - as: aws-ipi-ovn-ipsec-p1-f14
   cron: 11 11 10,25 * *
   steps:
