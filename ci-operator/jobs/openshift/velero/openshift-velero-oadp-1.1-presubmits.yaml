@@ -1,17 +1,20 @@
 presubmits:
-  openshift/external-dns:
+  openshift/velero:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-4\.10$
-    - ^release-4\.10-
-    cluster: build04
+    - ^oadp-1\.1$
+    - ^oadp-1\.1-
+    cluster: build01
     context: ci/prow/images
     decorate: true
+    decoration_config:
+      skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-external-dns-release-4.10-images
+    name: pull-ci-openshift-velero-oadp-1.1-images
+    optional: true
     rerun_command: /test images
     spec:
       containers:
@@ -20,6 +23,8 @@ presubmits:
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
         - --target=[images]
+        - --target=velero-oadp-1.1
+        - --target=velero-restic-restore-helper-oadp-1.1
         command:
         - ci-operator
         image: ci-operator:latest
@@ -50,23 +55,27 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-4\.10$
-    - ^release-4\.10-
-    cluster: build04
-    context: ci/prow/unit
+    - ^oadp-1\.1$
+    - ^oadp-1\.1-
+    cluster: build01
+    context: ci/prow/unit-test
     decorate: true
+    decoration_config:
+      skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-external-dns-release-4.10-unit
-    rerun_command: /test unit
+    name: pull-ci-openshift-velero-oadp-1.1-unit-test
+    optional: true
+    rerun_command: /test unit-test
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=unit
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=unit-test
         command:
         - ci-operator
         image: ci-operator:latest
@@ -76,6 +85,9 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -87,10 +99,13 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )unit,?($|\s.*)
+    trigger: (?m)^/test( | .* )unit-test,?($|\s.*)
