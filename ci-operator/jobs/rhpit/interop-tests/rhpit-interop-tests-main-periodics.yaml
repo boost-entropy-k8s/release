@@ -1,30 +1,37 @@
 periodics:
 - agent: kubernetes
-  cluster: build02
-  cron: 0 0 * * 1-5
+  cluster: build01
+  cron: 0 1 * * *
   decorate: true
   decoration_config:
     skip_cloning: true
   extra_refs:
-  - base_ref: release-4.14
-    org: openshift
-    repo: microshift
+  - base_ref: main
+    org: rhpit
+    repo: interop-tests
   labels:
-    ci-operator.openshift.io/cloud: gcp
-    ci-operator.openshift.io/cloud-cluster-profile: gcp
+    ci-operator.openshift.io/variant: slack-poc
     ci.openshift.io/generator: prowgen
+    job-release: "4.12"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-microshift-release-4.14-nightly-conformance-parallel
+  name: periodic-ci-rhpit-interop-tests-main-slack-poc-cspi-qe-slack-poc-fail
+  reporter_config:
+    slack:
+      channel: '#cspi-qe-slack-poc'
+      job_states_to_report:
+      - failure
+      - error
+      report_template: ':volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*.
+        <{{.Status.URL}}|View logs> :volcano:'
   spec:
     containers:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/secrets/ci-pull-credentials
-      - --secret-dir=/usr/local/nightly-conformance-parallel-cluster-profile
-      - --target=nightly-conformance-parallel
+      - --target=cspi-qe-slack-poc-fail
+      - --variant=slack-poc
       command:
       - ci-operator
       image: ci-operator:latest
@@ -34,14 +41,9 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
       - mountPath: /secrets/ci-pull-credentials
         name: ci-pull-credentials
         readOnly: true
-      - mountPath: /usr/local/nightly-conformance-parallel-cluster-profile
-        name: cluster-profile
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -53,22 +55,9 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
     - name: ci-pull-credentials
       secret:
         secretName: ci-pull-credentials
-    - name: cluster-profile
-      projected:
-        sources:
-        - secret:
-            name: cluster-secrets-gcp
-        - configMap:
-            name: cluster-profile-gcp
     - name: pull-secret
       secret:
         secretName: registry-pull-credentials
@@ -76,31 +65,38 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build02
-  cron: 0 0 * * 1-5
+  cluster: build01
+  cron: 0 1 * * *
   decorate: true
   decoration_config:
     skip_cloning: true
   extra_refs:
-  - base_ref: release-4.14
-    org: openshift
-    repo: microshift
+  - base_ref: main
+    org: rhpit
+    repo: interop-tests
   labels:
-    ci-operator.openshift.io/cloud: gcp
-    ci-operator.openshift.io/cloud-cluster-profile: gcp
+    ci-operator.openshift.io/variant: slack-poc
     ci.openshift.io/generator: prowgen
+    job-release: "4.12"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-microshift-release-4.14-nightly-conformance-serial
+  name: periodic-ci-rhpit-interop-tests-main-slack-poc-cspi-qe-slack-poc-pass
+  reporter_config:
+    slack:
+      channel: '#cspi-qe-slack-poc'
+      job_states_to_report:
+      - failure
+      - error
+      report_template: ':volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*.
+        <{{.Status.URL}}|View logs> :volcano:'
   spec:
     containers:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/secrets/ci-pull-credentials
-      - --secret-dir=/usr/local/nightly-conformance-serial-cluster-profile
-      - --target=nightly-conformance-serial
+      - --target=cspi-qe-slack-poc-pass
+      - --variant=slack-poc
       command:
       - ci-operator
       image: ci-operator:latest
@@ -110,14 +106,9 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
       - mountPath: /secrets/ci-pull-credentials
         name: ci-pull-credentials
         readOnly: true
-      - mountPath: /usr/local/nightly-conformance-serial-cluster-profile
-        name: cluster-profile
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -129,22 +120,9 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
     - name: ci-pull-credentials
       secret:
         secretName: ci-pull-credentials
-    - name: cluster-profile
-      projected:
-        sources:
-        - secret:
-            name: cluster-secrets-gcp
-        - configMap:
-            name: cluster-profile-gcp
     - name: pull-secret
       secret:
         secretName: registry-pull-credentials
