@@ -233,7 +233,7 @@ presubmits:
         - core-services/prow/02_config/_boskos.yaml
         command:
         - /app
-        image: gcr.io/k8s-staging-boskos/checkconfig:v20230301-8b694e7
+        image: gcr.io/k8s-staging-boskos/checkconfig:v20230331-659ef2e
         imagePullPolicy: IfNotPresent
         name: ""
         resources:
@@ -1266,6 +1266,30 @@ presubmits:
           requests:
             cpu: 10m
     trigger: (?m)^/test( | .* )step-registry-shellcheck,?($|\s.*)
+  - agent: kubernetes
+    always_run: false
+    branches:
+    - ^master$
+    - ^master-
+    cluster: build03
+    context: ci/prow/supplemental-ci-images-mapping-files
+    decorate: true
+    labels:
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-openshift-release-master-supplemental-ci-images-mapping-files
+    rerun_command: /test supplemental-ci-images-mapping-files
+    run_if_changed: ^(core-services/image-mirroring/supplemental-ci-images/mapping_supplemental_ci_images_.*)
+    spec:
+      containers:
+      - command:
+        - hack/validate-supplemental-ci-images-mapping-files.sh
+        image: centos:8
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )supplemental-ci-images-mapping-files,?($|\s.*)
   - agent: kubernetes
     always_run: false
     branches:
