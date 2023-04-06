@@ -1,28 +1,29 @@
 presubmits:
-  oadp-qe/oadp-e2e-qe:
+  Intersmash/intersmash:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build05
-    context: ci/prow/images
+    - ^main$
+    - ^main-
+    cluster: build01
+    context: ci/prow/intersmash-e2e
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-oadp-qe-oadp-e2e-qe-master-images
-    rerun_command: /test images
+    name: pull-ci-Intersmash-intersmash-main-intersmash-e2e
+    rerun_command: /test intersmash-e2e
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --hive-kubeconfig=/secrets/hive-hive-credentials/kubeconfig
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --oauth-token-path=/usr/local/github-credentials/oauth
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=intersmash-e2e
         command:
         - ci-operator
         image: ci-operator:latest
@@ -32,11 +33,14 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
-        - mountPath: /usr/local/github-credentials
-          name: github-credentials-openshift-ci-robot-private-git-cloner
+        - mountPath: /secrets/hive-hive-credentials
+          name: hive-hive-credentials
           readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
@@ -46,13 +50,16 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: github-credentials-openshift-ci-robot-private-git-cloner
+      - name: ci-pull-credentials
         secret:
-          secretName: github-credentials-openshift-ci-robot-private-git-cloner
+          secretName: ci-pull-credentials
+      - name: hive-hive-credentials
+        secret:
+          secretName: hive-hive-credentials
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )images,?($|\s.*)
+    trigger: (?m)^/test( | .* )intersmash-e2e,?($|\s.*)
