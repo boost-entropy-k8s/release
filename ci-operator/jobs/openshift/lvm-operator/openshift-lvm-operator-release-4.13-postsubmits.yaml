@@ -1,10 +1,10 @@
 postsubmits:
-  ViaQ/vector:
+  openshift/lvm-operator:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^v0\.21-rh-release-5\.6$
-    cluster: build02
+    - ^release-4\.13$
+    cluster: build01
     decorate: true
     decoration_config:
       skip_cloning: true
@@ -12,7 +12,7 @@ postsubmits:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-ViaQ-vector-v0.21-rh-release-5.6-images
+    name: branch-ci-openshift-lvm-operator-release-4.13-images
     spec:
       containers:
       - args:
