@@ -323,6 +323,7 @@ config_updater:
       - build03
       - build04
       - build05
+      - multi01
       - vsphere
       namespaces:
       - ci
@@ -334,6 +335,7 @@ config_updater:
       - build03
       - build04
       - build05
+      - multi01
       - vsphere
       namespaces:
       - ocp
@@ -738,6 +740,12 @@ config_updater:
         - ci
       gzip: true
       name: ci-operator-misc-configs
+    ci-operator/config/**/logging-fluentd/ViaQ-logging-fluentd-release-5.*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: ci-operator-misc-configs
     ci-operator/config/**/logging-fluentd/ViaQ-logging-fluentd-ruby*.yaml:
       clusters:
         app.ci:
@@ -787,6 +795,12 @@ config_updater:
       gzip: true
       name: ci-operator-misc-configs
     ci-operator/config/**/tektoncd-pipeline-operator/openshift-tektoncd-pipeline-operator-v*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: ci-operator-misc-configs
+    ci-operator/config/**/vector/ViaQ-vector-release-5.*.yaml:
       clusters:
         app.ci:
         - ci
@@ -1745,6 +1759,12 @@ config_updater:
         - ci
       gzip: true
       name: job-config-misc
+    ci-operator/jobs/**/logging-fluentd/ViaQ-logging-fluentd-release-5.*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: job-config-misc
     ci-operator/jobs/**/logging-fluentd/ViaQ-logging-fluentd-ruby*.yaml:
       clusters:
         app.ci:
@@ -1794,6 +1814,12 @@ config_updater:
       gzip: true
       name: job-config-misc
     ci-operator/jobs/**/tektoncd-pipeline-operator/openshift-tektoncd-pipeline-operator-v*.yaml:
+      clusters:
+        app.ci:
+        - ci
+      gzip: true
+      name: job-config-misc
+    ci-operator/jobs/**/vector/ViaQ-vector-release-5.*.yaml:
       clusters:
         app.ci:
         - ci

@@ -257,14 +257,8 @@ spec:
         secret:
           secretName: ci-chat-bot-slack-app
           items:
-            - key: subnet-ids
-              path: subnet-ids
-      - name: awscred
-        secret:
-          secretName: ci-chat-bot-slack-app
-          items:
-            - key: rosa-admin-aws
-              path: rosa-admin-aws
+            - key: rosa-subnet-ids
+              path: rosa-subnet-ids
       - name: ocmcred
         secret:
           secretName: ci-chat-bot-slack-app
@@ -293,9 +287,6 @@ spec:
         - mountPath: /etc/jira
           name: jira
           readOnly: true
-        - mountPath: /etc/awscred
-          name: awscred
-          readOnly: true
         - mountPath: /etc/ocmcred
           name: ocmcred
           readOnly: true
@@ -318,10 +309,20 @@ spec:
             secretKeyRef:
               name: ci-chat-bot-slack-app
               key: slack-app-bot-signing-secret
-        - name: AWS_SHARED_CREDENTIALS_FILE
-          value: /etc/awscred
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: ci-chat-bot-slack-app
+              key: rosa-aws-access-key-id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ci-chat-bot-slack-app
+              key: rosa-aws-secret-access-key
         - name: OCM_CONFIG
-          value: /etc/ocmcred
+          value: /etc/ocmcred/rosa-admin-ocm
+        - name: AWS_REGION
+          value: us-east-1
         command:
         - /usr/bin/ci-chat-bot
         - --prow-config=/etc/config/config.yaml
@@ -336,3 +337,4 @@ spec:
         - --lease-server-credentials-file=/etc/boskos/credentials
         - --jira-endpoint=https://issues.redhat.com
         - --jira-bearer-token-file=/etc/jira/jira-token
+        - --rosa-subnetlist-path=/etc/subnet-ids/rosa-subnet-ids
