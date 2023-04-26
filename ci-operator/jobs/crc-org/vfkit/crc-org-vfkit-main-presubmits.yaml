@@ -1,30 +1,27 @@
-postsubmits:
-  openshift-knative/eventing-kafka-broker:
+presubmits:
+  crc-org/vfkit:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-v1\.4$
-    cluster: build05
+    - ^main$
+    - ^main-
+    cluster: build01
+    context: ci/prow/build
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/is-promotion: "true"
-      ci-operator.openshift.io/variant: "411"
       ci.openshift.io/generator: prowgen
-    max_concurrency: 1
-    name: branch-ci-openshift-knative-eventing-kafka-broker-release-v1.4-411-images
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-crc-org-vfkit-main-build
+    rerun_command: /test build
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --image-mirror-push-secret=/etc/push-secret/.dockerconfigjson
-        - --promote
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --target=src
-        - --variant=411
+        - --target=build
         command:
         - ci-operator
         image: ci-operator:latest
@@ -40,9 +37,6 @@ postsubmits:
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
-        - mountPath: /etc/push-secret
-          name: push-secret
-          readOnly: true
         - mountPath: /etc/report
           name: result-aggregator
           readOnly: true
@@ -51,9 +45,7 @@ postsubmits:
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
-      - name: push-secret
-        secret:
-          secretName: registry-push-credentials-ci-central
       - name: result-aggregator
         secret:
           secretName: result-aggregator
+    trigger: (?m)^/test( | .* )build,?($|\s.*)

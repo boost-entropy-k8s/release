@@ -1,30 +1,30 @@
-postsubmits:
-  openshift-knative/eventing:
+presubmits:
+  windup/windup-ui-tests:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-v1\.5$
-    cluster: build05
+    - ^main$
+    - ^main-
+    cluster: build01
+    context: ci/prow/image-hack-images
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/is-promotion: "true"
-      ci-operator.openshift.io/variant: "411"
+      ci-operator.openshift.io/variant: image-hack
       ci.openshift.io/generator: prowgen
-    max_concurrency: 1
-    name: branch-ci-openshift-knative-eventing-release-v1.5-411-images
+      job-release: "4.13"
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-windup-windup-ui-tests-main-image-hack-images
+    rerun_command: /test image-hack-images
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --image-mirror-push-secret=/etc/push-secret/.dockerconfigjson
-        - --promote
         - --report-credentials-file=/etc/report/credentials
         - --target=[images]
-        - --target=src
-        - --variant=411
+        - --variant=image-hack
         command:
         - ci-operator
         image: ci-operator:latest
@@ -40,9 +40,6 @@ postsubmits:
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
-        - mountPath: /etc/push-secret
-          name: push-secret
-          readOnly: true
         - mountPath: /etc/report
           name: result-aggregator
           readOnly: true
@@ -51,37 +48,35 @@ postsubmits:
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
-      - name: push-secret
-        secret:
-          secretName: registry-push-credentials-ci-central
       - name: result-aggregator
         secret:
           secretName: result-aggregator
+    trigger: (?m)^/test( | .* )image-hack-images,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-v1\.5$
-    cluster: build05
+    - ^main$
+    - ^main-
+    cluster: build01
+    context: ci/prow/image-hack-use-mtr-runner
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/is-promotion: "true"
-      ci-operator.openshift.io/variant: "48"
+      ci-operator.openshift.io/variant: image-hack
       ci.openshift.io/generator: prowgen
-    max_concurrency: 1
-    name: branch-ci-openshift-knative-eventing-release-v1.5-48-images
+      job-release: "4.13"
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-windup-windup-ui-tests-main-image-hack-use-mtr-runner
+    rerun_command: /test image-hack-use-mtr-runner
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --image-mirror-push-secret=/etc/push-secret/.dockerconfigjson
-        - --promote
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --target=src
-        - --variant=48
+        - --target=use-mtr-runner
+        - --variant=image-hack
         command:
         - ci-operator
         image: ci-operator:latest
@@ -97,9 +92,6 @@ postsubmits:
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
-        - mountPath: /etc/push-secret
-          name: push-secret
-          readOnly: true
         - mountPath: /etc/report
           name: result-aggregator
           readOnly: true
@@ -108,9 +100,7 @@ postsubmits:
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
-      - name: push-secret
-        secret:
-          secretName: registry-push-credentials-ci-central
       - name: result-aggregator
         secret:
           secretName: result-aggregator
+    trigger: (?m)^/test( | .* )image-hack-use-mtr-runner,?($|\s.*)
