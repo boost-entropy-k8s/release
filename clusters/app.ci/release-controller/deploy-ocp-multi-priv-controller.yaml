@@ -24,7 +24,7 @@ spec:
   tags:
   - from:
       kind: DockerImage
-      name: image-registry.openshift-image-registry.svc:5000/ocp/4.13:tests
+      name: image-registry.openshift-image-registry.svc:5000/ocp/4.14:tests
     importPolicy:
       scheduled: true
     name: tests
@@ -265,9 +265,15 @@ spec:
           - configMap:
               name: job-config-master-periodics
           - configMap:
+              name: job-config-main-periodics
+          - configMap:
               name: job-config-master-postsubmits
           - configMap:
+              name: job-config-main-postsubmits
+          - configMap:
               name: job-config-master-presubmits
+          - configMap:
+              name: job-config-main-presubmits
           - configMap:
               name: job-config-1.x
           - configMap:

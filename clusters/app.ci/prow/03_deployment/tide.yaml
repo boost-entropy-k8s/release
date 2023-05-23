@@ -48,7 +48,7 @@ items:
         serviceAccountName: tide
         containers:
         - name: tide
-          image: gcr.io/k8s-prow/tide:v20230518-c802d8aea4
+          image: gcr.io/k8s-prow/tide:v20230522-3eb206f68f
           args:
           - --config-path=/etc/config/config.yaml
           - --supplemental-prow-config-dir=/etc/config
@@ -110,9 +110,15 @@ items:
             - configMap:
                 name: job-config-master-periodics
             - configMap:
+                name: job-config-main-periodics
+            - configMap:
                 name: job-config-master-postsubmits
             - configMap:
+                name: job-config-main-postsubmits
+            - configMap:
                 name: job-config-master-presubmits
+            - configMap:
+                name: job-config-main-presubmits
             - configMap:
                 name: job-config-1.x
             - configMap:
