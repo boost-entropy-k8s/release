@@ -1,11 +1,3 @@
-branch-protection:
-  orgs:
-    kcp-dev:
-      repos:
-        logicalcluster:
-          branches:
-            main:
-              protect: true
 tide:
   queries:
   - labels:
@@ -19,4 +11,4 @@ tide:
     - jira/invalid-bug
     - needs-rebase
     repos:
-    - kcp-dev/logicalcluster
+    - openstack-k8s-operators/tcib

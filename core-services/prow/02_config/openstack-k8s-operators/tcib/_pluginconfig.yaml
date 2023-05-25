@@ -1,10 +1,10 @@
 approve:
 - commandHelpLink: ""
   repos:
-  - kcp-dev/logicalcluster
-  require_self_approval: true
+  - openstack-k8s-operators/tcib
+  require_self_approval: false
 external_plugins:
-  kcp-dev/logicalcluster:
+  openstack-k8s-operators/tcib:
   - endpoint: http://refresh
     events:
     - issue_comment
@@ -35,12 +35,11 @@ external_plugins:
     name: jira-lifecycle-plugin
 lgtm:
 - repos:
-  - kcp-dev/logicalcluster
+  - openstack-k8s-operators/tcib
   review_acts_as_lgtm: true
 plugins:
-  kcp-dev/logicalcluster:
+  openstack-k8s-operators/tcib:
     plugins:
-    - approve
     - assign
     - blunderbuss
     - cat
@@ -54,8 +53,6 @@ plugins:
     - label
     - lgtm
     - lifecycle
-    - milestone
-    - milestonestatus
     - override
     - pony
     - retitle
@@ -67,3 +64,4 @@ plugins:
     - owners-label
     - wip
     - yuks
+    - approve
