@@ -129,6 +129,7 @@ tests:
         and @destructive'
       OCP_ARCH: arm64
       TAG_VERSION: '@4.12'
+      TEST_ADDITIONAL: Network_Observability
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-aws-ipi-byo-iam-role
@@ -195,6 +196,7 @@ tests:
         and @destructive'
       OCP_ARCH: arm64
       TAG_VERSION: '@4.12'
+      TEST_ADDITIONAL: Network_Observability
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-aws-ipi-byo-route53
@@ -576,6 +578,7 @@ tests:
         and @destructive'
       OCP_ARCH: arm64
       TAG_VERSION: '@4.12'
+      TEST_ADDITIONAL: Network_Observability
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-aws-ipi-ovn-ipsec
@@ -792,11 +795,9 @@ tests:
       BASE_DOMAIN: qe.devcluster.openshift.com
       COMPUTE_NODE_TYPE: m6g.xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6g.xlarge
-      E2E_RUN_TAGS: '@arm64 and @aws-ipi and @network-openshiftsdn and not @fips'
       OCP_ARCH: arm64
-      TAG_VERSION: '@4.12'
     test:
-    - chain: openshift-e2e-test-qe
+    - ref: cucushift-installer-check-cluster-health
     workflow: cucushift-installer-rehearse-aws-ipi-sdn-mtu-migrate
 - as: aws-ipi-sdn-p2-f14
   cron: 52 12 12,27 * *
@@ -828,6 +829,7 @@ tests:
         @destructive'
       OCP_ARCH: arm64
       TAG_VERSION: '@4.12'
+      TEST_ADDITIONAL: Network_Observability
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-aws-ipi-sdn
@@ -895,6 +897,7 @@ tests:
       MASTER_INSTANCE_TYPE: m6g.xlarge
       OCP_ARCH: arm64
       TAG_VERSION: '@4.12'
+      TEST_ADDITIONAL: Network_Observability
       WORKER_INSTANCE_TYPE: m6g.xlarge
     test:
     - chain: openshift-e2e-test-qe-destructive
@@ -927,6 +930,7 @@ tests:
         and @destructive'
       OCP_ARCH: arm64
       TAG_VERSION: '@4.12'
+      TEST_ADDITIONAL: Network_Observability
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-azure-ipi-baselinecaps-v412
@@ -1349,6 +1353,7 @@ tests:
         and @destructive'
       OCP_ARCH: arm64
       TAG_VERSION: '@4.12'
+      TEST_ADDITIONAL: Network_Observability
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-azure-ipi-sdn
@@ -1396,6 +1401,7 @@ tests:
       NVME_DEVICE: /dev/nvme1n1
       PACKET_FACILITY: da11
       PACKET_PLAN: c3.large.arm64
+      TEST_ADDITIONAL: Network_Observability
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-baremetalds-ipi-ovn-ipv4
