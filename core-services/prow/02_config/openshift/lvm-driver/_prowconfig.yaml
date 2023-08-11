@@ -1,9 +1,8 @@
 tide:
-  merge_method:
-    project-codeflare/multi-cluster-app-dispatcher: rebase
   queries:
   - labels:
     - approved
+    - jira/valid-reference
     - lgtm
     missingLabels:
     - backports/unvalidated-commits
@@ -13,4 +12,4 @@ tide:
     - jira/invalid-bug
     - needs-rebase
     repos:
-    - project-codeflare/multi-cluster-app-dispatcher
+    - openshift/lvm-driver
