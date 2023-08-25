@@ -1,30 +1,29 @@
 presubmits:
-  openshift-qe/ocp-qe-perfscale-ci:
+  stackrox/stackrox:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/aro-4.13-nightly-images
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/aro-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: aro-4.13-nightly
       ci.openshift.io/generator: prowgen
-      job-release: "4.13"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-aro-4.13-nightly-images
-    rerun_command: /test aro-4.13-nightly-images
+    name: pull-ci-stackrox-stackrox-release-4.2-aro-qa-e2e-tests
+    optional: true
+    rerun_command: /test aro-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=aro-4.13-nightly
+        - --target=aro-qa-e2e-tests
         command:
         - ci-operator
         image: ci-operator:latest
@@ -51,32 +50,31 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )aro-4.13-nightly-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )aro-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/aws-4.13-arm-images
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/eks-ebpf-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: aws-4.13-arm
       ci.openshift.io/generator: prowgen
-      job-release: "4.14"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-aws-4.13-arm-images
-    rerun_command: /test aws-4.13-arm-images
+    name: pull-ci-stackrox-stackrox-release-4.2-eks-ebpf-qa-e2e-tests
+    optional: true
+    rerun_command: /test eks-ebpf-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=aws-4.13-arm
+        - --target=eks-ebpf-qa-e2e-tests
         command:
         - ci-operator
         image: ci-operator:latest
@@ -103,32 +101,31 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )aws-4.13-arm-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )eks-ebpf-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/aws-4.14-arm-images
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/eks-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: aws-4.14-arm
       ci.openshift.io/generator: prowgen
-      job-release: "4.14"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-aws-4.14-arm-images
-    rerun_command: /test aws-4.14-arm-images
+    name: pull-ci-stackrox-stackrox-release-4.2-eks-qa-e2e-tests
+    optional: true
+    rerun_command: /test eks-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=aws-4.14-arm
+        - --target=eks-qa-e2e-tests
         command:
         - ci-operator
         image: ci-operator:latest
@@ -155,32 +152,30 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )aws-4.14-arm-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )eks-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/aws-4.14-images
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-ebpf-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/variant: aws-4.14
       ci.openshift.io/generator: prowgen
-      job-release: "4.14"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-aws-4.14-images
-    rerun_command: /test aws-4.14-images
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-ebpf-qa-e2e-tests
+    optional: true
+    rerun_command: /test gke-ebpf-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=aws-4.14
+        - --target=gke-ebpf-qa-e2e-tests
         command:
         - ci-operator
         image: ci-operator:latest
@@ -207,26 +202,432 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )aws-4.14-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )gke-ebpf-qa-e2e-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-nongroovy-e2e-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-nongroovy-e2e-tests
+    optional: true
+    rerun_command: /test gke-nongroovy-e2e-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=gke-nongroovy-e2e-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )gke-nongroovy-e2e-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-qa-e2e-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-qa-e2e-tests
+    optional: true
+    rerun_command: /test gke-qa-e2e-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=gke-qa-e2e-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )gke-qa-e2e-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-race-condition-qa-e2e-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-race-condition-qa-e2e-tests
+    optional: true
+    rerun_command: /test gke-race-condition-qa-e2e-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=gke-race-condition-qa-e2e-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )gke-race-condition-qa-e2e-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-scale-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-scale-tests
+    optional: true
+    rerun_command: /test gke-scale-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=gke-scale-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )gke-scale-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-sensor-integration-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-sensor-integration-tests
+    optional: true
+    rerun_command: /test gke-sensor-integration-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=gke-sensor-integration-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )gke-sensor-integration-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-ui-e2e-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-ui-e2e-tests
+    optional: true
+    rerun_command: /test gke-ui-e2e-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=gke-ui-e2e-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )gke-ui-e2e-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-upgrade-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-upgrade-tests
+    optional: true
+    rerun_command: /test gke-upgrade-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=gke-upgrade-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )gke-upgrade-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/gke-version-compatibility-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-gke-version-compatibility-tests
+    optional: true
+    rerun_command: /test gke-version-compatibility-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --target=gke-version-compatibility-tests
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )gke-version-compatibility-tests,?($|\s.*)
   - agent: kubernetes
     always_run: false
     branches:
-    - ^main$
-    - ^main-
-    cluster: build05
-    context: ci/prow/aws-4.14-ocp-qe-perfscale-aws-router-perf-aws
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/ocp-4-10-compliance-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
       ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: aws-perfscale-qe
-      ci-operator.openshift.io/variant: aws-4.14
+      ci-operator.openshift.io/cloud-cluster-profile: aws
+      ci-operator.openshift.io/variant: ocp-4-10
       ci.openshift.io/generator: prowgen
-      job-release: "4.14"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-aws-4.14-ocp-qe-perfscale-aws-router-perf-aws
-    rerun_command: /test aws-4.14-ocp-qe-perfscale-aws-router-perf-aws
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-10-compliance-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-10-compliance-e2e-tests
+    run_if_changed: ^(compliance|central\/compliance.*)
     spec:
       containers:
       - args:
@@ -235,9 +636,9 @@ presubmits:
         - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
         - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/ocp-qe-perfscale-aws-router-perf-aws-cluster-profile
-        - --target=ocp-qe-perfscale-aws-router-perf-aws
-        - --variant=aws-4.14
+        - --secret-dir=/usr/local/compliance-e2e-tests-cluster-profile
+        - --target=compliance-e2e-tests
+        - --variant=ocp-4-10
         command:
         - ci-operator
         image: ci-operator:latest
@@ -253,7 +654,7 @@ presubmits:
         - mountPath: /secrets/ci-pull-credentials
           name: ci-pull-credentials
           readOnly: true
-        - mountPath: /usr/local/ocp-qe-perfscale-aws-router-perf-aws-cluster-profile
+        - mountPath: /usr/local/compliance-e2e-tests-cluster-profile
           name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
@@ -277,39 +678,45 @@ presubmits:
           secretName: ci-pull-credentials
       - name: cluster-profile
         secret:
-          secretName: cluster-secrets-aws-perfscale-qe
+          secretName: cluster-secrets-aws
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )aws-4.14-ocp-qe-perfscale-aws-router-perf-aws,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-10-compliance-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/gcp-4.13-images
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/ocp-4-10-ebpf-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: gcp-4.13
+      ci-operator.openshift.io/cloud: aws
+      ci-operator.openshift.io/cloud-cluster-profile: aws
+      ci-operator.openshift.io/variant: ocp-4-10
       ci.openshift.io/generator: prowgen
-      job-release: "4.13"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-gcp-4.13-images
-    rerun_command: /test gcp-4.13-images
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-10-ebpf-qa-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-10-ebpf-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=gcp-4.13
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/ebpf-qa-e2e-tests-cluster-profile
+        - --target=ebpf-qa-e2e-tests
+        - --variant=ocp-4-10
         command:
         - ci-operator
         image: ci-operator:latest
@@ -319,6 +726,14 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/ebpf-qa-e2e-tests-cluster-profile
+          name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -330,32 +745,358 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        secret:
+          secretName: cluster-secrets-aws
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )gcp-4.13-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-10-ebpf-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/gcp-4.13-ocp-qe-perfscale-router-perf-gcp
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/ocp-4-10-operator-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci-operator.openshift.io/cloud: aws
+      ci-operator.openshift.io/cloud-cluster-profile: aws
+      ci-operator.openshift.io/variant: ocp-4-10
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-10-operator-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-10-operator-e2e-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
+        - --report-credentials-file=/etc/report/credentials
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/operator-e2e-tests-cluster-profile
+        - --target=operator-e2e-tests
+        - --variant=ocp-4-10
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/operator-e2e-tests-cluster-profile
+          name: cluster-profile
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        secret:
+          secretName: cluster-secrets-aws
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )ocp-4-10-operator-e2e-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/ocp-4-10-qa-e2e-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci-operator.openshift.io/cloud: aws
+      ci-operator.openshift.io/cloud-cluster-profile: aws
+      ci-operator.openshift.io/variant: ocp-4-10
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-10-qa-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-10-qa-e2e-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
+        - --report-credentials-file=/etc/report/credentials
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/qa-e2e-tests-cluster-profile
+        - --target=qa-e2e-tests
+        - --variant=ocp-4-10
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/qa-e2e-tests-cluster-profile
+          name: cluster-profile
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        secret:
+          secretName: cluster-secrets-aws
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )ocp-4-10-qa-e2e-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/ocp-4-10-sensor-integration-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci-operator.openshift.io/cloud: aws
+      ci-operator.openshift.io/cloud-cluster-profile: aws
+      ci-operator.openshift.io/variant: ocp-4-10
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-10-sensor-integration-tests
+    optional: true
+    rerun_command: /test ocp-4-10-sensor-integration-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
+        - --report-credentials-file=/etc/report/credentials
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/sensor-integration-tests-cluster-profile
+        - --target=sensor-integration-tests
+        - --variant=ocp-4-10
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/sensor-integration-tests-cluster-profile
+          name: cluster-profile
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        secret:
+          secretName: cluster-secrets-aws
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )ocp-4-10-sensor-integration-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/ocp-4-10-ui-e2e-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci-operator.openshift.io/cloud: aws
+      ci-operator.openshift.io/cloud-cluster-profile: aws
+      ci-operator.openshift.io/variant: ocp-4-10
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-10-ui-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-10-ui-e2e-tests
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
+        - --report-credentials-file=/etc/report/credentials
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/ui-e2e-tests-cluster-profile
+        - --target=ui-e2e-tests
+        - --variant=ocp-4-10
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/ui-e2e-tests-cluster-profile
+          name: cluster-profile
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        secret:
+          secretName: cluster-secrets-aws
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )ocp-4-10-ui-e2e-tests,?($|\s.*)
+  - agent: kubernetes
+    always_run: false
+    branches:
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build04
+    context: ci/prow/ocp-4-13-compliance-e2e-tests
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
     labels:
       ci-operator.openshift.io/cloud: gcp
-      ci-operator.openshift.io/cloud-cluster-profile: gcp-qe
-      ci-operator.openshift.io/variant: gcp-4.13
+      ci-operator.openshift.io/cloud-cluster-profile: gcp
+      ci-operator.openshift.io/variant: ocp-4-13
       ci.openshift.io/generator: prowgen
-      job-release: "4.13"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-gcp-4.13-ocp-qe-perfscale-router-perf-gcp
-    rerun_command: /test gcp-4.13-ocp-qe-perfscale-router-perf-gcp
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-13-compliance-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-13-compliance-e2e-tests
+    run_if_changed: ^(compliance|central\/compliance.*)
     spec:
       containers:
       - args:
@@ -364,9 +1105,9 @@ presubmits:
         - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
         - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/ocp-qe-perfscale-router-perf-gcp-cluster-profile
-        - --target=ocp-qe-perfscale-router-perf-gcp
-        - --variant=gcp-4.13
+        - --secret-dir=/usr/local/compliance-e2e-tests-cluster-profile
+        - --target=compliance-e2e-tests
+        - --variant=ocp-4-13
         command:
         - ci-operator
         image: ci-operator:latest
@@ -382,7 +1123,7 @@ presubmits:
         - mountPath: /secrets/ci-pull-credentials
           name: ci-pull-credentials
           readOnly: true
-        - mountPath: /usr/local/ocp-qe-perfscale-router-perf-gcp-cluster-profile
+        - mountPath: /usr/local/compliance-e2e-tests-cluster-profile
           name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
@@ -405,38 +1146,50 @@ presubmits:
         secret:
           secretName: ci-pull-credentials
       - name: cluster-profile
-        secret:
-          secretName: cluster-secrets-gcp-qe
+        projected:
+          sources:
+          - secret:
+              name: cluster-secrets-gcp
+          - configMap:
+              name: cluster-profile-gcp
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )gcp-4.13-ocp-qe-perfscale-router-perf-gcp,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-13-compliance-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
+    - ^release-4\.2$
+    - ^release-4\.2-
     cluster: build04
-    context: ci/prow/images
+    context: ci/prow/ocp-4-13-ebpf-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
+      ci-operator.openshift.io/cloud: gcp
+      ci-operator.openshift.io/cloud-cluster-profile: gcp
+      ci-operator.openshift.io/variant: ocp-4-13
       ci.openshift.io/generator: prowgen
-      job-release: "4.12"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-images
-    rerun_command: /test images
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-13-ebpf-qa-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-13-ebpf-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/ebpf-qa-e2e-tests-cluster-profile
+        - --target=ebpf-qa-e2e-tests
+        - --variant=ocp-4-13
         command:
         - ci-operator
         image: ci-operator:latest
@@ -446,6 +1199,14 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/ebpf-qa-e2e-tests-cluster-profile
+          name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -457,38 +1218,60 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        projected:
+          sources:
+          - secret:
+              name: cluster-secrets-gcp
+          - configMap:
+              name: cluster-profile-gcp
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )images,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-13-ebpf-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
+    - ^release-4\.2$
+    - ^release-4\.2-
     cluster: build04
-    context: ci/prow/nightly-4.13-loaded-upgrade-from-stable-4.12-images
+    context: ci/prow/ocp-4-13-fips-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: nightly-4.13-loaded-upgrade-from-stable-4.12
+      ci-operator.openshift.io/cloud: gcp
+      ci-operator.openshift.io/cloud-cluster-profile: gcp
+      ci-operator.openshift.io/variant: ocp-4-13
       ci.openshift.io/generator: prowgen
-      job-release: "4.13"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-nightly-4.13-loaded-upgrade-from-stable-4.12-images
-    rerun_command: /test nightly-4.13-loaded-upgrade-from-stable-4.12-images
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-13-fips-qa-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-13-fips-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=nightly-4.13-loaded-upgrade-from-stable-4.12
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/fips-qa-e2e-tests-cluster-profile
+        - --target=fips-qa-e2e-tests
+        - --variant=ocp-4-13
         command:
         - ci-operator
         image: ci-operator:latest
@@ -498,6 +1281,14 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/fips-qa-e2e-tests-cluster-profile
+          name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -509,38 +1300,60 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        projected:
+          sources:
+          - secret:
+              name: cluster-secrets-gcp
+          - configMap:
+              name: cluster-profile-gcp
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )nightly-4.13-loaded-upgrade-from-stable-4.12-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-13-fips-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
+    - ^release-4\.2$
+    - ^release-4\.2-
     cluster: build04
-    context: ci/prow/nightly-4.14-loaded-upgrade-from-stable-4.12-images
+    context: ci/prow/ocp-4-13-operator-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: nightly-4.14-loaded-upgrade-from-stable-4.12
+      ci-operator.openshift.io/cloud: gcp
+      ci-operator.openshift.io/cloud-cluster-profile: gcp
+      ci-operator.openshift.io/variant: ocp-4-13
       ci.openshift.io/generator: prowgen
-      job-release: "4.14"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-nightly-4.14-loaded-upgrade-from-stable-4.12-images
-    rerun_command: /test nightly-4.14-loaded-upgrade-from-stable-4.12-images
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-13-operator-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-13-operator-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=nightly-4.14-loaded-upgrade-from-stable-4.12
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/operator-e2e-tests-cluster-profile
+        - --target=operator-e2e-tests
+        - --variant=ocp-4-13
         command:
         - ci-operator
         image: ci-operator:latest
@@ -550,6 +1363,14 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/operator-e2e-tests-cluster-profile
+          name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -561,38 +1382,60 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        projected:
+          sources:
+          - secret:
+              name: cluster-secrets-gcp
+          - configMap:
+              name: cluster-profile-gcp
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )nightly-4.14-loaded-upgrade-from-stable-4.12-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-13-operator-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
+    - ^release-4\.2$
+    - ^release-4\.2-
     cluster: build04
-    context: ci/prow/rosa-4.12-nightly-images
+    context: ci/prow/ocp-4-13-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: rosa-4.12-nightly
+      ci-operator.openshift.io/cloud: gcp
+      ci-operator.openshift.io/cloud-cluster-profile: gcp
+      ci-operator.openshift.io/variant: ocp-4-13
       ci.openshift.io/generator: prowgen
-      job-release: "4.12"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.12-nightly-images
-    rerun_command: /test rosa-4.12-nightly-images
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-13-qa-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-13-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=rosa-4.12-nightly
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --secret-dir=/usr/local/qa-e2e-tests-cluster-profile
+        - --target=qa-e2e-tests
+        - --variant=ocp-4-13
         command:
         - ci-operator
         image: ci-operator:latest
@@ -602,6 +1445,14 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /etc/boskos
+          name: boskos
+          readOnly: true
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /usr/local/qa-e2e-tests-cluster-profile
+          name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -613,32 +1464,49 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: boskos
+        secret:
+          items:
+          - key: credentials
+            path: credentials
+          secretName: boskos-credentials
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: cluster-profile
+        projected:
+          sources:
+          - secret:
+              name: cluster-secrets-gcp
+          - configMap:
+              name: cluster-profile-gcp
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.12-nightly-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-13-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build05
-    context: ci/prow/rosa-4.12-nightly-perfscale-rosa-multiaz-cluster-density-v2-3nodes
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/ocp-4-13-sensor-integration-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
       ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: aws-perfscale-qe
-      ci-operator.openshift.io/variant: rosa-4.12-nightly
+      ci-operator.openshift.io/cloud-cluster-profile: aws
+      ci-operator.openshift.io/variant: ocp-4-13
       ci.openshift.io/generator: prowgen
-      job-release: "4.12"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.12-nightly-perfscale-rosa-multiaz-cluster-density-v2-3nodes
-    rerun_command: /test rosa-4.12-nightly-perfscale-rosa-multiaz-cluster-density-v2-3nodes
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-13-sensor-integration-tests
+    optional: true
+    rerun_command: /test ocp-4-13-sensor-integration-tests
     spec:
       containers:
       - args:
@@ -647,9 +1515,9 @@ presubmits:
         - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
         - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/perfscale-rosa-multiaz-cluster-density-v2-3nodes-cluster-profile
-        - --target=perfscale-rosa-multiaz-cluster-density-v2-3nodes
-        - --variant=rosa-4.12-nightly
+        - --secret-dir=/usr/local/sensor-integration-tests-cluster-profile
+        - --target=sensor-integration-tests
+        - --variant=ocp-4-13
         command:
         - ci-operator
         image: ci-operator:latest
@@ -665,7 +1533,7 @@ presubmits:
         - mountPath: /secrets/ci-pull-credentials
           name: ci-pull-credentials
           readOnly: true
-        - mountPath: /usr/local/perfscale-rosa-multiaz-cluster-density-v2-3nodes-cluster-profile
+        - mountPath: /usr/local/sensor-integration-tests-cluster-profile
           name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
@@ -689,85 +1557,34 @@ presubmits:
           secretName: ci-pull-credentials
       - name: cluster-profile
         secret:
-          secretName: cluster-secrets-aws-perfscale-qe
+          secretName: cluster-secrets-aws
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.12-nightly-perfscale-rosa-multiaz-cluster-density-v2-3nodes,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-13-sensor-integration-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
+    - ^release-4\.2$
+    - ^release-4\.2-
     cluster: build04
-    context: ci/prow/rosa-4.13-nightly-images
+    context: ci/prow/ocp-4-13-ui-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: rosa-4.13-nightly
+      ci-operator.openshift.io/cloud: gcp
+      ci-operator.openshift.io/cloud-cluster-profile: gcp
+      ci-operator.openshift.io/variant: ocp-4-13
       ci.openshift.io/generator: prowgen
-      job-release: "4.13"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.13-nightly-images
-    rerun_command: /test rosa-4.13-nightly-images
-    spec:
-      containers:
-      - args:
-        - --gcs-upload-secret=/secrets/gcs/service-account.json
-        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=rosa-4.13-nightly
-        command:
-        - ci-operator
-        image: ci-operator:latest
-        imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: 10m
-        volumeMounts:
-        - mountPath: /secrets/gcs
-          name: gcs-credentials
-          readOnly: true
-        - mountPath: /etc/pull-secret
-          name: pull-secret
-          readOnly: true
-        - mountPath: /etc/report
-          name: result-aggregator
-          readOnly: true
-      serviceAccountName: ci-operator
-      volumes:
-      - name: pull-secret
-        secret:
-          secretName: registry-pull-credentials
-      - name: result-aggregator
-        secret:
-          secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.13-nightly-images,?($|\s.*)
-  - agent: kubernetes
-    always_run: false
-    branches:
-    - ^main$
-    - ^main-
-    cluster: build05
-    context: ci/prow/rosa-4.13-nightly-perfscale-rosa-hcp-1zone-cluster-density-v2-3nodes
-    decorate: true
-    decoration_config:
-      skip_cloning: true
-    labels:
-      ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: aws-perfscale-qe
-      ci-operator.openshift.io/variant: rosa-4.13-nightly
-      ci.openshift.io/generator: prowgen
-      job-release: "4.13"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.13-nightly-perfscale-rosa-hcp-1zone-cluster-density-v2-3nodes
-    rerun_command: /test rosa-4.13-nightly-perfscale-rosa-hcp-1zone-cluster-density-v2-3nodes
+    name: pull-ci-stackrox-stackrox-release-4.2-ocp-4-13-ui-e2e-tests
+    optional: true
+    rerun_command: /test ocp-4-13-ui-e2e-tests
     spec:
       containers:
       - args:
@@ -776,9 +1593,9 @@ presubmits:
         - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
         - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/perfscale-rosa-hcp-1zone-cluster-density-v2-3nodes-cluster-profile
-        - --target=perfscale-rosa-hcp-1zone-cluster-density-v2-3nodes
-        - --variant=rosa-4.13-nightly
+        - --secret-dir=/usr/local/ui-e2e-tests-cluster-profile
+        - --target=ui-e2e-tests
+        - --variant=ocp-4-13
         command:
         - ci-operator
         image: ci-operator:latest
@@ -794,7 +1611,7 @@ presubmits:
         - mountPath: /secrets/ci-pull-credentials
           name: ci-pull-credentials
           readOnly: true
-        - mountPath: /usr/local/perfscale-rosa-hcp-1zone-cluster-density-v2-3nodes-cluster-profile
+        - mountPath: /usr/local/ui-e2e-tests-cluster-profile
           name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
@@ -817,348 +1634,43 @@ presubmits:
         secret:
           secretName: ci-pull-credentials
       - name: cluster-profile
-        secret:
-          secretName: cluster-secrets-aws-perfscale-qe
+        projected:
+          sources:
+          - secret:
+              name: cluster-secrets-gcp
+          - configMap:
+              name: cluster-profile-gcp
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.13-nightly-perfscale-rosa-hcp-1zone-cluster-density-v2-3nodes,?($|\s.*)
-  - agent: kubernetes
-    always_run: false
-    branches:
-    - ^main$
-    - ^main-
-    cluster: build05
-    context: ci/prow/rosa-4.13-nightly-perfscale-rosa-multiaz-cluster-density-v2-3nodes
-    decorate: true
-    decoration_config:
-      skip_cloning: true
-    labels:
-      ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: aws-perfscale-qe
-      ci-operator.openshift.io/variant: rosa-4.13-nightly
-      ci.openshift.io/generator: prowgen
-      job-release: "4.13"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.13-nightly-perfscale-rosa-multiaz-cluster-density-v2-3nodes
-    rerun_command: /test rosa-4.13-nightly-perfscale-rosa-multiaz-cluster-density-v2-3nodes
-    spec:
-      containers:
-      - args:
-        - --gcs-upload-secret=/secrets/gcs/service-account.json
-        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
-        - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/perfscale-rosa-multiaz-cluster-density-v2-3nodes-cluster-profile
-        - --target=perfscale-rosa-multiaz-cluster-density-v2-3nodes
-        - --variant=rosa-4.13-nightly
-        command:
-        - ci-operator
-        image: ci-operator:latest
-        imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: 10m
-        volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
-        - mountPath: /usr/local/perfscale-rosa-multiaz-cluster-density-v2-3nodes-cluster-profile
-          name: cluster-profile
-        - mountPath: /secrets/gcs
-          name: gcs-credentials
-          readOnly: true
-        - mountPath: /etc/pull-secret
-          name: pull-secret
-          readOnly: true
-        - mountPath: /etc/report
-          name: result-aggregator
-          readOnly: true
-      serviceAccountName: ci-operator
-      volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
-      - name: cluster-profile
-        secret:
-          secretName: cluster-secrets-aws-perfscale-qe
-      - name: pull-secret
-        secret:
-          secretName: registry-pull-credentials
-      - name: result-aggregator
-        secret:
-          secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.13-nightly-perfscale-rosa-multiaz-cluster-density-v2-3nodes,?($|\s.*)
-  - agent: kubernetes
-    always_run: false
-    branches:
-    - ^main$
-    - ^main-
-    cluster: build05
-    context: ci/prow/rosa-4.13-nightly-perfscale-rosa-multiaz-node-density-3nodes
-    decorate: true
-    decoration_config:
-      skip_cloning: true
-    labels:
-      ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: aws-perfscale-qe
-      ci-operator.openshift.io/variant: rosa-4.13-nightly
-      ci.openshift.io/generator: prowgen
-      job-release: "4.13"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.13-nightly-perfscale-rosa-multiaz-node-density-3nodes
-    rerun_command: /test rosa-4.13-nightly-perfscale-rosa-multiaz-node-density-3nodes
-    spec:
-      containers:
-      - args:
-        - --gcs-upload-secret=/secrets/gcs/service-account.json
-        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
-        - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/perfscale-rosa-multiaz-node-density-3nodes-cluster-profile
-        - --target=perfscale-rosa-multiaz-node-density-3nodes
-        - --variant=rosa-4.13-nightly
-        command:
-        - ci-operator
-        image: ci-operator:latest
-        imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: 10m
-        volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
-        - mountPath: /usr/local/perfscale-rosa-multiaz-node-density-3nodes-cluster-profile
-          name: cluster-profile
-        - mountPath: /secrets/gcs
-          name: gcs-credentials
-          readOnly: true
-        - mountPath: /etc/pull-secret
-          name: pull-secret
-          readOnly: true
-        - mountPath: /etc/report
-          name: result-aggregator
-          readOnly: true
-      serviceAccountName: ci-operator
-      volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
-      - name: cluster-profile
-        secret:
-          secretName: cluster-secrets-aws-perfscale-qe
-      - name: pull-secret
-        secret:
-          secretName: registry-pull-credentials
-      - name: result-aggregator
-        secret:
-          secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.13-nightly-perfscale-rosa-multiaz-node-density-3nodes,?($|\s.*)
-  - agent: kubernetes
-    always_run: false
-    branches:
-    - ^main$
-    - ^main-
-    cluster: build05
-    context: ci/prow/rosa-4.13-nightly-perfscale-rosa-multiaz-node-density-heavy-3nodes
-    decorate: true
-    decoration_config:
-      skip_cloning: true
-    labels:
-      ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: aws-perfscale-qe
-      ci-operator.openshift.io/variant: rosa-4.13-nightly
-      ci.openshift.io/generator: prowgen
-      job-release: "4.13"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.13-nightly-perfscale-rosa-multiaz-node-density-heavy-3nodes
-    rerun_command: /test rosa-4.13-nightly-perfscale-rosa-multiaz-node-density-heavy-3nodes
-    spec:
-      containers:
-      - args:
-        - --gcs-upload-secret=/secrets/gcs/service-account.json
-        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
-        - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/perfscale-rosa-multiaz-node-density-heavy-3nodes-cluster-profile
-        - --target=perfscale-rosa-multiaz-node-density-heavy-3nodes
-        - --variant=rosa-4.13-nightly
-        command:
-        - ci-operator
-        image: ci-operator:latest
-        imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: 10m
-        volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
-        - mountPath: /usr/local/perfscale-rosa-multiaz-node-density-heavy-3nodes-cluster-profile
-          name: cluster-profile
-        - mountPath: /secrets/gcs
-          name: gcs-credentials
-          readOnly: true
-        - mountPath: /etc/pull-secret
-          name: pull-secret
-          readOnly: true
-        - mountPath: /etc/report
-          name: result-aggregator
-          readOnly: true
-      serviceAccountName: ci-operator
-      volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
-      - name: cluster-profile
-        secret:
-          secretName: cluster-secrets-aws-perfscale-qe
-      - name: pull-secret
-        secret:
-          secretName: registry-pull-credentials
-      - name: result-aggregator
-        secret:
-          secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.13-nightly-perfscale-rosa-multiaz-node-density-heavy-3nodes,?($|\s.*)
-  - agent: kubernetes
-    always_run: false
-    branches:
-    - ^main$
-    - ^main-
-    cluster: build05
-    context: ci/prow/rosa-4.13-nightly-perfscale-rosa-multiaz-router-perf-3nodes
-    decorate: true
-    decoration_config:
-      skip_cloning: true
-    labels:
-      ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: aws-perfscale-qe
-      ci-operator.openshift.io/variant: rosa-4.13-nightly
-      ci.openshift.io/generator: prowgen
-      job-release: "4.13"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.13-nightly-perfscale-rosa-multiaz-router-perf-3nodes
-    rerun_command: /test rosa-4.13-nightly-perfscale-rosa-multiaz-router-perf-3nodes
-    spec:
-      containers:
-      - args:
-        - --gcs-upload-secret=/secrets/gcs/service-account.json
-        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
-        - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/perfscale-rosa-multiaz-router-perf-3nodes-cluster-profile
-        - --target=perfscale-rosa-multiaz-router-perf-3nodes
-        - --variant=rosa-4.13-nightly
-        command:
-        - ci-operator
-        image: ci-operator:latest
-        imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: 10m
-        volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
-        - mountPath: /usr/local/perfscale-rosa-multiaz-router-perf-3nodes-cluster-profile
-          name: cluster-profile
-        - mountPath: /secrets/gcs
-          name: gcs-credentials
-          readOnly: true
-        - mountPath: /etc/pull-secret
-          name: pull-secret
-          readOnly: true
-        - mountPath: /etc/report
-          name: result-aggregator
-          readOnly: true
-      serviceAccountName: ci-operator
-      volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
-      - name: cluster-profile
-        secret:
-          secretName: cluster-secrets-aws-perfscale-qe
-      - name: pull-secret
-        secret:
-          secretName: registry-pull-credentials
-      - name: result-aggregator
-        secret:
-          secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.13-nightly-perfscale-rosa-multiaz-router-perf-3nodes,?($|\s.*)
+    trigger: (?m)^/test( | .* )ocp-4-13-ui-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/rosa-4.14-ec-images
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/osd-gcp-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: rosa-4.14-ec
       ci.openshift.io/generator: prowgen
-      job-release: "4.14"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-4.14-ec-images
-    rerun_command: /test rosa-4.14-ec-images
+    name: pull-ci-stackrox-stackrox-release-4.2-osd-gcp-qa-e2e-tests
+    optional: true
+    rerun_command: /test osd-gcp-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=rosa-4.14-ec
+        - --target=osd-gcp-qa-e2e-tests
         command:
         - ci-operator
         image: ci-operator:latest
@@ -1185,31 +1697,31 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-4.14-ec-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )osd-gcp-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/rosa-candidate-4.12-latest-loaded-upgrade-from-4.12-images
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/powervs-qa-e2e-tests
     decorate: true
     decoration_config:
       skip_cloning: true
+      timeout: 5h0m0s
     labels:
-      ci-operator.openshift.io/variant: rosa-candidate-4.12-latest-loaded-upgrade-from-4.12
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-candidate-4.12-latest-loaded-upgrade-from-4.12-images
-    rerun_command: /test rosa-candidate-4.12-latest-loaded-upgrade-from-4.12-images
+    name: pull-ci-stackrox-stackrox-release-4.2-powervs-qa-e2e-tests
+    optional: true
+    rerun_command: /test powervs-qa-e2e-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=rosa-candidate-4.12-latest-loaded-upgrade-from-4.12
+        - --target=powervs-qa-e2e-tests
         command:
         - ci-operator
         image: ci-operator:latest
@@ -1236,31 +1748,29 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-candidate-4.12-latest-loaded-upgrade-from-4.12-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )powervs-qa-e2e-tests,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    - ^main-
-    cluster: build04
-    context: ci/prow/rosa-candidate-4.13-loaded-upgrade-from-4.12-images
+    - ^release-4\.2$
+    - ^release-4\.2-
+    cluster: build01
+    context: ci/prow/shell-unit-tests
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/variant: rosa-candidate-4.13-loaded-upgrade-from-4.12
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-qe-ocp-qe-perfscale-ci-main-rosa-candidate-4.13-loaded-upgrade-from-4.12-images
-    rerun_command: /test rosa-candidate-4.13-loaded-upgrade-from-4.12-images
+    name: pull-ci-stackrox-stackrox-release-4.2-shell-unit-tests
+    rerun_command: /test shell-unit-tests
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=rosa-candidate-4.13-loaded-upgrade-from-4.12
+        - --target=shell-unit-tests
         command:
         - ci-operator
         image: ci-operator:latest
@@ -1287,4 +1797,4 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )rosa-candidate-4.13-loaded-upgrade-from-4.12-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )shell-unit-tests,?($|\s.*)
