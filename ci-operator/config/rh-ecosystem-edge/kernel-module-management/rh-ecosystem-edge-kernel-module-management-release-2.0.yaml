@@ -29,10 +29,6 @@ images:
   dockerfile_path: Dockerfile
   to: kernel-module-management-operator-hub
 - dockerfile_path: Dockerfile.signimage
-  inputs:
-    ubi9-minimal-entitled:
-      as:
-      - registry.access.redhat.com/ubi9/ubi-minimal:9.2
   to: kernel-module-management-signimage
 - dockerfile_path: Dockerfile.must-gather
   to: kernel-module-management-must-gather
@@ -71,7 +67,7 @@ promotion:
   - ubi9-minimal-entitled
   - e2e-hub-yq
   namespace: edge-infrastructure
-  tag: latest
+  tag: release-2.0
   tag_by_commit: true
 releases:
   latest:
@@ -213,6 +209,6 @@ tests:
           memory: 500Mi
     workflow: generic-claim
 zz_generated_metadata:
-  branch: main
+  branch: release-2.0
   org: rh-ecosystem-edge
   repo: kernel-module-management
