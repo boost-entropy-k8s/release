@@ -9,14 +9,15 @@ base_images:
     tag: rhel-9-base-openshift-4.15
 build_root:
   from_repository: true
+canonical_go_repository: github.com/openshift/ironic-agent-image
 images:
 - dockerfile_path: Dockerfile.ocp
   from: base
   to: ironic-agent
 promotion:
   disabled: true
-  name: "4.15"
-  namespace: ocp
+  name: 4.15-priv
+  namespace: ocp-private
 raw_steps:
 - pipeline_image_cache_step:
     commands: |
@@ -26,13 +27,13 @@ raw_steps:
 releases:
   initial:
     integration:
-      name: "4.15"
-      namespace: ocp
+      name: 4.15-priv
+      namespace: ocp-private
   latest:
     integration:
       include_built_images: true
-      name: "4.15"
-      namespace: ocp
+      name: 4.15-priv
+      namespace: ocp-private
 resources:
   '*':
     requests:
@@ -74,6 +75,6 @@ tests:
     workflow: baremetalds-e2e-ovn-dualstack
 zz_generated_metadata:
   branch: main
-  org: openshift
+  org: openshift-priv
   repo: ironic-agent-image
   variant: prevalidation
