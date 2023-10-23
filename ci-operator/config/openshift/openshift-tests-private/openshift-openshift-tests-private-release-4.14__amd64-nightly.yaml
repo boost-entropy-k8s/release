@@ -2335,6 +2335,36 @@ tests:
     test:
     - chain: openshift-e2e-test-qe-destructive
     workflow: cucushift-installer-rehearse-azure-upi
+- as: baremetalds-assisted-hypershift-agent-mce-guest-f7
+  cron: 7 4 2,9,17,25 * *
+  steps:
+    cluster_profile: equinix-ocp-metal-qe
+    env:
+      E2E_RUN_TAGS: '@amd64 and @baremetal-ipi and @network-ovnkubernetes and @hypershift-hosted
+        and not @fips'
+      LVM_OPERATOR_SUB_CHANNEL: stable-4.14
+      MCE_VERSION: "2.4"
+      TAG_VERSION: '@4.14'
+      TEST_FILTERS: ~ChkUpgrade&;~DisconnectedOnly&;~NonPreRelease&;~HyperShiftMGMT&;~MicroShiftOnly&;~NonHyperShiftHOST&;~Serial&;~Disruptive&
+      TEST_TIMEOUT: "30"
+    test:
+    - chain: openshift-e2e-test-hypershift-qe
+    workflow: cucushift-installer-rehearse-baremetalds-assisted-hypershift-agent-mce-guest
+- as: baremetalds-assisted-hypershift-agent-mce-guest-f14-des
+  cron: 51 18 10,25 * *
+  steps:
+    cluster_profile: equinix-ocp-metal-qe
+    env:
+      E2E_RUN_TAGS: '@amd64 and @baremetal-ipi and @network-ovnkubernetes and @hypershift-hosted
+        and not @fips'
+      LVM_OPERATOR_SUB_CHANNEL: stable-4.14
+      MCE_VERSION: "2.4"
+      TAG_VERSION: '@4.14'
+      TEST_FILTERS: ~ChkUpgrade&;~DisconnectedOnly&;~NonPreRelease&;~HyperShiftMGMT&;~MicroShiftOnly&;~NonHyperShiftHOST&;Serial;Disruptive
+      TEST_TIMEOUT: "30"
+    test:
+    - chain: openshift-e2e-test-hypershift-qe-destructive
+    workflow: cucushift-installer-rehearse-baremetalds-assisted-hypershift-agent-mce-guest
 - as: baremetalds-assisted-hypershift-agent-mce-mgmt-f7
   cron: 15 1 4,11,18,26 * *
   steps:
@@ -3574,7 +3604,7 @@ tests:
 - as: vsphere-agent-disconnected-compact-f14
   cron: 23 1 10,25 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-ovnkubernetes
         and not @fips'
@@ -3586,7 +3616,7 @@ tests:
 - as: vsphere-agent-disconnected-ha-f14
   cron: 19 22 5,20 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-ovnkubernetes
         and not @fips'
@@ -3598,7 +3628,7 @@ tests:
 - as: vsphere-agent-disconnected-sno-f14
   cron: 8 2 3,18 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @baremetal-upi and @disconnected and @network-ovnkubernetes
         and @singlenode and not @fips'
@@ -3664,7 +3694,7 @@ tests:
 - as: vsphere-ipi-disconnected-f28
   cron: 37 3 30 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @disconnected and @network-ovnkubernetes
         and not @fips'
@@ -3676,7 +3706,7 @@ tests:
 - as: vsphere-ipi-disconnected-f28-destructive
   cron: 5 11 8 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @disconnected and @network-ovnkubernetes
         and not @fips'
@@ -3819,7 +3849,7 @@ tests:
 - as: vsphere-ipi-proxy-fips-f28
   cron: 37 3 9 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes'
       FIPS_ENABLED: "true"
@@ -3830,7 +3860,7 @@ tests:
 - as: vsphere-ipi-proxy-fips-f28-destructive
   cron: 44 21 9 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes'
       FIPS_ENABLED: "true"
@@ -3841,7 +3871,7 @@ tests:
 - as: vsphere-ipi-proxy-tp-f28
   cron: 24 13 16 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes
         and not @fips'
@@ -3853,7 +3883,7 @@ tests:
 - as: vsphere-ipi-proxy-tp-f28-destructive
   cron: 51 9 25 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes
         and not @fips'
@@ -3865,7 +3895,7 @@ tests:
 - as: vsphere-ipi-proxy-workers-rhel8-f28
   cron: 47 1 30 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes
         and not @fips'
@@ -3876,7 +3906,7 @@ tests:
 - as: vsphere-ipi-proxy-workers-rhel8-f28-destructive
   cron: 45 14 10 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-ipi and @proxy and @network-ovnkubernetes
         and not @fips'
@@ -4033,7 +4063,7 @@ tests:
 - as: vsphere-upi-disconnected-sdn-rhcos-rhel8-f28
   cron: 33 22 30 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-openshiftsdn
         and not @fips'
@@ -4045,7 +4075,7 @@ tests:
 - as: vsphere-upi-disconnected-sdn-rhcos-rhel8-f28-destructive
   cron: 9 13 19 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-openshiftsdn
         and not @fips'
@@ -4057,7 +4087,7 @@ tests:
 - as: vsphere-upi-disconnected-secureboot-fips-f28
   cron: 42 17 28 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-ovnkubernetes'
       FIPS_ENABLED: "true"
@@ -4069,7 +4099,7 @@ tests:
 - as: vsphere-upi-disconnected-secureboot-fips-f28-destructive
   cron: 35 9 9 * *
   steps:
-    cluster_profile: vsphere-dis
+    cluster_profile: vsphere-dis-2
     env:
       E2E_RUN_TAGS: '@amd64 and @vsphere-upi and @disconnected and @network-ovnkubernetes'
       FIPS_ENABLED: "true"
