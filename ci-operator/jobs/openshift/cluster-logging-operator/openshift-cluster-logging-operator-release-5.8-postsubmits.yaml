@@ -1,10 +1,10 @@
 postsubmits:
-  ViaQ/logging-fluentd:
+  openshift/cluster-logging-operator:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    cluster: build04
+    - ^release-5\.8$
+    cluster: build03
     decorate: true
     decoration_config:
       skip_cloning: true
@@ -12,7 +12,7 @@ postsubmits:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-ViaQ-logging-fluentd-main-images
+    name: branch-ci-openshift-cluster-logging-operator-release-5.8-images
     spec:
       containers:
       - args:

@@ -3156,10 +3156,10 @@ periodics:
   decorate: true
   labels:
     config-type: modern
-    job-architecture: multi
+    job-architecture: amd64
     job-env: hypershift-hosted-powervs
     job-type: launch
-  name: release-openshift-origin-installer-launch-hypershift-hosted-powervs
+  name: release-openshift-origin-installer-launch-hypershift-powervs
   spec:
     containers:
     - args:
@@ -3185,6 +3185,7 @@ periodics:
         value: "4.14"
       - name: JOB_NAME_SAFE
         value: launch
+      - name: NAMESPACE
       - name: UNRESOLVED_CONFIG
         value: |
           resources:
