@@ -56,6 +56,7 @@ operator:
 promotion:
   additional_images:
     loki-operator-bundle: loki-operator-bundle
+  disabled: true
   name: 5.y
   namespace: logging
 releases:
