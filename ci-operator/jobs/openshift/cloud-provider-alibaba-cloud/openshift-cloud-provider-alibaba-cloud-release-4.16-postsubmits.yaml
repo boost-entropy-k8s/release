@@ -1,18 +1,17 @@
 postsubmits:
-  redhat-developer/jenkins-operator:
+  openshift/cloud-provider-alibaba-cloud:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    cluster: build04
+    - ^release-4\.16$
+    cluster: build05
     decorate: true
-    decoration_config:
-      skip_cloning: true
     labels:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-redhat-developer-jenkins-operator-main-images
+    name: branch-ci-openshift-cloud-provider-alibaba-cloud-release-4.16-images
+    path_alias: k8s.io/cloud-provider-alibaba-cloud
     spec:
       containers:
       - args:
