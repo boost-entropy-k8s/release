@@ -1,76 +1,19 @@
 presubmits:
-  medik8s/node-maintenance-operator:
+  red-hat-storage/odf-operator:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-0\.12$
-    - ^release-0\.12-
-    cluster: build01
-    context: ci/prow/ci-index
-    decorate: true
-    decoration_config:
-      skip_cloning: true
-    labels:
-      ci.openshift.io/generator: prowgen
-      job-release: "4.10"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-medik8s-node-maintenance-operator-release-0.12-ci-index
-    rerun_command: /test ci-index
-    spec:
-      containers:
-      - args:
-        - --gcs-upload-secret=/secrets/gcs/service-account.json
-        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --report-credentials-file=/etc/report/credentials
-        - --target=ci-index
-        command:
-        - ci-operator
-        image: ci-operator:latest
-        imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: 10m
-        volumeMounts:
-        - mountPath: /secrets/gcs
-          name: gcs-credentials
-          readOnly: true
-        - mountPath: /secrets/manifest-tool
-          name: manifest-tool-local-pusher
-          readOnly: true
-        - mountPath: /etc/pull-secret
-          name: pull-secret
-          readOnly: true
-        - mountPath: /etc/report
-          name: result-aggregator
-          readOnly: true
-      serviceAccountName: ci-operator
-      volumes:
-      - name: manifest-tool-local-pusher
-        secret:
-          secretName: manifest-tool-local-pusher
-      - name: pull-secret
-        secret:
-          secretName: registry-pull-credentials
-      - name: result-aggregator
-        secret:
-          secretName: result-aggregator
-    trigger: (?m)^/test( | .* )ci-index,?($|\s.*)
-  - agent: kubernetes
-    always_run: true
-    branches:
-    - ^release-0\.12$
-    - ^release-0\.12-
-    cluster: build01
+    - ^release-4\.15$
+    - ^release-4\.15-
+    cluster: build03
     context: ci/prow/images
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-      job-release: "4.10"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-medik8s-node-maintenance-operator-release-0.12-images
+    name: pull-ci-red-hat-storage-odf-operator-release-4.15-images
     rerun_command: /test images
     spec:
       containers:
@@ -115,21 +58,20 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-0\.12$
-    - ^release-0\.12-
-    cluster: build05
-    context: ci/prow/openshift-e2e
+    - ^release-4\.15$
+    - ^release-4\.15-
+    cluster: build01
+    context: ci/prow/odf-operator-e2e-aws
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: medik8s-aws
+      ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
-      job-release: "4.10"
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-medik8s-node-maintenance-operator-release-0.12-openshift-e2e
-    rerun_command: /test openshift-e2e
+    name: pull-ci-red-hat-storage-odf-operator-release-4.15-odf-operator-e2e-aws
+    rerun_command: /test odf-operator-e2e-aws
     spec:
       containers:
       - args:
@@ -138,8 +80,8 @@ presubmits:
         - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
         - --secret-dir=/secrets/ci-pull-credentials
-        - --secret-dir=/usr/local/openshift-e2e-cluster-profile
-        - --target=openshift-e2e
+        - --secret-dir=/usr/local/odf-operator-e2e-aws-cluster-profile
+        - --target=odf-operator-e2e-aws
         command:
         - ci-operator
         image: ci-operator:latest
@@ -155,7 +97,7 @@ presubmits:
         - mountPath: /secrets/ci-pull-credentials
           name: ci-pull-credentials
           readOnly: true
-        - mountPath: /usr/local/openshift-e2e-cluster-profile
+        - mountPath: /usr/local/odf-operator-e2e-aws-cluster-profile
           name: cluster-profile
         - mountPath: /secrets/gcs
           name: gcs-credentials
@@ -182,7 +124,7 @@ presubmits:
           secretName: ci-pull-credentials
       - name: cluster-profile
         secret:
-          secretName: cluster-secrets-medik8s-aws
+          secretName: cluster-secrets-aws
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -192,4 +134,4 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )openshift-e2e,?($|\s.*)
+    trigger: (?m)^/test( | .* )odf-operator-e2e-aws,?($|\s.*)
