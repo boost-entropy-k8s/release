@@ -1,27 +1,27 @@
 presubmits:
-  openshift-kni/cnf-features-deploy:
+  openshift/openshift-docs:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^sctpci-release-v4\.3$
-    - ^sctpci-release-v4\.3-
+    - ^enterprise-4\.12$
+    - ^enterprise-4\.12-
     cluster: build03
-    context: ci/prow/ci
+    context: ci/prow/deploy-preview
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-kni-cnf-features-deploy-sctpci-release-v4.3-ci
-    rerun_command: /test ci
+    name: pull-ci-openshift-openshift-docs-enterprise-4.12-deploy-preview
+    rerun_command: /test deploy-preview
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=ci
+        - --target=deploy-preview
         command:
         - ci-operator
         image: ci-operator:latest
@@ -54,29 +54,29 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )ci,?($|\s.*)
+    trigger: (?m)^/test( | .* )deploy-preview,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^sctpci-release-v4\.3$
-    - ^sctpci-release-v4\.3-
+    - ^enterprise-4\.12$
+    - ^enterprise-4\.12-
     cluster: build03
-    context: ci/prow/images
+    context: ci/prow/validate-asciidoc
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-kni-cnf-features-deploy-sctpci-release-v4.3-images
-    rerun_command: /test images
+    name: pull-ci-openshift-openshift-docs-enterprise-4.12-validate-asciidoc
+    rerun_command: /test validate-asciidoc
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
+        - --target=validate-asciidoc
         command:
         - ci-operator
         image: ci-operator:latest
@@ -109,4 +109,4 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )images,?($|\s.*)
+    trigger: (?m)^/test( | .* )validate-asciidoc,?($|\s.*)
