@@ -11,7 +11,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-cis-node-weekly
@@ -22,10 +22,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -78,7 +78,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -100,7 +100,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-cis-weekly
@@ -111,10 +111,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -167,7 +167,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -189,7 +189,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-e8-weekly
@@ -200,10 +200,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -256,7 +256,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -278,7 +278,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-high-node-weekly
@@ -289,10 +289,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -345,7 +345,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -367,7 +367,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-high-weekly
@@ -378,10 +378,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -434,7 +434,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -456,7 +456,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-moderate-node-weekly
@@ -467,10 +467,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -523,7 +523,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -545,7 +545,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-moderate-weekly
@@ -556,10 +556,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -612,7 +612,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -634,7 +634,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-pci-dss-node-weekly
@@ -645,10 +645,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -701,7 +701,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -723,7 +723,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-pci-dss-weekly
@@ -734,10 +734,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -790,7 +790,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -812,7 +812,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-stig-node-weekly
@@ -823,10 +823,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -879,7 +879,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -901,7 +901,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-ocp4-stig-weekly
@@ -912,10 +912,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -968,7 +968,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -990,7 +990,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-rhcos4-e8-weekly
@@ -1001,10 +1001,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -1057,7 +1057,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -1079,7 +1079,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-rhcos4-high-weekly
@@ -1090,10 +1090,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -1146,7 +1146,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -1168,7 +1168,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-rhcos4-moderate-weekly
@@ -1179,10 +1179,10 @@ periodics:
       - success
       - failure
       - error
-      report_template: '{{if eq .Status.State "success"}} :rainbow: Job *{{.Spec.Job}}*
-        ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :rainbow: {{else}}
-        :volcano: Job *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View
-        logs> :volcano: {{end}}'
+      report_template: '{{if eq .Status.State "success"}} Job *{{.Spec.Job}}* ended
+        with *{{.Status.State}}*. <{{.Status.URL}}|View logs> :check: {{else}} Job
+        *{{.Spec.Job}}* ended with *{{.Status.State}}*. <{{.Status.URL}}|View logs>
+        :x: {{end}}'
   spec:
     containers:
     - args:
@@ -1235,7 +1235,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -1257,7 +1257,7 @@ periodics:
     repo: content
   labels:
     ci-operator.openshift.io/cloud: aws
-    ci-operator.openshift.io/cloud-cluster-profile: aws
+    ci-operator.openshift.io/cloud-cluster-profile: quay-aws
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
   name: periodic-ci-ComplianceAsCode-content-master-e2e-aws-rhcos4-stig-weekly
@@ -1313,7 +1313,7 @@ periodics:
         secretName: ci-pull-credentials
     - name: cluster-profile
       secret:
-        secretName: cluster-secrets-aws
+        secretName: cluster-secrets-quay-aws
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
