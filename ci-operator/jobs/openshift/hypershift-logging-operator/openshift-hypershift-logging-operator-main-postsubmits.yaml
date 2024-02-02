@@ -1,30 +1,25 @@
-presubmits:
-  redhat-developer/gitops-operator:
+postsubmits:
+  openshift/hypershift-logging-operator:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^v1\.10$
-    - ^v1\.10-
-    cluster: build02
-    context: ci/prow/gitops-ocp4.15-lp-interop-images
+    - ^main$
+    cluster: build03
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/variant: gitops-ocp4.15-lp-interop
       ci.openshift.io/generator: prowgen
-      job-release: "4.15"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-redhat-developer-gitops-operator-v1.10-gitops-ocp4.15-lp-interop-images
-    rerun_command: /test gitops-ocp4.15-lp-interop-images
+    max_concurrency: 1
+    name: branch-ci-openshift-hypershift-logging-operator-main-publish-coverage
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=gitops-ocp4.15-lp-interop
+        - --secret-dir=/secrets/hypershift-logging-operator-codecov-token
+        - --target=publish-coverage
         command:
         - ci-operator
         image: ci-operator:latest
@@ -37,6 +32,9 @@ presubmits:
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
+        - mountPath: /secrets/hypershift-logging-operator-codecov-token
+          name: hypershift-logging-operator-codecov-token
+          readOnly: true
         - mountPath: /secrets/manifest-tool
           name: manifest-tool-local-pusher
           readOnly: true
@@ -48,6 +46,9 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: hypershift-logging-operator-codecov-token
+        secret:
+          secretName: hypershift-logging-operator-codecov-token
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -57,4 +58,3 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )gitops-ocp4.15-lp-interop-images,?($|\s.*)
