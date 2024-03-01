@@ -1,5 +1,5 @@
 {
-	"path": "re-trigger-poc/re-trigger-poc-workflow.yaml",
+	"path": "jboss-web-server/lp-interop-tests/jboss-web-server-lp-interop-tests-ref.yaml",
 	"owners": {
 		"approvers": [
 			"cspi-qe-ocp-lp"
