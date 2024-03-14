@@ -1,30 +1,25 @@
-presubmits:
-  RedHatQE/interop-testing:
+postsubmits:
+  openshift/backplane-tools:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^cnv-4\.11$
-    - ^cnv-4\.11-
-    cluster: build04
-    context: ci/prow/ocp-cnv-odf-4.11-images
+    - ^main$
+    cluster: build03
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/variant: ocp-cnv-odf-4.11
       ci.openshift.io/generator: prowgen
-      job-release: "4.11"
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-RedHatQE-interop-testing-cnv-4.11-ocp-cnv-odf-4.11-images
-    rerun_command: /test ocp-cnv-odf-4.11-images
+    max_concurrency: 1
+    name: branch-ci-openshift-backplane-tools-main-publish-coverage
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=ocp-cnv-odf-4.11
+        - --secret-dir=/secrets/backplane-tools-codecov-token
+        - --target=publish-coverage
         command:
         - ci-operator
         image: ci-operator:latest
@@ -34,6 +29,9 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /secrets/backplane-tools-codecov-token
+          name: backplane-tools-codecov-token
+          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -48,6 +46,9 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: backplane-tools-codecov-token
+        secret:
+          secretName: backplane-tools-codecov-token
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -57,4 +58,3 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )ocp-cnv-odf-4.11-images,?($|\s.*)
