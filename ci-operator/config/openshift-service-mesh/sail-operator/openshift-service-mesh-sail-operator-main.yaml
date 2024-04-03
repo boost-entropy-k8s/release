@@ -1,6 +1,6 @@
 base_images:
   cli:
-    name: "4.14"
+    name: "4.15"
     namespace: ocp
     tag: cli
 build_root:
@@ -9,18 +9,6 @@ build_root:
     namespace: ci
     tag: upstream-master
   use_build_cache: true
-images:
-- dockerfile_literal: |
-    FROM registry.ci.openshift.org/ci/maistra-builder:upstream-master
-    # Git checks if the user that owns the files on the filesystem match the
-    # current user.  We need to disable this check because tests in Prow are
-    # running with a random user.
-    RUN git config --system --add safe.directory '*'
-  inputs:
-    src:
-      as:
-      - registry.ci.openshift.org/ci/maistra-builder:upstream-master
-  to: src-test
 releases:
   arm64-latest:
     release:
@@ -49,7 +37,7 @@ tests:
     XDG_CACHE_HOME="/tmp/cache" \
     TEST_FLAGS="-v"
   container:
-    from: src-test
+    from: src
   timeout: 1h0m0s
 - as: gencheck
   commands: |
@@ -60,7 +48,7 @@ tests:
     GOMODCACHE="/tmp/cache" \
     XDG_CACHE_HOME="/tmp/cache"
   container:
-    from: src-test
+    from: src
   timeout: 30m0s
 - as: lint
   commands: |
@@ -69,104 +57,43 @@ tests:
     GOBIN="/gobin" \
     GOCACHE="/tmp/cache" \
     GOMODCACHE="/tmp/cache" \
+    GOFLAGS="-buildvcs=false" \
     XDG_CACHE_HOME="/tmp/cache"
   container:
-    from: src-test
+    from: src
   timeout: 20m0s
-- as: update-deps
+- as: sync-upstream
   commands: |
-    # load test-infra automator.sh script
     git clone --single-branch --depth=1 --branch main https://github.com/maistra/test-infra.git
     cd test-infra
     export BUILD_WITH_CONTAINER="0"
     export XDG_CACHE_HOME="/tmp/cache"
     export GOCACHE="/tmp/cache"
     export GOMODCACHE="/tmp/cache"
-    ./tools/automator.sh \
-      -o maistra \
-      -r istio-operator \
-      -f /creds-github/token \
-      '-c ./tools/update_deps.sh' \
-      '-t [maistra-3.0] Automator: Update dependencies' \
-      -m update_deps_3.0 \
-      -l auto-merge \
-      -b maistra-3.0
+    ./tools/automator-main.sh \
+    --org=openshift-service-mesh \
+    --repo=sail-operator \
+    --branch=main \
+    --token-path=/creds-github/token \
+    '--title=Automator: merge upstream changes to $AUTOMATOR_ORG/$AUTOMATOR_REPO@$AUTOMATOR_BRANCH' \
+    "--labels=tide/merge-method-merge,auto-merge" \
+    --modifier=merge_upstream_main \
+    --merge-repository=https://github.com/istio-ecosystem/sail-operator \
+    --merge-branch=main \
+    --merge-strategy=merge
   container:
-    from: src-test
-  cron: 00 03 * * *
+    from: src
+  cron: 00 05 * * 1-5
   secrets:
   - mount_path: /creds-github
-    name: github-token
-- always_run: false
-  as: push-images
-  optional: true
-  steps:
-    cluster_profile: ossm-aws
-    dependencies:
-      RELEASE_IMAGE_LATEST: release:latest
-    env:
-      BASE_DOMAIN: servicemesh.devcluster.openshift.com
-      GOBIN: /gobin
-      GOCACHE: /tmp/cache
-      GOMODCACHE: /tmp/cache
-      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.0-multi
-      MAISTRA_BUILDER_IMAGE: registry.ci.openshift.org/ci/maistra-builder:upstream-master
-      MAISTRA_NAMESPACE: maistra-e2e-test
-      MAISTRA_SC_POD: maistra-e2e-test-sc-pod
-      XDG_CACHE_HOME: /tmp/cache
-    test:
-    - as: copy-src
-      cli: latest
-      commands: |
-        # SRC_PATH does end with /. : the content of the source directory is copied into dest directory
-        oc cp ./. "${MAISTRA_NAMESPACE}"/"${MAISTRA_SC_POD}":/work/
-      env:
-      - name: MAISTRA_NAMESPACE
-      - name: MAISTRA_SC_POD
-      from: src
-      resources:
-        requests:
-          cpu: 100m
-          memory: 100Mi
-      timeout: 10m0s
-    - as: push-images
-      cli: latest
-      commands: |
-        export QUAY_PASS=$(cat /quay-secret/password)
-        oc rsh -n "${MAISTRA_NAMESPACE}" "${MAISTRA_SC_POD}" \
-          entrypoint \
-          sh -c \
-          "docker login -u='maistra-dev+prow' \
-          -p=${QUAY_PASS} quay.io; \
-          cd /work && \
-          export BUILD_WITH_CONTAINER="0" && \
-          make docker-build docker-push \
-          IMAGE=quay.io/maistra-dev/istio-ubi9-operator:PR-${PULL_NUMBER}"
-        oc cp "${MAISTRA_NAMESPACE}"/"${MAISTRA_SC_POD}":"${ARTIFACT_DIR}"/. "${ARTIFACT_DIR}"
-      credentials:
-      - mount_path: /quay-secret
-        name: quay-pass
-        namespace: test-credentials
-      env:
-      - name: MAISTRA_NAMESPACE
-      - name: MAISTRA_SC_POD
-      - name: XDG_CACHE_HOME
-      - name: GOCACHE
-      - name: GOBIN
-      - name: GOMODCACHE
-      from: src-test
-      resources:
-        requests:
-          cpu: 100m
-          memory: 100Mi
-      timeout: 2h0m0s
-    workflow: servicemesh-istio-e2e-hypershift
+    name: ossm-github-simple-job
+  timeout: 20m0s
 - as: e2e-ocp-4-15
   steps:
     cluster_profile: ossm-aws
     env:
       BASE_DOMAIN: servicemesh.devcluster.openshift.com
-      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.0-multi
+      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.6-multi
       MAISTRA_BUILDER_IMAGE: registry.ci.openshift.org/ci/maistra-builder:upstream-master
       MAISTRA_NAMESPACE: maistra-e2e-test
       MAISTRA_SC_POD: maistra-e2e-test-sc-pod
@@ -178,7 +105,6 @@ tests:
         # SRC_PATH does end with /. : the content of the source directory is copied into dest directory
         oc cp ./. "${MAISTRA_NAMESPACE}"/"${MAISTRA_SC_POD}":/work/
         oc cp ${KUBECONFIG} ${MAISTRA_NAMESPACE}/${MAISTRA_SC_POD}:/work/ci-kubeconfig
-        oc cp `which oc` ${MAISTRA_NAMESPACE}/${MAISTRA_SC_POD}:/bin
       env:
       - name: MAISTRA_NAMESPACE
       - name: MAISTRA_SC_POD
@@ -205,7 +131,7 @@ tests:
       - name: MAISTRA_NAMESPACE
       - name: MAISTRA_SC_POD
       - name: XDG_CACHE_HOME
-      from: src-test
+      from: src
       resources:
         requests:
           cpu: 200m
@@ -218,7 +144,7 @@ tests:
     cluster_profile: ossm-aws
     env:
       BASE_DOMAIN: servicemesh.devcluster.openshift.com
-      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.16.0-ec.3-multi
+      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.16.0-ec.4-multi
       MAISTRA_BUILDER_IMAGE: registry.ci.openshift.org/ci/maistra-builder:upstream-master
       MAISTRA_NAMESPACE: maistra-e2e-test
       MAISTRA_SC_POD: maistra-e2e-test-sc-pod
@@ -257,7 +183,7 @@ tests:
       - name: MAISTRA_NAMESPACE
       - name: MAISTRA_SC_POD
       - name: XDG_CACHE_HOME
-      from: src-test
+      from: src
       resources:
         requests:
           cpu: 100m
@@ -311,7 +237,7 @@ tests:
       - name: MAISTRA_NAMESPACE
       - name: MAISTRA_SC_POD
       - name: XDG_CACHE_HOME
-      from: src-test
+      from: src
       resources:
         requests:
           cpu: 100m
@@ -325,7 +251,7 @@ tests:
       RELEASE_IMAGE_LATEST: release:latest
     env:
       BASE_DOMAIN: servicemesh.devcluster.openshift.com
-      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.0-multi
+      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.6-multi
       MAISTRA_BUILDER_IMAGE: registry.ci.openshift.org/ci/maistra-builder:upstream-master
       MAISTRA_NAMESPACE: maistra-e2e-test
       MAISTRA_SC_POD: maistra-e2e-test-sc-pod
@@ -372,7 +298,7 @@ tests:
     cluster_profile: ossm-aws
     env:
       BASE_DOMAIN: servicemesh.devcluster.openshift.com
-      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.0-multi
+      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.6-multi
       MAISTRA_BUILDER_IMAGE: registry.ci.openshift.org/ci/maistra-builder:upstream-master
       MAISTRA_NAMESPACE: maistra-e2e-test
       MAISTRA_SC_POD: maistra-e2e-test-sc-pod
@@ -424,7 +350,7 @@ tests:
       RELEASE_IMAGE_LATEST: release:latest
     env:
       BASE_DOMAIN: servicemesh.devcluster.openshift.com
-      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.0-multi
+      HYPERSHIFT_HC_RELEASE_IMAGE: quay.io/openshift-release-dev/ocp-release:4.15.6-multi
       MAISTRA_BUILDER_IMAGE: registry.ci.openshift.org/ci/maistra-builder:upstream-master
       MAISTRA_NAMESPACE: maistra-nightly-images
       MAISTRA_SC_POD: maistra-nightly-images-pod
@@ -468,12 +394,12 @@ tests:
         name: quay-pass
         namespace: test-credentials
       - mount_path: /creds-github
-        name: workflow-github
+        name: ossm-github
         namespace: test-credentials
       env:
       - name: MAISTRA_NAMESPACE
       - name: MAISTRA_SC_POD
-      from: src-test
+      from: src
       resources:
         requests:
           cpu: 100m
@@ -481,6 +407,6 @@ tests:
       timeout: 2h0m0s
     workflow: servicemesh-istio-e2e-hypershift
 zz_generated_metadata:
-  branch: maistra-3.0
-  org: maistra
-  repo: istio-operator
+  branch: main
+  org: openshift-service-mesh
+  repo: sail-operator
