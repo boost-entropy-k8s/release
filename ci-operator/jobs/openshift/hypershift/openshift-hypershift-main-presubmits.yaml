@@ -891,7 +891,7 @@ presubmits:
         - --target=[images]
         - --target=[release:latest]
         - --target=hypershift-operator
-        - --target=test-bin
+        - --target=hypershift-tests
         command:
         - ci-operator
         image: ci-operator:latest
