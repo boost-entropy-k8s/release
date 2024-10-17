@@ -67,6 +67,10 @@ base_images:
     name: "4.16"
     namespace: ocp
     tag: upi-installer
+  vsphere-ci-python:
+    name: vsphere-python
+    namespace: ci
+    tag: latest
   vsphere-csi-driver-operator-test:
     name: "4.16"
     namespace: ocp
@@ -860,6 +864,7 @@ tests:
     cluster_profile: aws
     test:
     - ref: network-flow-matrix-tests
+    - ref: openshift-e2e-test
     workflow: openshift-e2e-aws-ovn-serial
 - as: aws-ovn-network-flow-matrix-single-node
   cron: 0 23 * * 1
@@ -867,6 +872,7 @@ tests:
     cluster_profile: aws
     test:
     - ref: network-flow-matrix-tests
+    - ref: single-node-e2e-test
     workflow: openshift-e2e-aws-single-node
 - as: metal-ovn-network-flow-matrix-bm
   cluster: build05
