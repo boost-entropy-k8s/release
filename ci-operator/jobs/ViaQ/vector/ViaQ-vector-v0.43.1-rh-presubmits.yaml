@@ -1,31 +1,27 @@
 presubmits:
-  openshift/cluster-api-provider-kubevirt:
+  ViaQ/vector:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-4\.15$
-    - ^release-4\.15-
-    cluster: build05
-    context: ci/prow/e2e-hypershift-kubevirt
+    - ^v0\.43\.1-rh$
+    - ^v0\.43\.1-rh-
+    cluster: build03
+    context: ci/prow/cargo-deny-check-bans
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/cloud: aws
-      ci-operator.openshift.io/cloud-cluster-profile: aws-virtualization
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-api-provider-kubevirt-release-4.15-e2e-hypershift-kubevirt
-    rerun_command: /test e2e-hypershift-kubevirt
+    name: pull-ci-ViaQ-vector-v0.43.1-rh-cargo-deny-check-bans
+    rerun_command: /test cargo-deny-check-bans
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
-        - --target=e2e-hypershift-kubevirt
+        - --target=cargo-deny-check-bans
         command:
         - ci-operator
         image: ci-operator:latest
@@ -35,12 +31,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -55,15 +45,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -73,13 +54,152 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )e2e-hypershift-kubevirt,?($|\s.*)
+    trigger: (?m)^/test( | .* )cargo-deny-check-bans,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-4\.15$
-    - ^release-4\.15-
-    cluster: build06
+    - ^v0\.43\.1-rh$
+    - ^v0\.43\.1-rh-
+    cluster: build03
+    context: ci/prow/clo-functional
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-ViaQ-vector-v0.43.1-rh-clo-functional
+    rerun_command: /test clo-functional
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --hive-kubeconfig=/secrets/hive-hive-credentials/kubeconfig
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=clo-functional
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /secrets/hive-hive-credentials
+          name: hive-hive-credentials
+          readOnly: true
+        - mountPath: /secrets/manifest-tool
+          name: manifest-tool-local-pusher
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: hive-hive-credentials
+        secret:
+          secretName: hive-hive-credentials
+      - name: manifest-tool-local-pusher
+        secret:
+          secretName: manifest-tool-local-pusher
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )clo-functional,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^v0\.43\.1-rh$
+    - ^v0\.43\.1-rh-
+    cluster: build03
+    context: ci/prow/cluster-logging-operator-e2e
+    decorate: true
+    decoration_config:
+      skip_cloning: true
+      timeout: 5h0m0s
+    labels:
+      ci.openshift.io/generator: prowgen
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-ViaQ-vector-v0.43.1-rh-cluster-logging-operator-e2e
+    rerun_command: /test cluster-logging-operator-e2e
+    spec:
+      containers:
+      - args:
+        - --gcs-upload-secret=/secrets/gcs/service-account.json
+        - --hive-kubeconfig=/secrets/hive-hive-credentials/kubeconfig
+        - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+        - --report-credentials-file=/etc/report/credentials
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=cluster-logging-operator-e2e
+        command:
+        - ci-operator
+        image: ci-operator:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
+        - mountPath: /secrets/gcs
+          name: gcs-credentials
+          readOnly: true
+        - mountPath: /secrets/hive-hive-credentials
+          name: hive-hive-credentials
+          readOnly: true
+        - mountPath: /secrets/manifest-tool
+          name: manifest-tool-local-pusher
+          readOnly: true
+        - mountPath: /etc/pull-secret
+          name: pull-secret
+          readOnly: true
+        - mountPath: /etc/report
+          name: result-aggregator
+          readOnly: true
+      serviceAccountName: ci-operator
+      volumes:
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
+      - name: hive-hive-credentials
+        secret:
+          secretName: hive-hive-credentials
+      - name: manifest-tool-local-pusher
+        secret:
+          secretName: manifest-tool-local-pusher
+      - name: pull-secret
+        secret:
+          secretName: registry-pull-credentials
+      - name: result-aggregator
+        secret:
+          secretName: result-aggregator
+    trigger: (?m)^/test( | .* )cluster-logging-operator-e2e,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^v0\.43\.1-rh$
+    - ^v0\.43\.1-rh-
+    cluster: build03
     context: ci/prow/images
     decorate: true
     decoration_config:
@@ -87,7 +207,7 @@ presubmits:
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-api-provider-kubevirt-release-4.15-images
+    name: pull-ci-ViaQ-vector-v0.43.1-rh-images
     rerun_command: /test images
     spec:
       containers:
@@ -96,7 +216,6 @@ presubmits:
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
         - --target=[images]
-        - --target=[release:latest]
         command:
         - ci-operator
         image: ci-operator:latest
@@ -133,27 +252,25 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-4\.15$
-    - ^release-4\.15-
-    cluster: build06
-    context: ci/prow/mce-images
+    - ^v0\.43\.1-rh$
+    - ^v0\.43\.1-rh-
+    cluster: build03
+    context: ci/prow/ldd-openssl
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/variant: mce
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-api-provider-kubevirt-release-4.15-mce-images
-    rerun_command: /test mce-images
+    name: pull-ci-ViaQ-vector-v0.43.1-rh-ldd-openssl
+    rerun_command: /test ldd-openssl
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
-        - --variant=mce
+        - --target=ldd-openssl
         command:
         - ci-operator
         image: ci-operator:latest
@@ -186,29 +303,29 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )mce-images,?($|\s.*)
+    trigger: (?m)^/test( | .* )ldd-openssl,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-4\.15$
-    - ^release-4\.15-
-    cluster: build06
-    context: ci/prow/unit-tests
+    - ^v0\.43\.1-rh$
+    - ^v0\.43\.1-rh-
+    cluster: build03
+    context: ci/prow/unit
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-api-provider-kubevirt-release-4.15-unit-tests
-    rerun_command: /test unit-tests
+    name: pull-ci-ViaQ-vector-v0.43.1-rh-unit
+    rerun_command: /test unit
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=unit-tests
+        - --target=unit
         command:
         - ci-operator
         image: ci-operator:latest
@@ -241,4 +358,4 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )unit-tests,?($|\s.*)
+    trigger: (?m)^/test( | .* )unit,?($|\s.*)
