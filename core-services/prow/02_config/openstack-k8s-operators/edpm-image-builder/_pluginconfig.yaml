@@ -1,10 +1,10 @@
 approve:
 - commandHelpLink: ""
   repos:
-  - opendatahub-io/modelmesh-runtime-adapter
+  - openstack-k8s-operators/edpm-image-builder
   require_self_approval: false
 external_plugins:
-  opendatahub-io/modelmesh-runtime-adapter:
+  openstack-k8s-operators/edpm-image-builder:
   - endpoint: http://refresh
     events:
     - issue_comment
@@ -35,11 +35,13 @@ external_plugins:
     name: jira-lifecycle-plugin
 lgtm:
 - repos:
-  - opendatahub-io/modelmesh-runtime-adapter
+  - openstack-k8s-operators/edpm-image-builder
+  review_acts_as_lgtm: true
 plugins:
-  opendatahub-io/modelmesh-runtime-adapter:
+  openstack-k8s-operators/edpm-image-builder:
     plugins:
     - assign
+    - blunderbuss
     - cat
     - dog
     - heart
