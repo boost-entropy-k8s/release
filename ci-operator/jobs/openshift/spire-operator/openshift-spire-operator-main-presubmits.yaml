@@ -1,27 +1,27 @@
 presubmits:
-  openshift-pipelines/manual-approval-gate:
+  openshift/spire-operator:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-4\.16$
-    - ^release-4\.16-
-    cluster: build01
-    context: ci/prow/unit
+    - ^main$
+    - ^main-
+    cluster: build03
+    context: ci/prow/verify
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-pipelines-manual-approval-gate-release-4.16-unit
-    rerun_command: /test unit
+    name: pull-ci-openshift-spire-operator-main-verify
+    rerun_command: /test verify
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=unit
+        - --target=verify
         command:
         - ci-operator
         image: ci-operator:latest
@@ -54,4 +54,4 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )unit,?($|\s.*)
+    trigger: (?m)^/test( | .* )verify,?($|\s.*)
