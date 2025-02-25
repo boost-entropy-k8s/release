@@ -1,17 +1,16 @@
 postsubmits:
-  openshift/cloud-provider-vsphere:
+  openshift/cluster-api-provider-baremetal:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: vsphere02
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-cloud-provider-vsphere-master-images
-    path_alias: github.com/kubernetes/cloud-provider-vsphere
+    name: branch-ci-openshift-cluster-api-provider-baremetal-main-images
     spec:
       containers:
       - args:
@@ -62,8 +61,8 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: vsphere02
+    - ^main$
+    cluster: build03
     decorate: true
     decoration_config:
       skip_cloning: true
@@ -72,7 +71,7 @@ postsubmits:
       ci-operator.openshift.io/variant: okd-scos
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-cloud-provider-vsphere-master-okd-scos-images
+    name: branch-ci-openshift-cluster-api-provider-baremetal-main-okd-scos-images
     spec:
       containers:
       - args:
