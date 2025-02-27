@@ -1,32 +1,30 @@
-postsubmits:
-  openshift-priv/cluster-etcd-operator:
+presubmits:
+  openshift-pipelines/release-tests:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build01
+    - ^release-v1\.18$
+    - ^release-v1\.18-
+    cluster: build03
+    context: ci/prow/openshift-pipelines-ocp4.19-lp-interop-images
     decorate: true
     decoration_config:
-      oauth_token_secret:
-        key: oauth
-        name: github-credentials-openshift-ci-robot-private-git-cloner
-    hidden: true
+      skip_cloning: true
     labels:
-      ci-operator.openshift.io/is-promotion: "true"
+      ci-operator.openshift.io/variant: openshift-pipelines-ocp4.19-lp-interop
       ci.openshift.io/generator: prowgen
-    max_concurrency: 1
-    name: branch-ci-openshift-priv-cluster-etcd-operator-master-images
-    path_alias: github.com/openshift/cluster-etcd-operator
+      job-release: "4.19"
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-openshift-pipelines-release-tests-release-v1.18-openshift-pipelines-ocp4.19-lp-interop-images
+    rerun_command: /test openshift-pipelines-ocp4.19-lp-interop-images
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --image-mirror-push-secret=/etc/push-secret/.dockerconfigjson
-        - --oauth-token-path=/usr/local/github-credentials/oauth
-        - --promote
         - --report-credentials-file=/etc/report/credentials
         - --target=[images]
+        - --variant=openshift-pipelines-ocp4.19-lp-interop
         command:
         - ci-operator
         image: ci-operator:latest
@@ -39,17 +37,11 @@ postsubmits:
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
-        - mountPath: /usr/local/github-credentials
-          name: github-credentials-openshift-ci-robot-private-git-cloner
-          readOnly: true
         - mountPath: /secrets/manifest-tool
           name: manifest-tool-local-pusher
           readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
-          readOnly: true
-        - mountPath: /etc/push-secret
-          name: push-secret
           readOnly: true
         - mountPath: /etc/report
           name: result-aggregator
@@ -62,9 +54,7 @@ postsubmits:
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
-      - name: push-secret
-        secret:
-          secretName: registry-push-credentials-ci-central
       - name: result-aggregator
         secret:
           secretName: result-aggregator
+    trigger: (?m)^/test( | .* )openshift-pipelines-ocp4.19-lp-interop-images,?($|\s.*)
