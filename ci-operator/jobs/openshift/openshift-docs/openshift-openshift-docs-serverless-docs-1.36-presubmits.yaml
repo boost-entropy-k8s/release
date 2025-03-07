@@ -1,27 +1,27 @@
 presubmits:
-  opendatahub-io/vllm:
+  openshift/openshift-docs:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^ibm-dev$
-    - ^ibm-dev-
-    cluster: build01
-    context: ci/prow/images
+    - ^serverless-docs-1\.36$
+    - ^serverless-docs-1\.36-
+    cluster: build03
+    context: ci/prow/validate-asciidoc
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-opendatahub-io-vllm-ibm-dev-images
-    rerun_command: /test images
+    name: pull-ci-openshift-openshift-docs-serverless-docs-1.36-validate-asciidoc
+    rerun_command: /test validate-asciidoc
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=[images]
+        - --target=validate-asciidoc
         command:
         - ci-operator
         image: ci-operator:latest
@@ -54,30 +54,29 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )images,?($|\s.*)
+    trigger: (?m)^/test( | .* )validate-asciidoc,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
-    - ^ibm-dev$
-    - ^ibm-dev-
-    cluster: build11
-    context: ci/prow/smoke-test
+    - ^serverless-docs-1\.36$
+    - ^serverless-docs-1\.36-
+    cluster: build03
+    context: ci/prow/validate-portal
     decorate: true
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/cluster: build11
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-opendatahub-io-vllm-ibm-dev-smoke-test
-    rerun_command: /test smoke-test
+    name: pull-ci-openshift-openshift-docs-serverless-docs-1.36-validate-portal
+    rerun_command: /test validate-portal
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=smoke-test
+        - --target=validate-portal
         command:
         - ci-operator
         image: ci-operator:latest
@@ -110,4 +109,4 @@ presubmits:
       - name: result-aggregator
         secret:
           secretName: result-aggregator
-    trigger: (?m)^/test( | .* )smoke-test,?($|\s.*)
+    trigger: (?m)^/test( | .* )validate-portal,?($|\s.*)
