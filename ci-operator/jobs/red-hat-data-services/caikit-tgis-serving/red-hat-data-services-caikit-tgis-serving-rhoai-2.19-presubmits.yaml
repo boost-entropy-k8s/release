@@ -1,30 +1,25 @@
-postsubmits:
-  openshift-priv/cluster-bootstrap:
+presubmits:
+  red-hat-data-services/caikit-tgis-serving:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build07
+    - ^rhoai-2\.19$
+    - ^rhoai-2\.19-
+    cluster: build03
+    context: ci/prow/images
     decorate: true
     decoration_config:
-      oauth_token_secret:
-        key: oauth
-        name: github-credentials-openshift-ci-robot-private-git-cloner
-    hidden: true
+      skip_cloning: true
     labels:
-      ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
-    max_concurrency: 1
-    name: branch-ci-openshift-priv-cluster-bootstrap-master-images
-    path_alias: github.com/openshift/cluster-bootstrap
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-red-hat-data-services-caikit-tgis-serving-rhoai-2.19-images
+    rerun_command: /test images
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --image-mirror-push-secret=/etc/push-secret/.dockerconfigjson
-        - --oauth-token-path=/usr/local/github-credentials/oauth
-        - --promote
         - --report-credentials-file=/etc/report/credentials
         - --target=[images]
         command:
@@ -39,17 +34,11 @@ postsubmits:
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
-        - mountPath: /usr/local/github-credentials
-          name: github-credentials-openshift-ci-robot-private-git-cloner
-          readOnly: true
         - mountPath: /secrets/manifest-tool
           name: manifest-tool-local-pusher
           readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
-          readOnly: true
-        - mountPath: /etc/push-secret
-          name: push-secret
           readOnly: true
         - mountPath: /etc/report
           name: result-aggregator
@@ -62,9 +51,7 @@ postsubmits:
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
-      - name: push-secret
-        secret:
-          secretName: registry-push-credentials-ci-central
       - name: result-aggregator
         secret:
           secretName: result-aggregator
+    trigger: (?m)^/test( | .* )images,?($|\s.*)
