@@ -7,7 +7,7 @@ build_root:
   image_stream_tag:
     name: release
     namespace: openshift
-    tag: golang-1.22
+    tag: golang-1.19
 images:
 - build_args:
   - name: COMMIT_SHA
@@ -17,11 +17,11 @@ images:
   context_dir: .
   dockerfile_path: Dockerfile
   from: ubi_minimal
-  to: rest-proxy
+  to: modelmesh-runtime-adapter
 promotion:
   to:
   - namespace: opendatahub-io
-    tag: latest
+    tag: v0.12.0-rc0
 releases:
   latest:
     release:
@@ -45,21 +45,31 @@ tests:
   skip_if_only_changed: ^(?:.*\/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE|.*\.develop)$
   steps:
     dependencies:
-      SOURCE_IMAGE_REF: rest-proxy
+      SOURCE_IMAGE_REF: modelmesh-runtime-adapter
     env:
-      IMAGE_REPO: rest-proxy
+      IMAGE_REPO: modelmesh-runtime-adapter
     workflow: opendatahub-io-ci-image-mirror
-- as: fast-image-mirror
+- as: incubating-image-mirror
   postsubmit: true
   skip_if_only_changed: ^(?:.*\/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE|.*\.develop)$
   steps:
     dependencies:
-      SOURCE_IMAGE_REF: rest-proxy
+      SOURCE_IMAGE_REF: modelmesh-runtime-adapter
     env:
-      IMAGE_REPO: rest-proxy
-      RELEASE_VERSION: fast
+      IMAGE_REPO: modelmesh-runtime-adapter
+      RELEASE_VERSION: incubating
+    workflow: opendatahub-io-ci-image-mirror
+- as: branch-image-mirror
+  postsubmit: true
+  skip_if_only_changed: ^(?:.*\/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE|.*\.develop)$
+  steps:
+    dependencies:
+      SOURCE_IMAGE_REF: modelmesh-runtime-adapter
+    env:
+      IMAGE_REPO: modelmesh-runtime-adapter
+      IMAGE_TAG: v0.12.0-rc0
     workflow: opendatahub-io-ci-image-mirror
 zz_generated_metadata:
-  branch: main
+  branch: release-0.12.0-rc0
   org: opendatahub-io
-  repo: rest-proxy
+  repo: modelmesh-runtime-adapter
