@@ -1,16 +1,18 @@
 postsubmits:
-  stolostron/insights-metrics:
+  opendatahub-io/modelmesh-serving:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^release-2\.11$
-    cluster: build06
+    - ^release-0\.12\.0-rc0$
+    cluster: build03
     decorate: true
+    decoration_config:
+      skip_cloning: true
     labels:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-stolostron-insights-metrics-release-2.11-images
+    name: branch-ci-opendatahub-io-modelmesh-serving-release-0.12.0-rc0-images
     spec:
       containers:
       - args:
@@ -59,22 +61,26 @@ postsubmits:
         secret:
           secretName: result-aggregator
   - agent: kubernetes
-    always_run: true
+    always_run: false
     branches:
-    - ^release-2\.11$
-    cluster: build06
+    - ^release-0\.12\.0-rc0$
+    cluster: build03
     decorate: true
+    decoration_config:
+      skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-stolostron-insights-metrics-release-2.11-publish
+    name: branch-ci-opendatahub-io-modelmesh-serving-release-0.12.0-rc0-incubating-image-mirror
+    run_if_changed: ^(apis/.*|controllers/.*|fvt/.*|pkg/.*|scripts/.*|proto/.*|config/.*|Makefile|main\.go|Dockerfile|version|go\.mod|go\.sum)
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --target=publish
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=incubating-image-mirror
         command:
         - ci-operator
         image: ci-operator:latest
@@ -84,6 +90,9 @@ postsubmits:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
+          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -98,6 +107,9 @@ postsubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - name: ci-pull-credentials
+        secret:
+          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -108,23 +120,26 @@ postsubmits:
         secret:
           secretName: result-aggregator
   - agent: kubernetes
-    always_run: true
+    always_run: false
     branches:
-    - ^release-2\.11$
-    cluster: build06
+    - ^release-0\.12\.0-rc0$
+    cluster: build03
     decorate: true
+    decoration_config:
+      skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-stolostron-insights-metrics-release-2.11-sonar-post-submit
+    name: branch-ci-opendatahub-io-modelmesh-serving-release-0.12.0-rc0-upstream-version-image-mirror
+    run_if_changed: ^(apis/.*|controllers/.*|fvt/.*|pkg/.*|scripts/.*|proto/.*|config/.*|Makefile|main\.go|Dockerfile|version|go\.mod|go\.sum)
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/acm-sonarcloud-token
-        - --target=sonar-post-submit
+        - --secret-dir=/secrets/ci-pull-credentials
+        - --target=upstream-version-image-mirror
         command:
         - ci-operator
         image: ci-operator:latest
@@ -134,8 +149,8 @@ postsubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/acm-sonarcloud-token
-          name: acm-sonarcloud-token
+        - mountPath: /secrets/ci-pull-credentials
+          name: ci-pull-credentials
           readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
@@ -151,9 +166,9 @@ postsubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: acm-sonarcloud-token
+      - name: ci-pull-credentials
         secret:
-          secretName: acm-sonarcloud-token
+          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
