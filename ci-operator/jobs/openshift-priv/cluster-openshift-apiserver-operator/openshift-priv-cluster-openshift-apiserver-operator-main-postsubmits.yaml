@@ -1,9 +1,9 @@
 postsubmits:
-  openshift-priv/apiserver-network-proxy:
+  openshift-priv/cluster-openshift-apiserver-operator:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
+    - ^main$
     cluster: build11
     decorate: true
     decoration_config:
@@ -15,8 +15,8 @@ postsubmits:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-priv-apiserver-network-proxy-master-images
-    path_alias: github.com/openshift/apiserver-network-proxy
+    name: branch-ci-openshift-priv-cluster-openshift-apiserver-operator-main-images
+    path_alias: github.com/openshift/cluster-openshift-apiserver-operator
     spec:
       containers:
       - args:
