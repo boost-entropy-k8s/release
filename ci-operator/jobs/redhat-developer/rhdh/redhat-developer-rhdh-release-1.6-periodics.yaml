@@ -1,33 +1,39 @@
 periodics:
 - agent: kubernetes
-  cluster: build05
-  cron: 00 07 * * 2,4,6
+  cluster: build03
+  cron: 0 6 * * MON,WED,FRI
   decorate: true
   decoration_config:
-    timeout: 6h0m0s
+    skip_cloning: true
   extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
     ci.openshift.io/generator: prowgen
-    job-release: "4.19"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-disconnected-capi-periodic
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-aks-helm-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.spec.job}}/{{.Status.BuildID}}/artifacts/e2e-tests-aks-helm-nightly/redhat-developer-rhdh-aks-helm-nightly/artifacts/showcase-k8s-ci-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.spec.job}}/{{.Status.BuildID}}/artifacts/e2e-tests-aks-helm-nightly/redhat-developer-rhdh-aks-helm-nightly/artifacts/showcase-rbac-k8s-ci-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.spec.job}}/{{.Status.BuildID}}/artifacts/e2e-tests-aks-helm-nightly/redhat-developer-rhdh-aks-helm-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
   spec:
     containers:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-disconnected-capi-periodic
-      - --variant=edge
+      - --target=e2e-tests-aks-helm-nightly
       command:
       - ci-operator
       image: ci-operator:latest
@@ -37,9 +43,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
       - mountPath: /secrets/ci-pull-credentials
         name: ci-pull-credentials
         readOnly: true
@@ -57,12 +60,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
     - name: ci-pull-credentials
       secret:
         secretName: ci-pull-credentials
@@ -76,34 +73,40 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build05
-  cron: 00 01 * * 2,4,6
+  cluster: build03
+  cron: 0 6 * * TUE,THU,SAT,SUN
   decorate: true
   decoration_config:
-    timeout: 6h0m0s
+    skip_cloning: true
   extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
     ci.openshift.io/generator: prowgen
-    job-release: "4.19"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-3masters-periodic
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-aks-operator-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-aks-operator-nightly/redhat-developer-rhdh-aks-operator-nightly/artifacts/showcase-k8s-ci-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-aks-operator-nightly/redhat-developer-rhdh-aks-operator-nightly/artifacts/showcase-rbac-k8s-ci-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-aks-operator-nightly/redhat-developer-rhdh-aks-operator-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
   spec:
     containers:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-3masters-periodic
-      - --variant=edge
+      - --target=e2e-tests-aks-operator-nightly
       command:
       - ci-operator
       image: ci-operator:latest
@@ -113,9 +116,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
       - mountPath: /secrets/ci-pull-credentials
         name: ci-pull-credentials
         readOnly: true
@@ -133,12 +133,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
     - name: ci-pull-credentials
       secret:
         secretName: ci-pull-credentials
@@ -152,34 +146,40 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build05
-  cron: 00 01 * * 2,4,6
+  cluster: build03
+  cron: 0 6 * * MON,WED,FRI
   decorate: true
   decoration_config:
-    timeout: 6h0m0s
+    skip_cloning: true
   extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
     ci.openshift.io/generator: prowgen
-    job-release: "4.19"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-4masters-periodic
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-gke-helm-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-gke-helm-nightly/redhat-developer-rhdh-gke-helm-nightly/artifacts/showcase-k8s-ci-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-gke-helm-nightly/redhat-developer-rhdh-gke-helm-nightly/artifacts/showcase-rbac-k8s-ci-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-gke-helm-nightly/redhat-developer-rhdh-gke-helm-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
   spec:
     containers:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-4masters-periodic
-      - --variant=edge
+      - --target=e2e-tests-gke-helm-nightly
       command:
       - ci-operator
       image: ci-operator:latest
@@ -189,9 +189,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
       - mountPath: /secrets/ci-pull-credentials
         name: ci-pull-credentials
         readOnly: true
@@ -209,12 +206,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
     - name: ci-pull-credentials
       secret:
         secretName: ci-pull-credentials
@@ -228,34 +219,40 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build05
-  cron: 00 05 * * 2,4,6
+  cluster: build03
+  cron: 0 8 * * TUE,THU,SAT,SUN
   decorate: true
   decoration_config:
-    timeout: 6h0m0s
+    skip_cloning: true
   extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
     ci.openshift.io/generator: prowgen
-    job-release: "4.19"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-capi-periodic
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-gke-operator-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-gke-operator-nightly/redhat-developer-rhdh-gke-operator-nightly/artifacts/showcase-k8s-ci-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-gke-operator-nightly/redhat-developer-rhdh-gke-operator-nightly/artifacts/showcase-rbac-k8s-ci-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-gke-operator-nightly/redhat-developer-rhdh-gke-operator-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
   spec:
     containers:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-capi-periodic
-      - --variant=edge
+      - --target=e2e-tests-gke-operator-nightly
       command:
       - ci-operator
       image: ci-operator:latest
@@ -265,9 +262,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
       - mountPath: /secrets/ci-pull-credentials
         name: ci-pull-credentials
         readOnly: true
@@ -285,12 +279,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
     - name: ci-pull-credentials
       secret:
         secretName: ci-pull-credentials
@@ -304,597 +292,32 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build05
-  cron: 00 03 * * 2,4,6
+  cluster: build03
+  cron: 0 6 * * MON,WED,FRI
   decorate: true
   decoration_config:
-    timeout: 6h0m0s
+    skip_cloning: true
   extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
     ci.openshift.io/generator: prowgen
-    job-release: "4.19"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-disconnected-periodic
-  spec:
-    containers:
-    - args:
-      - --gcs-upload-secret=/secrets/gcs/service-account.json
-      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
-      - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-disconnected-periodic
-      - --variant=edge
-      command:
-      - ci-operator
-      image: ci-operator:latest
-      imagePullPolicy: Always
-      name: ""
-      resources:
-        requests:
-          cpu: 10m
-      volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
-      - mountPath: /secrets/gcs
-        name: gcs-credentials
-        readOnly: true
-      - mountPath: /secrets/manifest-tool
-        name: manifest-tool-local-pusher
-        readOnly: true
-      - mountPath: /etc/pull-secret
-        name: pull-secret
-        readOnly: true
-      - mountPath: /etc/report
-        name: result-aggregator
-        readOnly: true
-    serviceAccountName: ci-operator
-    volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
-    - name: manifest-tool-local-pusher
-      secret:
-        secretName: manifest-tool-local-pusher
-    - name: pull-secret
-      secret:
-        secretName: registry-pull-credentials
-    - name: result-aggregator
-      secret:
-        secretName: result-aggregator
-- agent: kubernetes
-  cluster: build05
-  cron: 00 05 * * 1,4
-  decorate: true
-  decoration_config:
-    timeout: 6h0m0s
-  extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
-  labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
-    ci.openshift.io/generator: prowgen
-    job-release: "4.19"
-    pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-node-labels-periodic
-  spec:
-    containers:
-    - args:
-      - --gcs-upload-secret=/secrets/gcs/service-account.json
-      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
-      - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-node-labels-periodic
-      - --variant=edge
-      command:
-      - ci-operator
-      image: ci-operator:latest
-      imagePullPolicy: Always
-      name: ""
-      resources:
-        requests:
-          cpu: 10m
-      volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
-      - mountPath: /secrets/gcs
-        name: gcs-credentials
-        readOnly: true
-      - mountPath: /secrets/manifest-tool
-        name: manifest-tool-local-pusher
-        readOnly: true
-      - mountPath: /etc/pull-secret
-        name: pull-secret
-        readOnly: true
-      - mountPath: /etc/report
-        name: result-aggregator
-        readOnly: true
-    serviceAccountName: ci-operator
-    volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
-    - name: manifest-tool-local-pusher
-      secret:
-        secretName: manifest-tool-local-pusher
-    - name: pull-secret
-      secret:
-        secretName: registry-pull-credentials
-    - name: result-aggregator
-      secret:
-        secretName: result-aggregator
-- agent: kubernetes
-  cluster: build05
-  cron: 00 01 * * 2,4,6
-  decorate: true
-  decoration_config:
-    timeout: 6h0m0s
-  extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
-  labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
-    ci.openshift.io/generator: prowgen
-    job-release: "4.19"
-    pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-periodic
-  spec:
-    containers:
-    - args:
-      - --gcs-upload-secret=/secrets/gcs/service-account.json
-      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
-      - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-periodic
-      - --variant=edge
-      command:
-      - ci-operator
-      image: ci-operator:latest
-      imagePullPolicy: Always
-      name: ""
-      resources:
-        requests:
-          cpu: 10m
-      volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
-      - mountPath: /secrets/gcs
-        name: gcs-credentials
-        readOnly: true
-      - mountPath: /secrets/manifest-tool
-        name: manifest-tool-local-pusher
-        readOnly: true
-      - mountPath: /etc/pull-secret
-        name: pull-secret
-        readOnly: true
-      - mountPath: /etc/report
-        name: result-aggregator
-        readOnly: true
-    serviceAccountName: ci-operator
-    volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
-    - name: manifest-tool-local-pusher
-      secret:
-        secretName: manifest-tool-local-pusher
-    - name: pull-secret
-      secret:
-        secretName: registry-pull-credentials
-    - name: result-aggregator
-      secret:
-        secretName: result-aggregator
-- agent: kubernetes
-  cluster: build05
-  cron: 00 07 * * 2,4,6
-  decorate: true
-  decoration_config:
-    timeout: 6h0m0s
-  extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
-  labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
-    ci.openshift.io/generator: prowgen
-    job-release: "4.19"
-    pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-remove-node-periodic
-  spec:
-    containers:
-    - args:
-      - --gcs-upload-secret=/secrets/gcs/service-account.json
-      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
-      - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-remove-node-periodic
-      - --variant=edge
-      command:
-      - ci-operator
-      image: ci-operator:latest
-      imagePullPolicy: Always
-      name: ""
-      resources:
-        requests:
-          cpu: 10m
-      volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
-      - mountPath: /secrets/gcs
-        name: gcs-credentials
-        readOnly: true
-      - mountPath: /secrets/manifest-tool
-        name: manifest-tool-local-pusher
-        readOnly: true
-      - mountPath: /etc/pull-secret
-        name: pull-secret
-        readOnly: true
-      - mountPath: /etc/report
-        name: result-aggregator
-        readOnly: true
-    serviceAccountName: ci-operator
-    volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
-    - name: manifest-tool-local-pusher
-      secret:
-        secretName: manifest-tool-local-pusher
-    - name: pull-secret
-      secret:
-        secretName: registry-pull-credentials
-    - name: result-aggregator
-      secret:
-        secretName: result-aggregator
-- agent: kubernetes
-  cluster: build05
-  cron: 00 05 * * 2,4,6
-  decorate: true
-  decoration_config:
-    timeout: 6h0m0s
-  extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
-  labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
-    ci.openshift.io/generator: prowgen
-    job-release: "4.19"
-    pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-sno-day2-workers-late-binding-periodic
-  spec:
-    containers:
-    - args:
-      - --gcs-upload-secret=/secrets/gcs/service-account.json
-      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
-      - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-sno-day2-workers-late-binding-periodic
-      - --variant=edge
-      command:
-      - ci-operator
-      image: ci-operator:latest
-      imagePullPolicy: Always
-      name: ""
-      resources:
-        requests:
-          cpu: 10m
-      volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
-      - mountPath: /secrets/gcs
-        name: gcs-credentials
-        readOnly: true
-      - mountPath: /secrets/manifest-tool
-        name: manifest-tool-local-pusher
-        readOnly: true
-      - mountPath: /etc/pull-secret
-        name: pull-secret
-        readOnly: true
-      - mountPath: /etc/report
-        name: result-aggregator
-        readOnly: true
-    serviceAccountName: ci-operator
-    volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
-    - name: manifest-tool-local-pusher
-      secret:
-        secretName: manifest-tool-local-pusher
-    - name: pull-secret
-      secret:
-        secretName: registry-pull-credentials
-    - name: result-aggregator
-      secret:
-        secretName: result-aggregator
-- agent: kubernetes
-  cluster: build05
-  cron: 00 03 * * 2,4,6
-  decorate: true
-  decoration_config:
-    timeout: 6h0m0s
-  extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
-  labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
-    ci-operator.openshift.io/cluster: build05
-    ci-operator.openshift.io/variant: edge
-    ci.openshift.io/generator: prowgen
-    job-release: "4.19"
-    pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-e2e-ai-operator-ztp-sno-day2-workers-periodic
-  spec:
-    containers:
-    - args:
-      - --gcs-upload-secret=/secrets/gcs/service-account.json
-      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
-      - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
-      - --target=e2e-ai-operator-ztp-sno-day2-workers-periodic
-      - --variant=edge
-      command:
-      - ci-operator
-      image: ci-operator:latest
-      imagePullPolicy: Always
-      name: ""
-      resources:
-        requests:
-          cpu: 10m
-      volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
-      - mountPath: /secrets/gcs
-        name: gcs-credentials
-        readOnly: true
-      - mountPath: /secrets/manifest-tool
-        name: manifest-tool-local-pusher
-        readOnly: true
-      - mountPath: /etc/pull-secret
-        name: pull-secret
-        readOnly: true
-      - mountPath: /etc/report
-        name: result-aggregator
-        readOnly: true
-    serviceAccountName: ci-operator
-    volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
-    - name: manifest-tool-local-pusher
-      secret:
-        secretName: manifest-tool-local-pusher
-    - name: pull-secret
-      secret:
-        secretName: registry-pull-credentials
-    - name: result-aggregator
-      secret:
-        secretName: result-aggregator
-- agent: kubernetes
-  cluster: build09
-  cron: 42 22 * * *
-  decorate: true
-  extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
-  labels:
-    ci-operator.openshift.io/variant: edge
-    ci.openshift.io/generator: prowgen
-    job-release: "4.19"
-    pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-mirror-nightly-image
-  spec:
-    containers:
-    - args:
-      - --gcs-upload-secret=/secrets/gcs/service-account.json
-      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
-      - --target=mirror-nightly-image
-      - --variant=edge
-      command:
-      - ci-operator
-      image: ci-operator:latest
-      imagePullPolicy: Always
-      name: ""
-      resources:
-        requests:
-          cpu: 10m
-      volumeMounts:
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
-      - mountPath: /secrets/gcs
-        name: gcs-credentials
-        readOnly: true
-      - mountPath: /secrets/manifest-tool
-        name: manifest-tool-local-pusher
-        readOnly: true
-      - mountPath: /etc/pull-secret
-        name: pull-secret
-        readOnly: true
-      - mountPath: /etc/report
-        name: result-aggregator
-        readOnly: true
-    serviceAccountName: ci-operator
-    volumes:
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
-    - name: manifest-tool-local-pusher
-      secret:
-        secretName: manifest-tool-local-pusher
-    - name: pull-secret
-      secret:
-        secretName: registry-pull-credentials
-    - name: result-aggregator
-      secret:
-        secretName: result-aggregator
-- agent: kubernetes
-  cluster: build09
-  cron: 24 22 * * *
-  decorate: true
-  extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
-  labels:
-    ci-operator.openshift.io/variant: edge
-    ci.openshift.io/generator: prowgen
-    job-release: "4.19"
-    pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-mirror-nightly-image-el8
-  spec:
-    containers:
-    - args:
-      - --gcs-upload-secret=/secrets/gcs/service-account.json
-      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
-      - --target=mirror-nightly-image-el8
-      - --variant=edge
-      command:
-      - ci-operator
-      image: ci-operator:latest
-      imagePullPolicy: Always
-      name: ""
-      resources:
-        requests:
-          cpu: 10m
-      volumeMounts:
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
-      - mountPath: /secrets/gcs
-        name: gcs-credentials
-        readOnly: true
-      - mountPath: /secrets/manifest-tool
-        name: manifest-tool-local-pusher
-        readOnly: true
-      - mountPath: /etc/pull-secret
-        name: pull-secret
-        readOnly: true
-      - mountPath: /etc/report
-        name: result-aggregator
-        readOnly: true
-    serviceAccountName: ci-operator
-    volumes:
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
-    - name: manifest-tool-local-pusher
-      secret:
-        secretName: manifest-tool-local-pusher
-    - name: pull-secret
-      secret:
-        secretName: registry-pull-credentials
-    - name: result-aggregator
-      secret:
-        secretName: result-aggregator
-- agent: kubernetes
-  cluster: build09
-  cron: 00 00 * * 0-5
-  decorate: true
-  extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
-  labels:
-    ci-operator.openshift.io/variant: edge
-    ci.openshift.io/generator: prowgen
-    job-release: "4.19"
-    pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-subsystem-aws-periodic
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly/redhat-developer-rhdh-nightly/artifacts/showcase-ci-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly/redhat-developer-rhdh-nightly/artifacts/showcase-rbac-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly/redhat-developer-rhdh-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
   spec:
     containers:
     - args:
@@ -903,8 +326,7 @@ periodics:
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/secrets/ci-pull-credentials
-      - --target=subsystem-aws-periodic
-      - --variant=edge
+      - --target=e2e-tests-nightly
       command:
       - ci-operator
       image: ci-operator:latest
@@ -950,19 +372,104 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
-  cron: 00 01 * * 0-5
+  cluster: build03
+  cron: 0 6 * * MON,WED,FRI
   decorate: true
+  decoration_config:
+    skip_cloning: true
   extra_refs:
-  - base_ref: master
-    org: openshift
-    repo: assisted-service
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
   labels:
-    ci-operator.openshift.io/variant: edge
     ci.openshift.io/generator: prowgen
-    job-release: "4.19"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-openshift-assisted-service-master-edge-subsystem-kubeapi-aws-periodic
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-nightly-auth-providers
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly-auth-providers/redhat-developer-rhdh-auth-providers-nightly/artifacts/showcase-auth-providers/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly-auth-providers/redhat-developer-rhdh-auth-providers-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
+  spec:
+    containers:
+    - args:
+      - --gcs-upload-secret=/secrets/gcs/service-account.json
+      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+      - --report-credentials-file=/etc/report/credentials
+      - --secret-dir=/secrets/ci-pull-credentials
+      - --target=e2e-tests-nightly-auth-providers
+      command:
+      - ci-operator
+      image: ci-operator:latest
+      imagePullPolicy: Always
+      name: ""
+      resources:
+        requests:
+          cpu: 10m
+      volumeMounts:
+      - mountPath: /secrets/ci-pull-credentials
+        name: ci-pull-credentials
+        readOnly: true
+      - mountPath: /secrets/gcs
+        name: gcs-credentials
+        readOnly: true
+      - mountPath: /secrets/manifest-tool
+        name: manifest-tool-local-pusher
+        readOnly: true
+      - mountPath: /etc/pull-secret
+        name: pull-secret
+        readOnly: true
+      - mountPath: /etc/report
+        name: result-aggregator
+        readOnly: true
+    serviceAccountName: ci-operator
+    volumes:
+    - name: ci-pull-credentials
+      secret:
+        secretName: ci-pull-credentials
+    - name: manifest-tool-local-pusher
+      secret:
+        secretName: manifest-tool-local-pusher
+    - name: pull-secret
+      secret:
+        secretName: registry-pull-credentials
+    - name: result-aggregator
+      secret:
+        secretName: result-aggregator
+- agent: kubernetes
+  cluster: build03
+  cron: 0 6 * * MON,WED,FRI
+  decorate: true
+  decoration_config:
+    skip_cloning: true
+  extra_refs:
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
+  labels:
+    ci.openshift.io/generator: prowgen
+    pj-rehearse.openshift.io/can-be-rehearsed: "true"
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-nightly-ocp-v4-15
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly-ocp-v4-15/redhat-developer-rhdh-nightly/artifacts/showcase-ci-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly-ocp-v4-15/redhat-developer-rhdh-nightly/artifacts/showcase-rbac-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly-ocp-v4-15/redhat-developer-rhdh-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
   spec:
     containers:
     - args:
@@ -971,8 +478,394 @@ periodics:
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/secrets/ci-pull-credentials
-      - --target=subsystem-kubeapi-aws-periodic
-      - --variant=edge
+      - --target=e2e-tests-nightly-ocp-v4-15
+      command:
+      - ci-operator
+      image: ci-operator:latest
+      imagePullPolicy: Always
+      name: ""
+      resources:
+        requests:
+          cpu: 10m
+      volumeMounts:
+      - mountPath: /secrets/ci-pull-credentials
+        name: ci-pull-credentials
+        readOnly: true
+      - mountPath: /secrets/gcs
+        name: gcs-credentials
+        readOnly: true
+      - mountPath: /secrets/hive-hive-credentials
+        name: hive-hive-credentials
+        readOnly: true
+      - mountPath: /secrets/manifest-tool
+        name: manifest-tool-local-pusher
+        readOnly: true
+      - mountPath: /etc/pull-secret
+        name: pull-secret
+        readOnly: true
+      - mountPath: /etc/report
+        name: result-aggregator
+        readOnly: true
+    serviceAccountName: ci-operator
+    volumes:
+    - name: ci-pull-credentials
+      secret:
+        secretName: ci-pull-credentials
+    - name: hive-hive-credentials
+      secret:
+        secretName: hive-hive-credentials
+    - name: manifest-tool-local-pusher
+      secret:
+        secretName: manifest-tool-local-pusher
+    - name: pull-secret
+      secret:
+        secretName: registry-pull-credentials
+    - name: result-aggregator
+      secret:
+        secretName: result-aggregator
+- agent: kubernetes
+  cluster: build03
+  cron: 0 6 * * MON,WED,FRI
+  decorate: true
+  decoration_config:
+    skip_cloning: true
+  extra_refs:
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
+  labels:
+    ci.openshift.io/generator: prowgen
+    pj-rehearse.openshift.io/can-be-rehearsed: "true"
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-nightly-ocp-v4-16
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly-ocp-v4-16/redhat-developer-rhdh-nightly/artifacts/showcase-ci-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly-ocp-v4-16/redhat-developer-rhdh-nightly/artifacts/showcase-rbac-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-nightly-ocp-v4-16/redhat-developer-rhdh-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
+  spec:
+    containers:
+    - args:
+      - --gcs-upload-secret=/secrets/gcs/service-account.json
+      - --hive-kubeconfig=/secrets/hive-hive-credentials/kubeconfig
+      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+      - --report-credentials-file=/etc/report/credentials
+      - --secret-dir=/secrets/ci-pull-credentials
+      - --target=e2e-tests-nightly-ocp-v4-16
+      command:
+      - ci-operator
+      image: ci-operator:latest
+      imagePullPolicy: Always
+      name: ""
+      resources:
+        requests:
+          cpu: 10m
+      volumeMounts:
+      - mountPath: /secrets/ci-pull-credentials
+        name: ci-pull-credentials
+        readOnly: true
+      - mountPath: /secrets/gcs
+        name: gcs-credentials
+        readOnly: true
+      - mountPath: /secrets/hive-hive-credentials
+        name: hive-hive-credentials
+        readOnly: true
+      - mountPath: /secrets/manifest-tool
+        name: manifest-tool-local-pusher
+        readOnly: true
+      - mountPath: /etc/pull-secret
+        name: pull-secret
+        readOnly: true
+      - mountPath: /etc/report
+        name: result-aggregator
+        readOnly: true
+    serviceAccountName: ci-operator
+    volumes:
+    - name: ci-pull-credentials
+      secret:
+        secretName: ci-pull-credentials
+    - name: hive-hive-credentials
+      secret:
+        secretName: hive-hive-credentials
+    - name: manifest-tool-local-pusher
+      secret:
+        secretName: manifest-tool-local-pusher
+    - name: pull-secret
+      secret:
+        secretName: registry-pull-credentials
+    - name: result-aggregator
+      secret:
+        secretName: result-aggregator
+- agent: kubernetes
+  cluster: build03
+  cron: 0 7 * * MON,WED,FRI
+  decorate: true
+  decoration_config:
+    skip_cloning: true
+  extra_refs:
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
+  labels:
+    ci.openshift.io/generator: prowgen
+    pj-rehearse.openshift.io/can-be-rehearsed: "true"
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-operator-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-operator-nightly/redhat-developer-rhdh-operator-nightly/artifacts/showcase-operator-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-operator-nightly/redhat-developer-rhdh-operator-nightly/artifacts/showcase-op-rbac-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-operator-nightly/redhat-developer-rhdh-operator-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
+  spec:
+    containers:
+    - args:
+      - --gcs-upload-secret=/secrets/gcs/service-account.json
+      - --hive-kubeconfig=/secrets/hive-hive-credentials/kubeconfig
+      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+      - --report-credentials-file=/etc/report/credentials
+      - --secret-dir=/secrets/ci-pull-credentials
+      - --target=e2e-tests-operator-nightly
+      command:
+      - ci-operator
+      image: ci-operator:latest
+      imagePullPolicy: Always
+      name: ""
+      resources:
+        requests:
+          cpu: 10m
+      volumeMounts:
+      - mountPath: /secrets/ci-pull-credentials
+        name: ci-pull-credentials
+        readOnly: true
+      - mountPath: /secrets/gcs
+        name: gcs-credentials
+        readOnly: true
+      - mountPath: /secrets/hive-hive-credentials
+        name: hive-hive-credentials
+        readOnly: true
+      - mountPath: /secrets/manifest-tool
+        name: manifest-tool-local-pusher
+        readOnly: true
+      - mountPath: /etc/pull-secret
+        name: pull-secret
+        readOnly: true
+      - mountPath: /etc/report
+        name: result-aggregator
+        readOnly: true
+    serviceAccountName: ci-operator
+    volumes:
+    - name: ci-pull-credentials
+      secret:
+        secretName: ci-pull-credentials
+    - name: hive-hive-credentials
+      secret:
+        secretName: hive-hive-credentials
+    - name: manifest-tool-local-pusher
+      secret:
+        secretName: manifest-tool-local-pusher
+    - name: pull-secret
+      secret:
+        secretName: registry-pull-credentials
+    - name: result-aggregator
+      secret:
+        secretName: result-aggregator
+- agent: kubernetes
+  cluster: build03
+  cron: 0 7 * * MON,WED,FRI
+  decorate: true
+  decoration_config:
+    skip_cloning: true
+    timeout: 3h40m0s
+  extra_refs:
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
+  labels:
+    ci.openshift.io/generator: prowgen
+    pj-rehearse.openshift.io/can-be-rehearsed: "true"
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-osd-gcp-helm-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-osd-gcp-helm-nightly/redhat-developer-rhdh-osd-gcp-nightly/artifacts/showcase-ci-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-osd-gcp-helm-nightly/redhat-developer-rhdh-osd-gcp-nightly/artifacts/showcase-rbac-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-osd-gcp-helm-nightly/redhat-developer-rhdh-osd-gcp-nightly/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
+  spec:
+    containers:
+    - args:
+      - --gcs-upload-secret=/secrets/gcs/service-account.json
+      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+      - --report-credentials-file=/etc/report/credentials
+      - --secret-dir=/secrets/ci-pull-credentials
+      - --target=e2e-tests-osd-gcp-helm-nightly
+      command:
+      - ci-operator
+      image: ci-operator:latest
+      imagePullPolicy: Always
+      name: ""
+      resources:
+        requests:
+          cpu: 10m
+      volumeMounts:
+      - mountPath: /secrets/ci-pull-credentials
+        name: ci-pull-credentials
+        readOnly: true
+      - mountPath: /secrets/gcs
+        name: gcs-credentials
+        readOnly: true
+      - mountPath: /secrets/manifest-tool
+        name: manifest-tool-local-pusher
+        readOnly: true
+      - mountPath: /etc/pull-secret
+        name: pull-secret
+        readOnly: true
+      - mountPath: /etc/report
+        name: result-aggregator
+        readOnly: true
+    serviceAccountName: ci-operator
+    volumes:
+    - name: ci-pull-credentials
+      secret:
+        secretName: ci-pull-credentials
+    - name: manifest-tool-local-pusher
+      secret:
+        secretName: manifest-tool-local-pusher
+    - name: pull-secret
+      secret:
+        secretName: registry-pull-credentials
+    - name: result-aggregator
+      secret:
+        secretName: result-aggregator
+- agent: kubernetes
+  cluster: build03
+  cron: 0 7 * * MON,WED,FRI
+  decorate: true
+  decoration_config:
+    skip_cloning: true
+    timeout: 3h40m0s
+  extra_refs:
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
+  labels:
+    ci.openshift.io/generator: prowgen
+    pj-rehearse.openshift.io/can-be-rehearsed: "true"
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-osd-gcp-operator-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-osd-gcp-operator-nightly/redhat-developer-rhdh-osd-gcp-nightly/artifacts/showcase-operator-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-osd-gcp-operator-nightly/redhat-developer-rhdh-osd-gcp-nightly/artifacts/showcase-op-rbac-nightly/index.html|rbac-nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-osd-gcp-operator-nightly/redhat-developer-rhdh-osd-gcp-nightly/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
+  spec:
+    containers:
+    - args:
+      - --gcs-upload-secret=/secrets/gcs/service-account.json
+      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+      - --report-credentials-file=/etc/report/credentials
+      - --secret-dir=/secrets/ci-pull-credentials
+      - --target=e2e-tests-osd-gcp-operator-nightly
+      command:
+      - ci-operator
+      image: ci-operator:latest
+      imagePullPolicy: Always
+      name: ""
+      resources:
+        requests:
+          cpu: 10m
+      volumeMounts:
+      - mountPath: /secrets/ci-pull-credentials
+        name: ci-pull-credentials
+        readOnly: true
+      - mountPath: /secrets/gcs
+        name: gcs-credentials
+        readOnly: true
+      - mountPath: /secrets/manifest-tool
+        name: manifest-tool-local-pusher
+        readOnly: true
+      - mountPath: /etc/pull-secret
+        name: pull-secret
+        readOnly: true
+      - mountPath: /etc/report
+        name: result-aggregator
+        readOnly: true
+    serviceAccountName: ci-operator
+    volumes:
+    - name: ci-pull-credentials
+      secret:
+        secretName: ci-pull-credentials
+    - name: manifest-tool-local-pusher
+      secret:
+        secretName: manifest-tool-local-pusher
+    - name: pull-secret
+      secret:
+        secretName: registry-pull-credentials
+    - name: result-aggregator
+      secret:
+        secretName: result-aggregator
+- agent: kubernetes
+  cluster: build03
+  cron: 0 7 * * MON,WED,FRI
+  decorate: true
+  decoration_config:
+    skip_cloning: true
+  extra_refs:
+  - base_ref: release-1.6
+    org: redhat-developer
+    repo: rhdh
+  labels:
+    ci.openshift.io/generator: prowgen
+    pj-rehearse.openshift.io/can-be-rehearsed: "true"
+  name: periodic-ci-redhat-developer-rhdh-release-1.6-e2e-tests-upgrade-nightly
+  reporter_config:
+    slack:
+      channel: '#rhdh-e2e-test-alerts'
+      job_states_to_report:
+      - success
+      - failure
+      - error
+      report_template: '{{if eq .Status.State "success"}} :done-circle-check: {{else}}<!subteam^S07BMJ56R8S>
+        :failed: {{end}} Job *`{{.Spec.Job}}`* ended with *{{.Status.State}}*. Open
+        Report: <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-upgrade-nightly/redhat-developer-rhdh-upgrade-nightly/artifacts/showcase-upgrade-nightly/index.html|nightly>
+        | <https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/gcs/test-platform-results/logs/{{.Spec.Job}}/{{.Status.BuildID}}/artifacts/e2e-tests-upgrade-nightly/redhat-developer-rhdh-upgrade-nightly/artifacts/|Open
+        artifacts> | <{{.Status.URL}}|View logs>'
+  spec:
+    containers:
+    - args:
+      - --gcs-upload-secret=/secrets/gcs/service-account.json
+      - --hive-kubeconfig=/secrets/hive-hive-credentials/kubeconfig
+      - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
+      - --report-credentials-file=/etc/report/credentials
+      - --secret-dir=/secrets/ci-pull-credentials
+      - --target=e2e-tests-upgrade-nightly
       command:
       - ci-operator
       image: ci-operator:latest
