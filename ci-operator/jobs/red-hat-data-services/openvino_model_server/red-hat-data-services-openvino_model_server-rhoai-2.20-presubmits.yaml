@@ -1,23 +1,27 @@
-postsubmits:
-  openshift/osd-network-verifier:
+presubmits:
+  red-hat-data-services/openvino_model_server:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^main$
-    cluster: build11
+    - ^rhoai-2\.20$
+    - ^rhoai-2\.20-
+    cluster: build03
+    context: ci/prow/images
     decorate: true
+    decoration_config:
+      skip_cloning: true
     labels:
       ci.openshift.io/generator: prowgen
-    max_concurrency: 1
-    name: branch-ci-openshift-osd-network-verifier-main-publish-coverage
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-red-hat-data-services-openvino_model_server-rhoai-2.20-images
+    rerun_command: /test images
     spec:
       containers:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/osd-network-verifier-codecov-token
-        - --target=publish-coverage
+        - --target=[images]
         command:
         - ci-operator
         image: ci-operator:latest
@@ -33,9 +37,6 @@ postsubmits:
         - mountPath: /secrets/manifest-tool
           name: manifest-tool-local-pusher
           readOnly: true
-        - mountPath: /secrets/osd-network-verifier-codecov-token
-          name: osd-network-verifier-codecov-token
-          readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
@@ -47,12 +48,10 @@ postsubmits:
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
-      - name: osd-network-verifier-codecov-token
-        secret:
-          secretName: osd-network-verifier-codecov-token
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
       - name: result-aggregator
         secret:
           secretName: result-aggregator
+    trigger: (?m)^/test( | .* )images,?($|\s.*)
