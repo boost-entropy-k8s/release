@@ -98006,7 +98006,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98016,8 +98016,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98082,7 +98082,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98092,8 +98092,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98158,7 +98158,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98168,8 +98168,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98234,7 +98234,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98244,8 +98244,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98310,7 +98310,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98320,8 +98320,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98386,7 +98386,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98396,8 +98396,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98462,7 +98462,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98472,8 +98472,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98538,7 +98538,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98548,8 +98548,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98614,7 +98614,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98624,8 +98624,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98690,7 +98690,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98700,8 +98700,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98918,7 +98918,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -98928,8 +98928,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -98994,7 +98994,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99004,8 +99004,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99070,7 +99070,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99080,8 +99080,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99146,7 +99146,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99156,8 +99156,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99222,7 +99222,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99232,8 +99232,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99298,7 +99298,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99308,8 +99308,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99374,7 +99374,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99384,8 +99384,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99450,7 +99450,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99460,8 +99460,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99526,7 +99526,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99536,8 +99536,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99602,7 +99602,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99612,8 +99612,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99678,7 +99678,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99688,8 +99688,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99754,7 +99754,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99764,8 +99764,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99830,7 +99830,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99840,8 +99840,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -99906,7 +99906,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sat
   decorate: true
   decoration_config:
@@ -99916,8 +99916,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.16
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108344,7 +108344,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108354,8 +108354,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108420,7 +108420,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108430,8 +108430,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108496,7 +108496,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108506,8 +108506,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108572,7 +108572,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108582,8 +108582,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108648,7 +108648,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108658,8 +108658,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108724,7 +108724,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108734,8 +108734,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108800,7 +108800,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108810,8 +108810,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108876,7 +108876,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108886,8 +108886,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -108952,7 +108952,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -108962,8 +108962,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109028,7 +109028,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109038,8 +109038,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109410,7 +109410,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109420,8 +109420,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109486,7 +109486,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109496,8 +109496,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109562,7 +109562,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109572,8 +109572,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109638,7 +109638,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109648,8 +109648,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109714,7 +109714,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109724,8 +109724,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109790,7 +109790,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109800,8 +109800,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109866,7 +109866,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109876,8 +109876,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -109942,7 +109942,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -109952,8 +109952,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -110018,7 +110018,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -110028,8 +110028,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -110094,7 +110094,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -110104,8 +110104,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -110170,7 +110170,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -110180,8 +110180,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -110246,7 +110246,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -110256,8 +110256,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -110322,7 +110322,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -110332,8 +110332,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -110398,7 +110398,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Sun
   decorate: true
   decoration_config:
@@ -110408,8 +110408,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.17
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121113,7 +121113,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -121123,8 +121123,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121189,7 +121189,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -121199,8 +121199,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121265,7 +121265,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -121275,8 +121275,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121341,7 +121341,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -121351,8 +121351,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121417,7 +121417,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -121427,8 +121427,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121493,7 +121493,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -121503,8 +121503,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121569,7 +121569,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -121580,8 +121580,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121646,7 +121646,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -121657,8 +121657,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121723,7 +121723,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -121734,8 +121734,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121800,7 +121800,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -121810,8 +121810,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121876,7 +121876,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -121887,8 +121887,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -121953,7 +121953,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -121964,8 +121964,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122030,7 +122030,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -122041,8 +122041,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122107,7 +122107,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -122117,8 +122117,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122183,7 +122183,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -122194,8 +122194,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122260,7 +122260,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -122270,8 +122270,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122336,7 +122336,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -122346,8 +122346,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122412,7 +122412,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -122422,8 +122422,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122488,7 +122488,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -122498,8 +122498,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122564,7 +122564,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -122574,8 +122574,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -122946,7 +122946,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -122957,8 +122957,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123023,7 +123023,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123033,8 +123033,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123099,7 +123099,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123109,8 +123109,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123175,7 +123175,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123185,8 +123185,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123251,7 +123251,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123261,8 +123261,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123327,7 +123327,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123337,8 +123337,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123403,7 +123403,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123413,8 +123413,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123479,7 +123479,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123490,8 +123490,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123556,7 +123556,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123567,8 +123567,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123633,7 +123633,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123644,8 +123644,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123710,7 +123710,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123720,8 +123720,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123786,7 +123786,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123797,8 +123797,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123863,7 +123863,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123874,8 +123874,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -123940,7 +123940,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -123951,8 +123951,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -124017,7 +124017,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -124027,8 +124027,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -124093,7 +124093,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -124103,8 +124103,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -124169,7 +124169,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -124180,8 +124180,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -124246,7 +124246,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -124256,8 +124256,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -124322,7 +124322,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -124332,8 +124332,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -124398,7 +124398,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -124408,8 +124408,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -124474,7 +124474,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -124484,8 +124484,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -124550,7 +124550,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -124560,8 +124560,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.18
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -135487,7 +135487,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -135497,8 +135497,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -135563,7 +135563,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -135573,8 +135573,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -135639,7 +135639,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -135649,8 +135649,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -135715,7 +135715,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -135725,8 +135725,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -135791,7 +135791,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -135801,8 +135801,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -135867,7 +135867,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -135877,8 +135877,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -135943,7 +135943,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -135954,8 +135954,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136020,7 +136020,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -136031,8 +136031,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136097,7 +136097,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -136108,8 +136108,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136174,7 +136174,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -136184,8 +136184,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136250,7 +136250,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -136261,8 +136261,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136327,7 +136327,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -136338,8 +136338,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136404,7 +136404,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -136415,8 +136415,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136481,7 +136481,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -136491,8 +136491,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136557,7 +136557,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -136568,8 +136568,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136634,7 +136634,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -136644,8 +136644,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136710,7 +136710,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -136720,8 +136720,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136786,7 +136786,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -136796,8 +136796,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136862,7 +136862,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -136872,8 +136872,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -136938,7 +136938,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -136948,8 +136948,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137320,7 +137320,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137331,8 +137331,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137397,7 +137397,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137407,8 +137407,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137473,7 +137473,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137483,8 +137483,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137549,7 +137549,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137559,8 +137559,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137625,7 +137625,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137635,8 +137635,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137701,7 +137701,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137711,8 +137711,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137777,7 +137777,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137787,8 +137787,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137853,7 +137853,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137864,8 +137864,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -137930,7 +137930,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -137941,8 +137941,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138007,7 +138007,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138018,8 +138018,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138084,7 +138084,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138094,8 +138094,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138160,7 +138160,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138171,8 +138171,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138237,7 +138237,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138248,8 +138248,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138314,7 +138314,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138325,8 +138325,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138391,7 +138391,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138401,8 +138401,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138467,7 +138467,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138477,8 +138477,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138543,7 +138543,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138554,8 +138554,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138620,7 +138620,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138630,8 +138630,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138696,7 +138696,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138706,8 +138706,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138772,7 +138772,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138782,8 +138782,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138848,7 +138848,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138858,8 +138858,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -138924,7 +138924,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -138934,8 +138934,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.19
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -150614,7 +150614,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -150624,8 +150624,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -150690,7 +150690,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -150700,8 +150700,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -150766,7 +150766,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -150776,8 +150776,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -150842,7 +150842,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -150852,8 +150852,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -150918,7 +150918,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -150928,8 +150928,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -150994,7 +150994,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -151004,8 +151004,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151070,7 +151070,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -151081,8 +151081,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151147,7 +151147,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -151158,8 +151158,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151224,7 +151224,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -151235,8 +151235,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151301,7 +151301,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -151311,8 +151311,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151377,7 +151377,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -151388,8 +151388,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151454,7 +151454,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -151465,8 +151465,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151531,7 +151531,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -151542,8 +151542,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151608,7 +151608,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -151618,8 +151618,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151684,7 +151684,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 16 * * Fri
   decorate: true
   decoration_config:
@@ -151695,8 +151695,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151761,7 +151761,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -151771,8 +151771,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151837,7 +151837,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -151847,8 +151847,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151913,7 +151913,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -151923,8 +151923,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -151989,7 +151989,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -151999,8 +151999,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152065,7 +152065,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152075,8 +152075,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152447,7 +152447,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152458,8 +152458,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152524,7 +152524,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152534,8 +152534,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152600,7 +152600,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152610,8 +152610,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152676,7 +152676,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152686,8 +152686,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152752,7 +152752,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152762,8 +152762,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152828,7 +152828,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152838,8 +152838,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152904,7 +152904,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152914,8 +152914,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -152980,7 +152980,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -152991,8 +152991,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153057,7 +153057,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153068,8 +153068,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153134,7 +153134,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153145,8 +153145,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153211,7 +153211,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153221,8 +153221,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153287,7 +153287,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153298,8 +153298,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153364,7 +153364,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153375,8 +153375,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153441,7 +153441,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153452,8 +153452,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153518,7 +153518,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153528,8 +153528,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153594,7 +153594,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153604,8 +153604,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153670,7 +153670,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153681,8 +153681,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153747,7 +153747,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153757,8 +153757,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153823,7 +153823,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153833,8 +153833,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153899,7 +153899,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153909,8 +153909,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -153975,7 +153975,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -153985,8 +153985,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
@@ -154051,7 +154051,7 @@ periodics:
       secret:
         secretName: result-aggregator
 - agent: kubernetes
-  cluster: build09
+  cluster: build02
   cron: 0 8 * * Fri
   decorate: true
   decoration_config:
@@ -154061,8 +154061,8 @@ periodics:
     org: openshift
     repo: release
   labels:
-    ci-operator.openshift.io/cloud: packet-edge
-    ci-operator.openshift.io/cloud-cluster-profile: packet-sno
+    ci-operator.openshift.io/cloud: gcp
+    ci-operator.openshift.io/cloud-cluster-profile: gcp
     ci-operator.openshift.io/variant: nightly-4.20
     ci.openshift.io/generator: prowgen
     ci.openshift.io/no-builds: "true"
